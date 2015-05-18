@@ -1,0 +1,16 @@
+<extend name="Public:listbase" />
+<block name="content">
+    <h3>|&nbsp;&nbsp;&nbsp;{$current.name}</h3>
+    <div class="news" scroll=no>
+           <div class="title">
+               {$news.title}
+           </div>
+        <div class="content" scroll=no>
+            {$news.content}
+        </div>
+    </div>
+</block>
+
+<block name="footer">
+	<include file="Public:showfooter" />
+</block>

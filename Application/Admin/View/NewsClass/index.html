@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar definewidth m10">
+    <div class="navbar-inner">
+        <a class="brand">分类列表</a>
+        <button style="float:right" type="button" class="btn btn-success" id="addnew">添加分类</button>
+    </div>
+</div>
+<div class="pull-left" style="margin-left:25px; height:30px;">
+    <form id="mainform" action="{:U('NewsClass/index')}" method="post">
+        <select id="navcid_select" name="navid" style="height:30px;margin-top:5px;">
+            <foreach name="navcats" item="vo">
+                <php>$navcid_selected=$navid==$vo['id']?"selected":"";</php>
+                <option value="{$vo.id}" {$navcid_selected}>{$vo.name}</option>
+            </foreach>
+        </select>
+    </form>
+</div>
+<div class="clearfix"></div>
+<div style="margin-top:0px;">
+    <form action="{:U('Admin/NewsClass/DelallOrSort')}">
+        <table class="table table-bordered table-hover definewidth m10" classid="class_1">
+            <thead>
+            <tr>
+                <th width="8%">选择</th>
+                <th width="7%">排序</th>
+                <th width="7%">分类序号</th>
+                <th width="25%" colspan="2">分类名称</th>
+                <th width="10%">栏目类型</th>
+                <th width="20%">文章数量</th>
+                <th width="20%">状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <volist name="list" id="vo">
+                <tr>
+                    <td>
+                        <center><input name="ids[]" type="checkbox" value="{$vo.f.id}" class="np"></center>
+                    </td>
+                    <td>
+                        <center><input type="text" value="{$vo.f.listorder}" name="listorder[{$vo.f.id}]"
+                                       style="width:30px"/></center>
+                    </td>
+                    <td>{$vo.f.id}</td>
+                    <td colspan="2">{$vo.f.name}</td>
+                    <if condition="$vo['f']['typeid']==2">
+                        <td style="color:red;">{$vo.f.type}</td>
+                        <elseif condition="$vo['f']['typeid']==3"/>
+                        <td style="color:blue;">{$vo.f.type}</td>
+                        <else/>
+                        <td>{$vo.f.type}</td>
+                    </if>
+                    <td></td>
+                    <if condition="$vo['f']['display'] eq 1">
+                        <td>
+                            <button type="button" class="btn btn-mini btn-success"
+                                    onclick="javasript:show({$vo.f.id},false)">可见
+                            </button>
+                        </td>
+                        <else/>
+                        <td>
+                            <button type="button" class="btn btn-mini btn-inverse"
+                                    onclick="javasript:show({$vo.f.id},true)">不可见
+                            </button>
+                        </td>
+                    </if>
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-mini btn-primary" onclick="javasript:add()">新增</button>
+                            <button type="button" class="btn btn-mini btn-info" id="addnew"
+                                    onclick="javasript:edit({$vo.f.id},{$vo.f.typeid})">编辑
+                            </button>
+                            <button type="button" class="btn btn-mini btn-danger" id="addnew"
+                                    onclick="javasript:del({$vo.f.id})">删除
+                            </button>
+                        </div>
+                    </td>
+                    <volist name="vo.c" id="chd">
+                        <tr>
+                            <td>
+                                <center><input name="ids[]" type="checkbox" id="mid" value="{$chd.id}" class="np">
+                                </center>
+                            </td>
+                            <td>
+                                <center><input type="text" value="{$chd.listorder}" name="listorder[{$chd.id}]"
+                                               style="width:30px"/></center>
+                            </td>
+                            <td>{$chd.id}</td>
+                            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;└─{$chd.name}</td>
+                            <if condition="$chd['typeid']==2">
+                                <td style="color:red;">{$chd.type}</td>
+                                <elseif condition="$chd['typeid']==3"/>
+                                <td style="color:blue;">{$chd.type}</td>
+                                <else/>
+                                <td>{$chd.type}</td>
+                            </if>
+                            <td>{$chd.0}</td>
+                            <if condition="$chd['display'] eq 1">
+                                <td>
+                                    <button type="button" class="btn btn-mini btn-success"
+                                            onclick="javasript:show({$chd.id},false)">可见
+                                    </button>
+                                </td>
+                                <else/>
+                                <td>
+                                    <button type="button" class="btn btn-mini btn-inverse"
+                                            onclick="javasript:show({$chd.id},true)">不可见
+                                    </button>
+                                </td>
+                            </if>
+                            <td>
+                                <button type="button" class="btn btn-mini btn-info"
+                                        onclick="javasript:edit({$chd.id},{$chd.typeid})">编辑
+                                </button>
+                                <button type="button" class="btn btn-mini btn-danger"
+                                        onclick="javasript:del({$chd.id})">删除
+                                </button>
+
+                            </td>
+                        </tr>
+                    </volist>
+            </volist>
+            <tr>
+                <td colspan="9">
+                    <button type="button" class="btn btn-mini btn-primary" onclick="javasript:selectall(true)">全选
+                    </button>
+                    <button type="button" class="btn btn-mini " onclick="javasript:selectall(false)">取消</button>
+                    <input type="submit" class="btn btn-mini btn-success" name="sort" value="排序"/>
+                    <input type="submit" class="btn btn-mini btn-danger" name="delall" value="删除(请谨慎使用全选删除功能!">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+</div>
+</body>
+</html>
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function () {
+
+        $('#addnew').click(function () {
+
+            window.location.href = "{:U('Admin/NewsClass/add')}";
+        });
+    });
+    function add() {
+        window.location.href = "{:U('Admin/NewsClass/add')}";
+    }
+
+    function edit(id, typeid) {
+        window.location.href = "{$editurl}?id=" + id + "&typeid=" + typeid;
+    }
+    function del(id) {
+        if (confirm("确定要删除吗？")) {
+            window.location.href = "{$delurl}?id=" + id;
+        }
+    }
+
+    function selectall(choose) {
+        if (choose) {
+            //alert(choose);
+            $("input[type='checkbox']").each(function () {
+                this.checked = true;
+            });
+        } else {
+
+            $("input[type='checkbox']").removeAttr("checked");
+        }
+    }
+
+    function show(id, choose) {
+        if (choose) {
+            window.location.href = "{$showurl}?id=" + id + "&choose=1";
+        } else {
+            window.location.href = "{$showurl}?id=" + id + "&choose=0";
+        }
+    }
+</script>
+
+<script>
+    $(function () {
+
+        $("#navcid_select").change(function () {
+            $("#mainform").submit();
+        });
+    });
+</script>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar definewidth m10">
+    <div class="navbar-inner">
+        <a class="brand">微信底部菜单</a>
+    </div>
+</div>
+
+<div style="margin-top:0px;">
+    <form action="{:U('Admin/NewsClass/DelallOrSort')}">
+        <table class="table table-bordered table-hover definewidth m10" classid="class_1">
+            <thead>
+            <tr>
+                <th width="30%">菜单名称</th>
+                <th width="30%">菜单类型</th>
+                <th width="50%">click KEY或者view URL</th>
+            </tr>
+            </thead>
+            <volist name="list" id="vo">
+                <tr>
+                    <td>{$vo.f.name}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <volist name="vo.c" id="vo1">
+                    <tr>
+                        <td>&nbsp;&nbsp;┗{$vo1.name}</td>
+                        <td>{$vo1.type}</td>
+                        <td>{$vo1.key}{$vo1.url}</td>
+                    </tr>
+                </volist>
+
+            </volist>
+
+        </table>
+    </form>
+
+
+</div>
+</body>
+</html>

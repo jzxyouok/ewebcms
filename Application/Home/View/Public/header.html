@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<title>哈尔滨工业大学（威海）学生工作处</title>
+	<link href="__PUBLIC__//Home/css/header.css" type=text/css rel=stylesheet>
+	<link href="__PUBLIC__//Home/css/footer.css" type=text/css rel=stylesheet>
+	<link href="__PUBLIC__//Home/css/index.css" type=text/css rel=stylesheet>
+    <link href="__PUBLIC__//Home/css/list.css" type=text/css rel=stylesheet>
+
+	<script type="text/javascript" src="__PUBLIC__//Home/js/xgc.js"></script>
+	<script type="text/javascript" src="__PUBLIC__//Home/js/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__//Home/js/bgstretcher.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__//Home/css/bgstretcher.css">
+
+	<!--[if IE 6]>
+	<style type="text/css">
+	body{
+	background:url(__PUBLIC__//Home/images/bg2.jpg)
+	}
+	</style>
+	<script type="text/javascript" src="DD_belatedPNG.js"></script>
+	<script language="javascript" type="text/javascript">
+        DD_belatedPNG.fix("#header,#logo,#end,#tupiantitle,#newscon,#zhutititle,.tabtitel");
+        </script>
+	<![endif]-->
+
+	<script type="text/javascript" src="__PUBLIC__//Home/js/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__//Home/js/xgc.js"></script>
+	<script type="text/javascript" src="__PUBLIC__//Home/js/bgstretcher.js"></script>
+	<script  type="text/javascript">
+	$(document).ready(function(){
+
+		 var userAgent = window.navigator.userAgent.toLowerCase();
+
+		$.browser.msie10 = $.browser.msie && /msie 10\.0/i.test(userAgent);
+		$.browser.msie9 = $.browser.msie && /msie 9\.0/i.test(userAgent);
+		$.browser.msie8 = $.browser.msie && /msie 8\.0/i.test(userAgent);
+		$.browser.msie7 = $.browser.msie && /msie 7\.0/i.test(userAgent);
+		$.browser.msie6 = !$.browser.msie8 && !$.browser.msie7 && $.browser.msie && /msie 6\.0/i.test(userAgent);
+
+	if($.browser.msie6==true)
+	{}
+	else
+	{
+
+		$('BODY').bgStretcher({
+			images: [ '__PUBLIC__//Home/images/bg1.jpg', '__PUBLIC__//Home/images/bg2.jpg','__PUBLIC__//Home/images/bg3.jpg', '__PUBLIC__//Home/images/bg4.jpg'],
+			imageWidth: 1920,
+			imageHeight: 1280,
+			slideDirection: 'NE',
+			slideShowSpeed: 1000,
+			transitionEffect: 'superSlide',
+			sequenceMode: 'normal',
+			buttonPrev: '#prev',
+			buttonNext: '#next',
+			pagination: '#nav',
+			anchoring: 'left center',
+			anchoringImg: 'left center'
+		});
+	}
+
+	});
+ </script>
+
+</head>
+<body>
+	<!-- <div class="wrapper"> -->
+		<div class="top">
+			<div class="top_center">
+				<div class="logo">
+					<img src="__PUBLIC__//Home/images/aa.png" />
+				</div>
+
+				<div class="top_right">
+					<div id="top_time" onload="updateTime()">
+						<?php
+						//获取官网时间
+						$text=file_get_contents('http://www.hitwh.edu.cn/');
+						$regex4="/<div id=\"top_nav_left\".*?>.*?<\/div>/ism";
+						preg_match($regex4,$text,$match);
+						echo "$match[0]";
+						?>
+					</div>
+
+					<div class="search_box">
+						<form id="search_from" target="blank" onsubmit="return go(this)">
+							<input type="image" src="__PUBLIC__//Home/images/btn_search_box.png" width="78px" height="31px" id="go" alt="search" onclick="document.search_from.submit()" >
+							<input type="text" id="word" value="请在此输入检索关键字" onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="top_menu_bg_home">
+			<div id="top_menu">
+				<ul>
+                    <volist name="navlist[0]" id="vo">
+                        <li>
+
+                            <if condition="$vo.f.fid eq 0">
+                                <if condition="$vo['f']['typeid'] eq 2">
+                                    <a href="{$vo.f.href}">{$vo.f.name}</a>
+                                    <else />
+                                    <a href="{:U($vo['f']['href'])}">{$vo.f.name}</a>
+                                </if>
+
+                            </if>
+                            <ul>
+                                <volist name="vo['c']" id="chd">
+                                    <li>
+                                        <if condition="$chd['typeid'] eq 2">
+                                            <a href="{$chd.href}">{$chd.name}</a>
+                                            <else />
+                                            <a href="{:U($chd['href'])}">{$chd.name}</a>
+                                        </if>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </li>
+                    </volist>
+				</ul>
+			</div>
+		</div>
+

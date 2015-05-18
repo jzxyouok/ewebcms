@@ -1,0 +1,48 @@
+<extend name="Public:listbase"/>
+<block name="content">
+    <h3>|&nbsp;&nbsp;&nbsp;{$sidef.name}</h3>
+    <volist name="msglist" id="vo">
+        <div class="messagebox">
+            <div class="question">
+                <div class="from">
+                    <b>"{$vo.name}"</b> &nbsp;于&nbsp;{$vo.date|date="Y-m-d",###}&nbsp;留言:&nbsp;&nbsp;&nbsp;&nbsp; <b>标题:</b>&nbsp;{$vo.title}
+                </div>
+                {$vo.content}
+            </div>
+            <div class="reply">
+                <div class="from">
+                    {$vo.replydate|date="Y-m-d",###}&nbsp;回复:
+                </div>
+                {$vo.reply}
+            </div>
+        </div>
+    </volist>
+    <div class="pagination pagination-centered">
+        <ul>
+            {$page1}
+        </ul>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</block>
+
+<block name="left">
+    <div class="con_left_top">{$current.name}</div>
+    <div class="con_left_list">
+        <ul>
+            <if condition="empty($sidec)">
+                <li><a href="">
+                    {$sidef.name}
+                </a></li>
+            </if>
+            <volist name="sidec" id="vo">
+                <li>
+                    <if condition="$vo['typeid'] eq 2">
+                        <a href="{$vo.href}">{$vo.name}</a>
+                        <else />
+                        <a href="{:U($vo['href'])}">{$vo.name}</a>
+                    </if>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</block>

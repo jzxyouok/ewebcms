@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>哈工大威海学生工作处-留言回复</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+        /*分页*/
+        .pagination {
+            margin: 20px 0;
+        }
+
+        .pagination-centered{
+            text-align: center;
+        }
+
+        .pagination a,.pagination span{
+            float:left;
+            display:block;
+            height:30px;
+            width:30px;
+            border:1px solid #eee;
+            text-align:center;
+            line-height: 30px;
+        }
+
+        .pagination ul a:hover{
+            color:#1A78C1;;
+        }
+
+        .current{
+            color:black;
+        }
+
+        .num{
+            color:#003bb3;
+        }
+
+        .prev{
+            color:#002a80;
+        }
+        .next{
+            color:#002a80;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <volist name="msglist" id="vo">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><b>{$vo.name}:</b>{$vo.title}</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>{$vo.content}</h4><br/>
+                    <div class="pull-right">{$vo.date|date="Y-m-d",###}</div>
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h5>{$vo.replydate|date="Y-m-d",###}&nbsp;回复:</h5>
+                    <h4>{$vo.reply}</h4>
+                </div>
+            </div>
+            <br/><br/>
+        </volist>
+        <ul class="pagination pagination-centered">
+            {$page}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

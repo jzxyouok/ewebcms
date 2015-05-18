@@ -1,0 +1,38 @@
+<extend name="Public:listbase"/>
+<block name="content">
+    <h3>|&nbsp;&nbsp;&nbsp;{$page.title}</h3>
+    <div class="news">
+        <!--<div class="title">-->
+            <!--{$page.title}-->
+        <!--</div>-->
+        <div class="content">
+            {$page.content}
+        </div>
+    </div>
+</block>
+
+<block name="left">
+    <div class="con_left_top">{$current.name}</div>
+    <div class="con_left_list">
+        <ul>
+            <if condition="empty($sidec)">
+                <li><a href="">
+                    {$sidef.name}
+                </a></li>
+            </if>
+            <volist name="sidec" id="vo">
+                <li>
+                    <if condition="$vo['typeid'] eq 2">
+                        <a href="{$vo.href}">{$vo.name}</a>
+                        <else />
+                        <a href="{:U($vo['href'])}">{$vo.name}</a>
+                    </if>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</block>
+
+<block name="footer">
+	<include file="Public:showfooter"/>
+</block>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__//Css/style.css"/>
+    <script type="text/javascript" src="__PUBLIC__//Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar definewidth m10">
+    <div class="navbar-inner">
+        <a class="brand">权限列表</a>
+        <button style="float:right" type="button" class="btn btn-success" id="addnew">添加权限</button>
+    </div>
+</div>
+
+<form action="{:U('Admin/Rbac/sortNode')}" method="post">
+    <table class="table table-bordered table-hover definewidth m10 table-condensed">
+        <thead>
+        <tr>
+            <th width="3%">排序</th>
+            <th width="5%">权限ID</th>
+            <th width="15%">权限结构</th>
+            <th width="15%">权限名称</th>
+            <th width="15%">类型</th>
+            <th width="10%">操作</th>
+        </tr>
+        </thead>
+        <volist name="list" id="vo">
+            <tr>
+                <input type="hidden" value="{$vo.id}" name="id[]"/>
+                <td><input type="text" value="{$vo.sort}" style="width:30px;" name="sort[]"/></td>
+                <td>{$vo.id}</td>
+                <td><span style="margin-left: {$vo['level']*20}px">
+                <if condition="$vo.level eq 1"><font style="color:red">{$vo.title}</font>
+                    <elseif condition="$vo.level eq 2"/>●&nbsp;{$vo.title}
+                    <else/>┗ &nbsp;{$vo.title}
+                </if>
+            </span></td>
+                <td>{$vo.name}</td>
+                <td>
+                    <if condition="$vo.level eq 1"><font style="color:red">项目</font>
+                        <elseif condition="$vo.level eq 2"/><font style="color:green;">模块</font>
+                        <else/><font style="color:blue;">操作</font>
+                    </if>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-mini btn-info" id="addnew" onclick="javasript:edit({$vo.id})">编辑
+                    </button>
+                    <button type="button" class="btn btn-mini btn-danger" id="addnew" onclick="javasript:del({$vo.id})">删除
+                    </button>
+                </td>
+            </tr>
+        </volist>
+    </table>
+    <button type="submit" class="btn btn-success" style="margin-left:25px; margin-top:20px;">排序</button>
+</form>
+</body>
+</html>
+
+<script>
+    $(function () {
+
+        $('#addnew').click(function () {
+
+            window.location.href = "{:U('Admin/Rbac/addNode')}";
+        });
+
+
+    });
+
+    function edit(id) {
+        window.location.href = "{$editurl}?id=" + id;
+    }
+    function del(id) {
+        if (confirm("确定要删除吗？")) {
+            window.location.href = "{$delurl}?id=" + id;
+        }
+    }
+
+
+
+
+</script>

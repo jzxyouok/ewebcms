@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?>id49?page=32323

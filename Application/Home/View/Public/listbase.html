@@ -1,0 +1,55 @@
+<include file="Public:listheader"/>
+
+<div class="list_center">
+    <div class="con_left">
+        <block name="left">
+            <div class="con_left_top">{$sidef.name}</div>
+            <div class="con_left_list">
+                <ul>
+                    <if condition="empty($sidec)">
+                        <li><a href="">
+                            {$sidef.name}
+                        </a></li>
+                    </if>
+                    <volist name="sidec" id="vo">
+                        <li>
+                            <if condition="$vo['typeid'] eq 2">
+                                <a href="{$vo.href}">{$vo.name}</a>
+                                <else />
+                                <a href="{:U($vo['href'])}">{$vo.name}</a>
+                            </if>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </block>
+    </div>
+    <div class="con_right">
+        <block name="content">
+            <h3>|&nbsp;&nbsp;&nbsp;{$current.name}</h3>
+            <div class="news_list">
+
+                <ul>
+                    <volist name="newslist" id="vo">
+                        <li>
+                            <a href="{:U('Home/News/show',array('id' => $vo['id']))}" style="color:black;">{$vo.title}</a>
+                            <span class="rq">[{$vo.updatetime|date="m-d",###}]</span>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="pagination pagination-centered">
+                <ul>
+                    {$page}
+                </ul>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </block>
+
+    </div>
+
+
+</div>
+<block name="footer">
+<include file="Public:listfooter"/>
+</block>

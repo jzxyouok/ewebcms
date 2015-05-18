@@ -1,0 +1,234 @@
+.list_center
+{
+	width:1000px;
+	height: 400px;
+	margin:0 auto;
+}
+
+.con_left
+{	
+	float: left;
+	width:170px;
+	height:650px;
+	background: url(../images/left.png) no-repeat 10px 0;
+}
+.con_left_top
+{	
+	color: #002E79;
+	width:120px;
+	height: 35px;
+	border-bottom:1px solid #002E59;
+	margin: 5px auto;
+	text-align: left;
+	line-height: 35px;
+	font-weight: bold;
+	font-size: 15px;
+}	
+
+.con_left ul li 
+{	
+	text-indent: 8px;
+	padding-left: 20px;
+	padding-top: 10px;
+}
+
+.con_left ul li a
+{
+	color: #000;
+}
+
+.con_left ul li a:hover {
+    border-bottom: 1px solid black;
+}
+
+.con_right
+{
+	float:right;
+	width:760px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+}
+.con_right h3
+{	
+	color: #2D5990;
+	padding: 15px;
+}
+.news_list
+{
+	width: 100%;
+	height: auto;
+
+}
+.news_list li
+{	
+	color: #000;
+	list-style-type: disc;
+	padding: 8px;
+}
+
+.news_list a:hover {
+    border-bottom: 1px solid black;
+}
+
+
+.rq
+{
+    float: right;
+    margin-right: 30px;
+    color: #666666;
+    font-size: 13px;
+}
+/*分页*/
+.pagination {
+    margin: 20px 0;
+}
+
+.pagination-centered{
+    margin-left:250px;
+}
+
+.pagination a,.pagination span{
+    float:left;
+    display:block;
+    height:30px;
+    width:30px;
+    border:1px solid #eee;
+    text-align:center;
+    line-height: 30px;
+}
+
+.pagination ul a:hover{
+    color:#1A78C1;;
+}
+
+.current{
+    color:black;
+}
+
+.num{
+    color:#003bb3;
+}
+
+.prev{
+    color:#002a80;
+}
+.next{
+    color:#002a80;
+}
+
+
+/*新闻详情展示*/
+.news{
+    overflow: visible;
+}
+.title{
+    font-size: 16px;
+}
+
+.title{
+    text-align:center;
+    font-size:16px;
+    color:black;
+    font-weight: bold;
+}
+.content{
+    margin-top:30px;
+    color:black;
+    overflow: visible;
+}
+
+/*留言板样式*/
+
+.myform table { border:none;}
+.myform table tr {color:black;}
+.myform tr td{width:650px; border:none; vertical-align:middle; color:#999;}
+.myform tr th {border:none; width:100px; vertical-align:middle;}
+.lm_bt_r_bt .txt_c { font-size:16px; overflow:visible; margin-top:10px;  +margin-top:0px;}
+.lm_bt_r_bt  .txt_c a {display:block; text-align:right; padding-right:30px;}
+.ddsh {color:#666;text-align:center; margin-top:5px;}
+
+
+.myform textarea{
+    width:400px;
+}
+
+input.input-text, input.input-file, input.code, textarea,select {
+    background: url("../images/dt-10.gif") repeat-x scroll left top #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 15px;
+    outline: medium none;
+    padding: 4px;
+    text-shadow: 0 1px 0 #fff;
+    transition: all 0.3s ease-in-out 0s;
+    margin:5px;
+    width:200px;
+}
+input.input-text:focus, input.input-file:focus, input.code:focus, textarea:focus {
+    border: 1px solid #fafafa;
+    box-shadow: 0 0 5px #007eff;
+}
+
+
+.button {
+    height:30px;
+    border-radius: 0.5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: inline-block;
+    font: 14px/100% Arial,Helvetica,sans-serif;
+    margin: 0 2px;
+    outline: medium none;
+    padding:0 30px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    vertical-align:middle;
+}
+.button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.button:active {
+    position: relative;
+    top: 1px;
+}
+.orange {
+    margin-top:20px;
+    background-color: #f68c1d;
+    background: -moz-linear-gradient(center top , #faa51a, #f47a20) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #da7c0c;
+    color: #fef4e9;
+}
+.orange:hover {
+    background: -moz-linear-gradient(center top , #f88e11, #f06015) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-color: #f47a12;
+}
+.orange:active {
+    background-color: #f68c1d;
+    background: -moz-linear-gradient(center top , #f47a20, #faa51a) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #fcd3a5;
+}
+
+
+/*留言展示页面*/
+.messagebox{
+    color:black;;
+    border:2px solid #ddd;
+    margin-bottom: 20px;
+
+}
+.question{
+    background: #eee;
+    padding:10px;
+}
+.reply{
+    background: white;
+    padding:10px;
+}
+
+.from{
+    border-bottom: 1px #d3d3d3 dashed;
+    margin-bottom: 10px;
+}

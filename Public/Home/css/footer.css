@@ -1,0 +1,91 @@
+.footer_bg
+{	
+	/*position: fixed;*/
+	/*position: absolute;*/
+	width:100%;
+	width:expression(document.body.clientWidth <= 1110? "1110px": "auto");
+    min-width:1110px;
+	height: 83px;
+	/*left: 0;
+	bottom: 0;*/
+	background: url(../images/footer_bg2.png) repeat-x;
+	
+    z-index: 100;
+	position:fixed;
+	bottom:0px;
+}
+
+.footer_container
+{	
+	margin: 0 auto;
+	width: 1110px;
+	height: 80px;
+	z-index: 100;
+}
+
+.footer_link
+{
+    height: 83px;
+	line-height: 83px;
+	width: 40%;
+	text-align: left;
+	float: left;
+}
+.footer_link a:hover
+{
+	color:#1F96FF;
+}
+
+.footer_address
+{
+	height: 80px;
+	float: right;
+	width: 58%;
+	color: #fff;
+	text-align: right;
+}
+
+.footer_address span
+{	
+	display: block;
+	padding: 20px;
+}
+
+/*分页面的footer*/
+
+.listfooter{
+/*position: fixed;*/
+position: absolute;
+    width:100%;
+    width:expression(document.body.clientWidth <= 1110? "1110px": "auto");
+    min-width:1110px;
+    height: 83px;
+	left: 0;
+	bottom: 0;
+    background: url(../images/footer_bg2.png) repeat-x;
+    margin-top:30px;
+}
+
+.showfooter{
+/*position: fixed;*/
+position: absolute;
+    width:100%;
+    width:expression(document.body.clientWidth <= 1110? "1110px": "auto");
+    min-width:1110px;
+    height: 83px;
+    background: url(../images/footer_bg2.png) repeat-x;
+    margin-top:30px;
+}
+
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+}
+.clearfix {
+    zoom: 1;
+    display: table;
+    width: 100%;
+}

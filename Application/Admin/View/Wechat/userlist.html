@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__//Css/style.css"/>
+    <script type="text/javascript" src="__PUBLIC__//Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        .pagination a, .pagination .current {
+            float: left;
+            padding: 4px 12px;
+            line-height: 20px;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="navbar definewidth m10">
+    <div class="navbar-inner">
+        <a class="brand">所有用户列表</a>&nbsp; <a class="brand">关注数:{$count}</a>&nbsp; <a class="brand">取消关注数:{$ucount}</a>
+    </div>
+</div>
+<form action="{:U('Admin/Wechat/delall')}" method="post">
+    <table class="table table-bordered table-hover definewidth m10">
+        <thead>
+        <tr>
+            <th width="5%">用户头像</th>
+            <th width="10%">openID</th>
+            <th width="10%">用户昵称</th>
+            <th width="10%">用户地区</th>
+            <th width="10%">关注时间</th>
+        </tr>
+        </thead>
+        <volist name="userlist" id="vo">
+            <tr>
+                <td><center><img src="{$vo.headimgurl}" alt="{$vo.nickname}" width="40px" height="40px"/></center></td>
+                <td>{$vo.openid}</td>
+                <td>{$vo.nickname}</td>
+                <td>{$vo.city}</td>
+                <td>{$vo.subscribe_time|date="Y-m-d H:i",###}</td>
+            </tr>
+
+        </volist>
+    </table>
+    <p>&nbsp;</p>
+
+    <div class="row">
+        <div class="pagination pagination-centered">
+            <ul>
+                {$page}
+            </ul>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</form>
+
+
+</body>
+</html>
+
+<script>
+    $(function () {
+
+        $('#addnew').click(function () {
+
+            window.location.href = "add.html";
+        });
+    });
+
+    function del(id) {
+
+        if (confirm("确定要删除吗？")) {
+            window.location.href = "{$delurl}?id=" + id;
+
+        }
+    }
+
+    function reply(id) {
+        window.location.href = "{$replyurl}?id=" + id;
+
+    }
+    function check(id) {
+        window.location.href = "{$checkurl}?id=" + id;
+    }
+
+    function selectall(choose) {
+        if (choose) {
+            //alert(choose);
+            $("input[type='checkbox']").each(function () {
+                this.checked = true;
+            });
+        } else {
+
+            $("input[type='checkbox']").removeAttr("checked");
+        }
+    }
+
+</script>

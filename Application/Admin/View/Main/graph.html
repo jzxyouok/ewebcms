@@ -1,0 +1,236 @@
+<foreach name="dptlist" item="val" key="k">
+    <volist name="val" id="vo">
+        <php>
+            $b = array('name' => $vo['f']['name'], 'fnum' => $vo['f']['fnumber']);
+            $fdptnum[] = $b;
+            unset($b);
+        </php>
+        <volist name="vo.c" id="chd">
+            <php>
+                $a = array('name' => $chd['name'], 'cnum' => $chd['cnumber']);
+                $dptnum[] = $a;
+                unset($a);
+            </php>
+        </volist>
+    </volist>
+
+    <php>$key=$k;</php>
+    <script type="text/javascript">
+        BUI.use('common/page');
+
+        BUI.use('bui/chart', function (Chart) {
+            var fchart = new Chart.Chart({
+                render: "#f{$key}",
+                width: 350,
+                height: 330,
+                title: {
+                    text: "{$key}ly"
+                },
+                legend: null,//不显示图例
+                seriesOptions: { //设置多个序列共同的属性
+                    pieCfg: {
+                        colors: [
+                            '#1ABC9C',
+                            '#2ECC71',
+                            '#3498DB',
+                            '#E74C3C',
+                            '#F1C40F',
+                            '#E67E22',
+                            '#9B59B6',
+                            '#34495E',
+                            '#95A5A6'
+                        ],
+                        allowPointSelect: true,
+                        labels: {
+                            distance: 9,
+                            label: {
+                                //文本信息可以在此配置
+                            },
+                            renderer: function (value, item) { //格式化文本
+                                return value + ' ' + (item.point.percent * "{$newsnum[$key]}").toFixed(2) + '篇';
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    pointRenderer: function (point) {
+                        return (point.percent * 100).toFixed(2) + '%';
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: '发表文档数',
+                    data: [
+                    <php>
+                    $nam = $fdptnum[0]['name'];
+            $num = $fdptnum[0]['fnum'];
+            echo "{name:'$nam',y:$num,sliced:true,selected:true},";
+            </php>
+            <php>
+            $count = count($fdptnum);
+            for ($i = 1; $i < $count; $i++) {
+                $name = $fdptnum[$i]['name'];
+                $fnum = $fdptnum[$i]['fnum'];
+                echo"['$name',  $fnum],";
+            }
+            </php>
+            ]
+        }]
+        });
+        fchart.render();
+
+        var chart = new Chart.Chart({
+            render: "#c{$key}",
+            width: 350,
+            height: 330,
+            title: {
+                text: "{$key}ly"
+            },
+            legend: null,//不显示图例
+            seriesOptions: { //设置多个序列共同的属性
+                pieCfg: {
+                    colors: [
+                        '#F1C40F',
+                        '#E67E22',
+                        '#9B59B6',
+                        '#34495E',
+                        '#95A5A6',
+                        '#1ABC9C',
+                        '#2ECC71',
+                        '#3498DB',
+                        '#E74C3C',
+                    ],
+                    allowPointSelect: true,
+                    labels: {
+                        distance: 9,
+                        label: {
+                            //文本信息可以在此配置
+                        },
+                        renderer: function (value, item) { //格式化文本
+                            return value + ' ' + (item.point.percent * "{$newsnum[$key]}").toFixed(2) + '篇';
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                pointRenderer: function (point) {
+                    return (point.percent * 100).toFixed(2) + '%';
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '发表文档数',
+                data: [
+                <php>
+                $nam = $dptnum[0]['name'];
+        $num = $dptnum[0]['cnum'];
+        echo"{name:'$nam',y:$num,sliced:true,selected:true},";
+        </php>
+        <php>
+        $count = count($dptnum);
+        for ($i = 1; $i < $count; $i++) {
+            $name = $dptnum[$i]['name'];
+            $cnum = $dptnum[$i]['cnum'];
+            echo
+            " ['$name',  $cnum],";
+        }
+        </php>
+        ]
+        }]
+        });
+        chart.render();
+        });
+
+    </script>
+
+    <php>
+        unset($fdptnum);
+        unset($dptnum);
+    </php>
+
+</foreach>
+
+<foreach name="usernum" item="vo" key="key">
+    <foreach name="vo" item="vo1" key="key1">
+        <php>
+            $unum[]=array('name' => $key1,'unum' => $vo1);
+        </php>
+    </foreach>
+    <script>
+        BUI.use('common/page');
+
+        BUI.use('bui/chart',function (Chart) {
+
+            var chart = new Chart.Chart({
+                render : '#u{$key}',
+                width : 350,
+                height : 330,
+                title : {
+                    text : '{$key}ly'
+                },
+                legend : null ,//不显示图例
+                seriesOptions : { //设置多个序列共同的属性
+                    pieCfg : {
+                        colors:[
+                            '#7AC5CD',
+                            '#EE3B3B',
+                            '#FF7F00',
+                            '#F1C40F',
+                            '#E67E22',
+                            '#1ABC9C',
+                            '#2ECC71',
+                            '#34495E',
+                            '#95A5A6',
+                            '#3498DB',
+                            '#E74C3C',
+                            '#9B59B6',
+                        ],
+                        allowPointSelect : true,
+                        labels : {
+                            distance : 20,
+                            label : {
+                                //文本信息可以在此配置
+                            },
+                            renderer : function(value,item){ //格式化文本
+                                return value + ' ' + (item.point.percent * "{$allnum}").toFixed(2)  + '篇';
+                            }
+                        }
+                    }
+                },
+                tooltip : {
+                    pointRenderer : function(point){
+                        return (point.percent * 100).toFixed(2)+ '%';
+                    }
+                },
+                series : [{
+                    type: 'pie',
+                    name: '发表文档数',
+                    data: [
+                    <php>
+                    $nam = $unum[0]['name'];
+            $num = $unum[0]['unum'];
+            echo"{name:'$nam',y:$num,sliced:true,selected:true},";
+            </php>
+            <php>
+            $count = count($unum);
+            for ($i = 1; $i < $count; $i++) {
+                $name = $unum[$i]['name'];
+                $unum = $unum[$i]['unum'];
+                echo
+                " ['$name',  $unum],";
+            }
+            </php>
+
+
+            ]
+        }]
+        });
+
+        chart.render();
+        });
+    </script>
+
+    <php>
+        unset($unum);
+    </php>
+</foreach>
