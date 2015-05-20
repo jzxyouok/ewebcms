@@ -400,7 +400,7 @@ class WechatController extends CommonController
             switch ($RX_TYPE) {
                 case "text":
                     //简单回复文本消息
-                    //$resultStr = $this -> receiveText($postObj);
+                   // $resultStr = $this -> receiveText($postObj);
                     //客服接口回复消息
                     $resultStr = $this -> userCustom($postObj);
                     break;
@@ -545,6 +545,9 @@ class WechatController extends CommonController
                 break;
             case "CLICK":
                 //$mysql = new SaeMysql();
+                $newslisturl = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Wechat/newslist/id/";
+                $newsshowurl = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Wechat/show/id/";
+                $pageurl     = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Page/index/id/";
                 switch ($postObj->EventKey)
                 {
                     //第一个底部菜单筛选院系信息
@@ -556,7 +559,7 @@ class WechatController extends CommonController
                             "Title" => $list['title'],
                             "Description" => $list['excerpt'],
                             "PicUrl"      => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
-                            "Url"         => "http://1.hitwhxgc.sinaapp.com/index.php/Home/Page/index/id/47.html",
+                            "Url"         => "{$pageurl}"."47.html",
                         );
                         break;
 
@@ -567,7 +570,7 @@ class WechatController extends CommonController
                             "Title" => $list['title'],
                             "Description" => $list['excerpt'],
                             "PicUrl"      => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
-                            "Url"         => "http://1.hitwhxgc.sinaapp.com/index.php/Home/Page/index/id/46.html",
+                            "Url"         => "{$pageurl}"."46.html",
                         );
                         break;
 
@@ -578,7 +581,7 @@ class WechatController extends CommonController
                             "Title" => $list['title'],
                             "Description" => $list['excerpt'],
                             "PicUrl"      => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
-                            "Url"         => "http://1.hitwhxgc.sinaapp.com/index.php/Home/Page/index/id/50.html",
+                            "Url"         => "{$pageurl}"."50.html",
                         );
                         break;
 
@@ -586,52 +589,69 @@ class WechatController extends CommonController
 
                     //第二个底部菜单筛选新闻
                     case "XGXW":
+                        $id = 121;
                         $model = M('News');
-                        $list = $model -> where('iswechat=1 and nid=121') -> order('date desc') -> limit(5) -> select();
+                        $list = $model -> where("iswechat=1 and nid=$id") -> order('date desc') -> limit(5) -> select();
                         $count = count($list);
                         for($i = 0; $i < $count; $i++){
                             $contentStr[$i] = array(
                                 "Title" => $list[$i]['title'],
                                 "Description" => $list[$i]['excerpt'],
                                 "PicUrl"      => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
-                                "Url"         => "http://1.hitwhxgc.sinaapp.com/index.php/Home/News/show/id/{$list[$i]['id']}",
+                                "Url"         => "{$newsshowurl}{$list[$i]['id']}",
                             );
-
-
                         }
+                        $contentStr[$i] = array(
+                            "Title" => "查看更多",
+                            "Description" => "",
+                            "PicUrl"      => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
+                            "Url"         => "{$newslisturl}{$id}",
+                        );
                         break;
 
 
                     case "TZGG":
+                        $id = 122;
                         $model = M('News');
-                        $list = $model -> where('iswechat=1 and nid=122') -> order('date desc') -> limit(5) -> select();
+                        $list = $model -> where("iswechat=1 and nid=$id") -> order('date desc') -> limit(5) -> select();
                         $count = count($list);
                         for($i = 0; $i < $count; $i++){
                             $contentStr[$i] = array(
                                 "Title" => $list[$i]['title'],
                                 "Description" => $list[$i]['excerpt'],
                                 "PicUrl"      => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
-                                "Url"         => "http://1.hitwhxgc.sinaapp.com/index.php/Home/News/show/id/{$list[$i]['id']}",
+                                "Url"         => "{$newsshowurl}{$list[$i]['id']}",
                             );
 
 
                         }
+                        $contentStr[$i] = array(
+                            "Title" => "查看更多",
+                            "Description" => "",
+                            "PicUrl"      => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
+                            "Url"         => "{$newslisturl}{$id}",
+                        );
                         break;
 
                     case "WSJC":
+                        $id = 123;
                         $model = M('News');
-                        $list = $model -> where('iswechat=1 and nid=123') -> order('date desc') -> limit(5) -> select();
+                        $list = $model -> where("iswechat=1 and nid=$id") -> order('date desc') -> limit(5) -> select();
                         $count = count($list);
                         for($i = 0; $i < $count; $i++){
                             $contentStr[$i] = array(
                                 "Title" => $list[$i]['title'],
                                 "Description" => $list[$i]['excerpt'],
                                 "PicUrl"      => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
-                                "Url"         => "http://1.hitwhxgc.sinaapp.com/index.php/Home/News/show/id/{$list[$i]['id']}",
+                                "Url"         => "{$newsshowurl}{$list[$i]['id']}",
                             );
-
-
                         }
+                        $contentStr[$i] = array(
+                            "Title" => "查看更多",
+                            "Description" => "",
+                            "PicUrl"      => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
+                            "Url"         => "{$newslisturl}{$id}",
+                        );
                         break;
 
 
@@ -720,47 +740,10 @@ class WechatController extends CommonController
     private function receiveText($postObj){
         //当收到文本消息时的处理
         $content = $postObj -> Content;
-        $fromUserName = $postObj -> FromUserName;
-        $token = Get_token();
-        //以下是对客服接口的测试.见得回复
-        if($content == "1"){
-            //构造客服信息的json数据
-            $contentStr = "这是客服接口的回复";
-            $contentStr = urlencode($contentStr);
-            $a = array("content" => "{$contentStr}");
-            $b = array("touser" => "{$fromUserName}", "msgtype" => "text", "text" => $a );
-            $post = json_encode($b);
-            $post = urldecode($post);
-            $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$token}";
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-            curl_exec($ch);
-            curl_close($ch);
 
-            echo "";
-            exit;
-
-        }else if($content == "2"){
-            $media_id = "WgWpQmQBk-qFTGmBYT8tZXGEBsPD-aeVgnIbfGf8lBIe9205Psjvf2tqaxCZL56O";
-            $a = array("media_id" => "{$media_id}");
-            $b = array("touser" => "{$fromUserName}", "msgtype" => "image", "image" => $a);
-            $post = json_encode($b);
-            $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$token}";
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-            curl_exec($ch);
-            curl_close($ch);
-            echo "";
-            exit;
-        }
-
-        /*  $contentStr = "the text is : " . $content;
+          $contentStr = "the text is : " . $content;
           $resultStr = $this -> transmitText($postObj, $contentStr);
-          return $resultStr;*/
+          return $resultStr;
     }
 
 

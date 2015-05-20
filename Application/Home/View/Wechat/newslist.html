@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$current.name}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+
+    <style>
+        /*分页*/
+        .pagination {
+            margin: 20px 0;
+        }
+
+        .pagination-centered{
+            text-align: center;
+        }
+
+        .pagination a,.pagination span{
+            float:left;
+            display:block;
+            height:30px;
+            width:30px;
+            border:1px solid #eee;
+            text-align:center;
+            line-height: 30px;
+        }
+
+        .pagination ul a:hover{
+            color:#1A78C1;;
+        }
+
+        .current{
+            color:black;
+        }
+
+        .num{
+            color:#003bb3;
+        }
+
+        .prev{
+            color:#002a80;
+        }
+        .next{
+            color:#002a80;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">{$current.name}</div>
+    <ul class="list-group">
+        <volist name="newslist" id="vo">
+            <li class="list-group-item"><a href="{:U('Home/Wechat/show',array('id' => $vo['id']))}">{$vo.title}</a></li>
+        </volist>
+    </ul>
+</div>
+
+<ul class="pagination pagination-centered">
+    {$page}
+</ul>
+
+</body>
+</html>
