@@ -5,7 +5,7 @@ class IndexController extends CommonController {
     public function index(){
 
         //新闻部分
-        $nids = array(121, 122, 123,);
+        $nids = array(121, 122, 123,169);
        // dump($nids);return;
         $model = M("News");
         foreach($nids as $nid){

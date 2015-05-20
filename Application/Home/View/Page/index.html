@@ -23,7 +23,7 @@
             <volist name="sidec" id="vo">
                 <li>
                     <if condition="$vo['typeid'] eq 2">
-                        <a href="{$vo.href}">{$vo.name}</a>
+                        <a href="{$vo.href}" target="_blank">{$vo.name}</a>
                         <else />
                         <a href="{:U($vo['href'])}">{$vo.name}</a>
                     </if>

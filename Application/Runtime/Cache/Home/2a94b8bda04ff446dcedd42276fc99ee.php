@@ -102,7 +102,7 @@
                                     <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
                             <ul>
                                 <?php if(is_array($vo['c'])): $i = 0; $__LIST__ = $vo['c'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i;?><li>
-                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"><?php echo ($chd["name"]); ?></a>
+                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"  target="_blank"><?php echo ($chd["name"]); ?></a>
                                             <?php else: ?>
                                             <a href="<?php echo U($chd['href']);?>"><?php echo ($chd["name"]); ?></a><?php endif; ?>
                                     </li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -125,7 +125,6 @@
 	<div class="center_container">
 	<!-- 图片描述 -->
 	<div id="pic_desc">
-		<h3>十佳歌手</h3>
 		<p>十佳歌手</p>
 	</div>
 
@@ -143,10 +142,17 @@
 						<img src="/Public//Home/images/tzgg.png"/>
 						<a href="<?php echo U('Home/News/Newslist',array('id' => 121));?>">通知公告</a>
 					</li>
+
+                    <li>
+                        <img src="/Public//Home/images/hdzx.png"/>
+                        <a href="<?php echo U('Home/News/Newslist',array('id' => 121));?>">公寓文明</a>
+                    </li>
+
 					<li>
-						<img src="/Public//Home/images/hdzx.png"/>
-						<a href="<?php echo U('Home/News/Newslist',array('id' => 121));?>">卫生检查</a>
+						<img src="/Public//Home/images/xgxw.png"/>
+						<a href="<?php echo U('Home/News/Newslist',array('id' => 169));?>">学子风采</a>
 					</li>
+
 				</ul>
 
                     <div class="active">
@@ -194,6 +200,23 @@
                                 </a>
                             </li><?php endif; ?>
                         <?php if(is_array($newslist[2])): $i = 0; $__LIST__ = $newslist[2];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                                <a href="<?php echo U('Home/News/show',array('id' => $vo['id']));?>" target="_blank" title="<?php echo ($vo["title"]); ?>">
+                                    <span class="rq"><?php echo (date("m-d",$vo["updatetime"])); ?></span>
+                                    <?php echo (msubstr($vo["title"],0,24,'utf8',false)); ?>
+                                </a>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                    </ul>
+                </div>
+
+                <div class="hide">
+                    <ul>
+                        <?php if($highlight[3]): ?><li>
+                                <a href="<?php echo U('Home/News/show',array('id' => $highlight[3]['id']));?>" target="_blank" title="<?php echo ($vo["title"]); ?>" style="color:#feff9b;">
+                                    <span class="rq"><?php echo (date("m-d",$highlight[3]["updatetime"])); ?></span>
+                                    <?php echo (msubstr($highlight[3]["title"],0,24,'utf8',false)); ?>
+                                </a>
+                            </li><?php endif; ?>
+                        <?php if(is_array($newslist[3])): $i = 0; $__LIST__ = $newslist[3];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
                                 <a href="<?php echo U('Home/News/show',array('id' => $vo['id']));?>" target="_blank" title="<?php echo ($vo["title"]); ?>">
                                     <span class="rq"><?php echo (date("m-d",$vo["updatetime"])); ?></span>
                                     <?php echo (msubstr($vo["title"],0,24,'utf8',false)); ?>

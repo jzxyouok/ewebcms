@@ -409,19 +409,19 @@
 		//*********图片介绍**********//
 		if ($(".bgs-current").children("img")[0].src.match("bg1")) {
 			$("#pic_desc").html(
-				"<h3>十佳歌手</h3> <p> 十佳歌手 </p>");
+				"<p> 十佳歌手 </p>");
 		} 
 		else if ($(".bgs-current").children("img")[0].src.match("bg2")) {
 			$("#pic_desc").html(
-				" <h3> 学生代表大会</h3> <p> 学代会第六次学生代表大会 </p>");
+				"<p> 学代会第六次学生代表大会 </p>");
 		} 
 		else if ($(".bgs-current").children("img")[0].src.match("bg3")) {
 			$("#pic_desc").html(
-				"<h3>十佳歌手</h3> <p>十佳歌手 </p>");
+				"<p>十佳歌手 </p>");
 						} 
 		else if($(".bgs-current").children("img")[0].src.match("bg4")) {
 			$("#pic_desc").html(
-				"<h3>校园十佳歌手大赛</h3> <p> 十佳工作人员合影 </p>");
+				"<p> 十佳工作人员合影 </p>");
 			}
 
 

@@ -56,7 +56,7 @@
         <thead>
         <tr>
             <th width="4%">选择</th>
-            <th width="3%">排序</th>
+            <th width="4%">排序</th>
             <th width="4%">序号</th>
             <th width="42%">文章标题</th>
             <th width="10%">更新时间</th>
@@ -71,7 +71,7 @@
                 <td width="6%"><input type="text" name="listorder[<?php echo ($vo["id"]); ?>]" id="listorder" value="<?php echo ($vo["listorder"]); ?>"
                                       style="width: 30px;"/></td>
                 <td><?php echo ($vo["id"]); ?></td>
-                <td><a href="<?php echo U('Home/News/show',array('id' => $vo['id']));?>" target="main"><u><?php echo ($vo["title"]); ?></u></a></td>
+                <td><a href="<?php echo U('Home/News/show',array('id' => $vo['id']));?>" target="_blank"><u><?php echo ($vo["title"]); ?></u></a></td>
                 <td><?php echo (date("y-m-d H:i:s",$vo["date"])); ?></td>
                 <td><?php echo ($type["name"]); ?></td>
                 <td>

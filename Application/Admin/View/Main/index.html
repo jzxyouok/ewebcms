@@ -91,34 +91,36 @@
                                     text:'{$vo1.nav.name}',
                                     items:[
                                             <volist name="vo1.navlist" id="vo">
+                                                <php>$display=$vo['f']['display']==1?"":"(不可见)";</php>
                                                 <if condition="$vo['f']['typeid'] eq 3">
                                                 {
-                                                    id:'{$vo.f.id}',text:'{$vo.f.name}(单)',href:"{:U('Admin/NewsClass/edit')}?id={$vo.f.id}&typeid=3"
+                                                    id:'{$vo.f.id}',text:'{$vo.f.name}(单){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$vo.f.id}&typeid=3"
                                                 },
 												<elseif condition="$vo['f']['typeid'] eq 2" />
                                                 {
-                                                    id:'{$vo.f.id}',text:'{$vo.f.name}(外)',href:"{:U('Admin/NewsClass/edit')}?id={$vo.f.id}&typeid=2"
+                                                    id:'{$vo.f.id}',text:'{$vo.f.name}(外){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$vo.f.id}&typeid=2"
                                                 },
                                                         <else/>
                                                 {
-                                                    id:'{$vo.f.id}',text:'{$vo.f.name}',href:"{:U('Admin/Doc/index')}?id={$vo.f.id}"
+                                                    id:'{$vo.f.id}',text:'{$vo.f.name}{$display}',href:"{:U('Admin/Doc/index')}?id={$vo.f.id}"
                                                 },
                                                 </if>
 
                                                 //
                                                 <volist name="vo.c" id="chd">
+                                                <php>$display=$chd['display']==1?"":"(不可见)";</php>
                                                 <if condition="$chd['typeid'] eq 3">
                                                 {
-                                                    id:'{$chd.id}',text:'┗{$chd.name}(单)',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=3"
+                                                    id:'{$chd.id}',text:'┗{$chd.name}(单){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=3"
                                                 },
 												<elseif condition="$chd['typeid'] eq 2" />
                                                 {
-                                                    id:'{$chd.id}',text:'┗{$chd.name}(外)',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=2"
+                                                    id:'{$chd.id}',text:'┗{$chd.name}(外){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=2"
                                                 },
 											
                                                         <else/>
                                                 {
-                                                    id:'{$chd.id}',text:'┗{$chd.name}',href:"{:U('Admin/Doc/index')}?id={$chd.id}"
+                                                    id:'{$chd.id}',text:'┗{$chd.name}{$display}',href:"{:U('Admin/Doc/index')}?id={$chd.id}"
                                                 },
                                                 </if>
                                                 </volist>

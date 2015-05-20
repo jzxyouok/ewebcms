@@ -65,7 +65,8 @@
                 <td align="left"><select name="fid" style="width:200px">
                     <option id="option1" value="0">顶级栏目</option>
                     <volist name="classlist" id="vo">
-                        <option id="option1" value="{$vo.id}">{$vo.name}</option>
+                        <php>$selected = $vo['id'] == $classid?"selected":"";</php>
+                        <option id="option1" value="{$vo.id}" {$selected}>{$vo.name}</option>
                     </volist>
                 </select>&nbsp;&nbsp;<span class="label label-important">必填</span>
                 </td>

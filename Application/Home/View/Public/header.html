@@ -115,7 +115,7 @@
                                 <volist name="vo['c']" id="chd">
                                     <li>
                                         <if condition="$chd['typeid'] eq 2">
-                                            <a href="{$chd.href}">{$chd.name}</a>
+                                            <a href="{$chd.href}"  target="_blank">{$chd.name}</a>
                                             <else />
                                             <a href="{:U($chd['href'])}">{$chd.name}</a>
                                         </if>

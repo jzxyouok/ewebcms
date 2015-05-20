@@ -44,7 +44,7 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
                                     <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
                             <ul>
                                 <?php if(is_array($vo['c'])): $i = 0; $__LIST__ = $vo['c'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i;?><li>
-                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"><?php echo ($chd["name"]); ?></a>
+                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"  target="_blank"><?php echo ($chd["name"]); ?></a>
                                             <?php else: ?>
                                             <a href="<?php echo U($chd['href']);?>"><?php echo ($chd["name"]); ?></a><?php endif; ?>
                                     </li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -67,7 +67,7 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
                             <?php echo ($sidef["name"]); ?>
                         </a></li><?php endif; ?>
                     <?php if(is_array($sidec)): $i = 0; $__LIST__ = $sidec;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                            <?php if($vo['typeid'] == 2): ?><a href="<?php echo ($vo["href"]); ?>"><?php echo ($vo["name"]); ?></a>
+                            <?php if($vo['typeid'] == 2): ?><a href="<?php echo ($vo["href"]); ?>"  target="_blank"><?php echo ($vo["name"]); ?></a>
                                 <?php else: ?>
                                 <a href="<?php echo U($vo['href']);?>"><?php echo ($vo["name"]); ?></a><?php endif; ?>
                         </li><?php endforeach; endif; else: echo "" ;endif; ?>

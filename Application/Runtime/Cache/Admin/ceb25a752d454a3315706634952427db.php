@@ -75,30 +75,32 @@
                                 <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?>{
                                     text:'<?php echo ($vo1["nav"]["name"]); ?>',
                                     items:[
-                                            <?php if(is_array($vo1["navlist"])): $i = 0; $__LIST__ = $vo1["navlist"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['f']['typeid'] == 3): ?>{
-                                                    id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>(单)',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($vo["f"]["id"]); ?>&typeid=3"
+                                            <?php if(is_array($vo1["navlist"])): $i = 0; $__LIST__ = $vo1["navlist"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $display=$vo['f']['display']==1?"":"(不可见)"; ?>
+                                                <?php if($vo['f']['typeid'] == 3): ?>{
+                                                    id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>(单)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($vo["f"]["id"]); ?>&typeid=3"
                                                 },
 												<?php elseif($vo['f']['typeid'] == 2): ?>
                                                 {
-                                                    id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>(外)',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($vo["f"]["id"]); ?>&typeid=2"
+                                                    id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>(外)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($vo["f"]["id"]); ?>&typeid=2"
                                                 },
                                                         <?php else: ?>
                                                 {
-                                                    id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($vo["f"]["id"]); ?>"
+                                                    id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); echo ($display); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($vo["f"]["id"]); ?>"
                                                 },<?php endif; ?>
 
                                                 //
-                                                <?php if(is_array($vo["c"])): $i = 0; $__LIST__ = $vo["c"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i; if($chd['typeid'] == 3): ?>{
-                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(单)',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=3"
+                                                <?php if(is_array($vo["c"])): $i = 0; $__LIST__ = $vo["c"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i; $display=$chd['display']==1?"":"(不可见)"; ?>
+                                                <?php if($chd['typeid'] == 3): ?>{
+                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(单)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=3"
                                                 },
 												<?php elseif($chd['typeid'] == 2): ?>
                                                 {
-                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(外)',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=2"
+                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(外)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=2"
                                                 },
 											
                                                         <?php else: ?>
                                                 {
-                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($chd["id"]); ?>"
+                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); echo ($display); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($chd["id"]); ?>"
                                                 },<?php endif; endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
                                         ]
                                 },<?php endforeach; endif; else: echo "" ;endif; ?>

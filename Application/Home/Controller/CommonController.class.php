@@ -88,7 +88,7 @@ class CommonController extends Controller
             $id = $sidef['fid'];
             $sidef = $navleft -> where("id=$sidef[fid]")  -> find();
         }
-        $sidec = $navleft -> where("fid=$id")-> order("listorder asc") -> select();
+        $sidec = $navleft -> where("fid=$id and display=1")-> order("listorder asc") -> select();
 
         $this -> assign("sidef", $sidef);
         $this -> assign("current", $current);
@@ -106,5 +106,27 @@ class CommonController extends Controller
 
         $this -> assign("news",$newsinfo);//新闻返回前台
 
+        //选择上一条新闻
+        $front = $news -> field("id,title") -> where("nid=$newsinfo[nid] and updatetime>$newsinfo[updatetime]") -> order("updatetime desc") -> limit(1) -> find();
+
+        //选择下一条新闻
+        $after = $news -> field("id,title") -> where("nid=$newsinfo[nid] and updatetime<$newsinfo[updatetime]") -> order("updatetime desc") -> limit(1) -> find();
+
+        $this -> assign("front",$front);
+        $this -> assign("after",$after);
+
+
+        //文章列表页左边导航
+        $navleft = M("Newsclass");
+        $current = $sidef = $navleft -> where("id=$newsinfo[nid]")-> find();
+        if($sidef['fid']!=0){
+            $id = $sidef['fid'];
+            $sidef = $navleft -> where("id=$sidef[fid]")  -> find();
+        }
+        $sidec = $navleft -> where("fid=$id and display=1")-> order("listorder asc") -> select();
+
+        $this -> assign("sidef", $sidef);
+        $this -> assign("current", $current);
+        $this -> assign("sidec", $sidec);//左边导航完成
     }
 }

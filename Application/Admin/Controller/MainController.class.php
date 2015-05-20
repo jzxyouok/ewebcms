@@ -15,11 +15,11 @@ class MainController extends CommonController
         foreach ($navlist as $nvalue) {
             $model = M("newsclass");
             $navid = $nvalue['id'];
-            $classlist = $model->where('fid=0 and display=1 and navid=%d', $navid)->order("listorder asc")->select();
+            $classlist = $model->where('fid=0 and navid=%d', $navid)->order("listorder asc")->select();
 
             foreach ($classlist as $value) {
                 $cid = $value['id'];
-                $list = $model->where('display=1 and fid=%d and navid=%d', $cid, $navid)->order("listorder asc")->select();
+                $list = $model->where('fid=%d and navid=%d', $cid, $navid)->order("listorder asc")->select();
                 //如果有子类的话，将子类新闻的数量添加进行，重新组合数组。
                 if ($list) {
                     foreach ($list as $value2) {

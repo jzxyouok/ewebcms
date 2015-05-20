@@ -45,11 +45,13 @@
             color:#002a80;
         }
 
+        .panel{
+            margin:0px;
+        }
     </style>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
+<div class="container">
         <volist name="msglist" id="vo">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -59,19 +61,20 @@
                     <h4>{$vo.content}</h4><br/>
                     <div class="pull-right">{$vo.date|date="Y-m-d",###}</div>
                 </div>
+
+
+                    <div class="panel-footer">
+                        <h5>{$vo.replydate|date="Y-m-d",###}&nbsp;回复:</h5>
+                        <h4>{$vo.reply}</h4>
+                    </div>
+
             </div>
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h5>{$vo.replydate|date="Y-m-d",###}&nbsp;回复:</h5>
-                    <h4>{$vo.reply}</h4>
-                </div>
-            </div>
+
             <br/><br/>
         </volist>
         <ul class="pagination pagination-centered">
             {$page}
         </ul>
     </div>
-</div>
 </body>
 </html>

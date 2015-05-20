@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <link href="http://g.alicdn.com/bui/bui/1.1.16/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.16/css/bs3/bui.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/style.css"/>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/common.js"></script>
-    <link rel="stylesheet" href="/ewebcmsxgc/Public//kindeditor/themes/default/default.css"/>
-    <link rel="stylesheet" href="/ewebcmsxgc/Public//kindeditor/plugins/code/prettify.css"/>
-    <script charset="utf-8" src="/ewebcmsxgc/Public//kindeditor/kindeditor.js"></script>
-    <script charset="utf-8" src="/ewebcmsxgc/Public//kindeditor/lang/zh_CN.js"></script>
-    <script charset="utf-8" src="/ewebcmsxgc/Public//kindeditor/plugins/code/prettify.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
+    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/Public//Js/common.js"></script>
+    <link rel="stylesheet" href="/Public//kindeditor/themes/default/default.css"/>
+    <link rel="stylesheet" href="/Public//kindeditor/plugins/code/prettify.css"/>
+    <script charset="utf-8" src="/Public//kindeditor/kindeditor.js"></script>
+    <script charset="utf-8" src="/Public//kindeditor/lang/zh_CN.js"></script>
+    <script charset="utf-8" src="/Public//kindeditor/plugins/code/prettify.js"></script>
     <!--显示calendar-->
     <script src="http://a.tbcdn.cn/s/bui/seed-min.js?t=201212261326"></script>
 
@@ -66,11 +66,11 @@
 
 
             K.create('textarea[name="myconten"]', {
-                cssPath: '/ewebcmsxgc/Public//kindeditor/plugins/code/prettify.css',
+                cssPath: '/Public//kindeditor/plugins/code/prettify.css',
                 themeType: 'simple',
                 resizeType: 1,
-                uploadJson: '/ewebcmsxgc/Public//kindeditor/php/upload_json.php',
-                fileManagerJson: '/ewebcmsxgc/Public//kindeditor/php/file_manager_json.php',
+                uploadJson: '/Public//kindeditor/php/upload_json.php',
+                fileManagerJson: '/Public//kindeditor/php/file_manager_json.php',
                 allowFileManager: true,
                 //afterCreate: function(){this.sync();}
                 //下面这行代码就是关键的所在，当失去焦点时执行 this.sync();

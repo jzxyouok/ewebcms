@@ -11,7 +11,6 @@
 	<div class="center_container">
 	<!-- 图片描述 -->
 	<div id="pic_desc">
-		<h3>十佳歌手</h3>
 		<p>十佳歌手</p>
 	</div>
 
@@ -29,10 +28,17 @@
 						<img src="__PUBLIC__//Home/images/tzgg.png"/>
 						<a href="{:U('Home/News/Newslist',array('id' => 121))}">通知公告</a>
 					</li>
+
+                    <li>
+                        <img src="__PUBLIC__//Home/images/hdzx.png"/>
+                        <a href="{:U('Home/News/Newslist',array('id' => 121))}">公寓文明</a>
+                    </li>
+
 					<li>
-						<img src="__PUBLIC__//Home/images/hdzx.png"/>
-						<a href="{:U('Home/News/Newslist',array('id' => 121))}">卫生检查</a>
+						<img src="__PUBLIC__//Home/images/xgxw.png"/>
+						<a href="{:U('Home/News/Newslist',array('id' => 169))}">学子风采</a>
 					</li>
+
 				</ul>
 
                     <div class="active">
@@ -90,6 +96,27 @@
                             </li>
                         </if>
                         <volist name="newslist[2]" id="vo">
+                            <li>
+                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank" title="{$vo.title}">
+                                    <span class="rq">{$vo.updatetime|date="m-d",###}</span>
+                                    {$vo.title|msubstr=0,24,'utf8',false}
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+
+                <div class="hide">
+                    <ul>
+                        <if condition="$highlight[3]">
+                            <li>
+                                <a href="{:U('Home/News/show',array('id' => $highlight[3]['id']))}" target="_blank" title="{$vo.title}" style="color:#feff9b;">
+                                    <span class="rq">{$highlight[3].updatetime|date="m-d",###}</span>
+                                    {$highlight[3].title|msubstr=0,24,'utf8',false}
+                                </a>
+                            </li>
+                        </if>
+                        <volist name="newslist[3]" id="vo">
                             <li>
                                 <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank" title="{$vo.title}">
                                     <span class="rq">{$vo.updatetime|date="m-d",###}</span>

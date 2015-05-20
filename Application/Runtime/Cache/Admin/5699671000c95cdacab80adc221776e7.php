@@ -94,7 +94,7 @@
 
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-mini btn-primary" onclick="javasript:add()">新增</button>
+                            <button type="button" class="btn btn-mini btn-primary" onclick="javasript:add(<?php echo ($vo["f"]["id"]); ?>)">新增</button>
                             <button type="button" class="btn btn-mini btn-info" id="addnew"
                                     onclick="javasript:edit(<?php echo ($vo["f"]["id"]); ?>,<?php echo ($vo["f"]["typeid"]); ?>)">编辑
                             </button>
@@ -165,8 +165,8 @@
             window.location.href = "<?php echo U('Admin/NewsClass/add');?>";
         });
     });
-    function add() {
-        window.location.href = "<?php echo U('Admin/NewsClass/add');?>";
+    function add(id) {
+        window.location.href = "<?php echo ($addurl); ?>?id=" + id;
     }
 
     function edit(id, typeid) {

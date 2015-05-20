@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 	<title>哈尔滨工业大学（威海）学生工作处</title>
-	<link href="/ewebcmsxgc/Public//Home/css/header.css" type=text/css rel=stylesheet>
-	<link href="/ewebcmsxgc/Public//Home/css/footer.css" type=text/css rel=stylesheet>
-	<link href="/ewebcmsxgc/Public//Home/css/list.css" type=text/css rel=stylesheet>
+	<link href="/Public//Home/css/header.css" type=text/css rel=stylesheet>
+	<link href="/Public//Home/css/footer.css" type=text/css rel=stylesheet>
+	<link href="/Public//Home/css/list.css" type=text/css rel=stylesheet>
 
-	<script type="text/javascript" src="/ewebcmsxgc/Public//Home/js/xgc.js"></script>
+	<script type="text/javascript" src="/Public//Home/js/xgc.js"></script>
 
 
 </head>
@@ -18,7 +18,7 @@
 		<div class="top">
 			<div class="top_center">
 				<div class="logo">
-					<img src="/ewebcmsxgc/Public//Home/images/aa.png" />
+					<img src="/Public//Home/images/aa.png" />
 				</div>
 
 				<div class="top_right">
@@ -29,7 +29,7 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
 
 					<div class="search_box">
 						<form id="search_from" target="blank" onsubmit="return go(this)">
-							<input type="image" src="/ewebcmsxgc/Public//Home/images//btn_search_box.png" width="78px" height="31px" id="go" alt="search" onclick="document.search_from.submit()" >
+							<input type="image" src="/Public//Home/images//btn_search_box.png" width="78px" height="31px" id="go" alt="search" onclick="document.search_from.submit()" >
 							<input type="text" id="word" value="请在此输入检索关键字" onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
 					</div>
 				</div>
@@ -44,7 +44,7 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
                                     <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
                             <ul>
                                 <?php if(is_array($vo['c'])): $i = 0; $__LIST__ = $vo['c'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i;?><li>
-                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"><?php echo ($chd["name"]); ?></a>
+                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"  target="_blank"><?php echo ($chd["name"]); ?></a>
                                             <?php else: ?>
                                             <a href="<?php echo U($chd['href']);?>"><?php echo ($chd["name"]); ?></a><?php endif; ?>
                                     </li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -105,9 +105,9 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
 
 </div>
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-    <div class="listfooter">
+    <div class="showfooter">
         <div class="footer_container">
             <div class="footer_link">
 

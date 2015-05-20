@@ -62,7 +62,8 @@
                 <td class="tableleft">上级菜单：</td>
                 <td align="left"><select name="fid" style="width:200px">
                     <option id="option1" value="0">顶级栏目</option>
-                    <?php if(is_array($classlist)): $i = 0; $__LIST__ = $classlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option id="option1" value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                    <?php if(is_array($classlist)): $i = 0; $__LIST__ = $classlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $selected = $vo['id'] == $classid?"selected":""; ?>
+                        <option id="option1" value="<?php echo ($vo["id"]); ?>" <?php echo ($selected); ?>><?php echo ($vo["name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>&nbsp;&nbsp;<span class="label label-important">必填</span>
                 </td>
             </tr>

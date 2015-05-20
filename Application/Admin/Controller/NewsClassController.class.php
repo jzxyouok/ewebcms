@@ -53,6 +53,7 @@ class NewsClassController extends CommonController
 
     public function add()
     {
+        //选择nav表中第一个导航
         if (empty($_REQUEST['navid'])) {
             $model = M('Nav');
             $ls = $model->select();
@@ -64,10 +65,18 @@ class NewsClassController extends CommonController
         $model = M('Nav');
         $navlist = $model->select();
         $this->assign("navcats", $navlist);
-        $this->assign('navid', $navid);
+        $this->assign('navid', $navid);//选择导航结束
 
+        //把所有以及菜单选择出来
         $model = M("newsclass");
         $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)-> order("listorder asc") ->select();
+        //选择菜单结束
+
+        //提交过来的菜单id
+        $id = I('param.id');
+        $this -> assign("classid",$id);
+        //返回前台页面
+
         $this->assign("classlist", $classlist);
         $this->display();
     }
@@ -195,7 +204,7 @@ class NewsClassController extends CommonController
         $model = M('newsclass');
         $list = $model->where('id=%d', $id)->select();
         $this->assign("newsclass", $list[0]);
-        $list = $model->where('fid=0 and navid=%d', $navid)-> order("listorder asc") ->select();
+        $list = $model->where("fid=0 and id!=$id and navid=$navid")-> order("listorder asc") ->select();
         $this->assign('classlist', $list);
 
 
