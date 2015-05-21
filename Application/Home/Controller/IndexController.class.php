@@ -5,7 +5,7 @@ class IndexController extends CommonController {
     public function index(){
 
         //新闻部分
-        $nids = array(121, 122, 123,169);
+        $nids = array(121, 122, 123,163);
        // dump($nids);return;
         $model = M("News");
         foreach($nids as $nid){
@@ -16,6 +16,7 @@ class IndexController extends CommonController {
         $this -> assign("highlight",$highlight);
         $this -> assign("newslist",$newslist);//新闻返回页面
 
+        $this -> assign("nids",$nids);
         $this->display();
     }
 

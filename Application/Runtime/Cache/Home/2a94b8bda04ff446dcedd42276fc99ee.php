@@ -136,21 +136,21 @@
 				<ul id="ul1">
 					<li class="active">
 						<img src="/Public//Home/images/xgxw.png"/>
-						<a href="<?php echo U('Home/News/Newslist',array('id' => 121));?>">学工新闻</a>
+						<a href="<?php echo U('Home/News/Newslist',array('id' => $nids['0']));?>">学工新闻</a>
 					</li>
 					<li>
 						<img src="/Public//Home/images/tzgg.png"/>
-						<a href="<?php echo U('Home/News/Newslist',array('id' => 121));?>">通知公告</a>
+						<a href="<?php echo U('Home/News/Newslist',array('id' => $nids['1']));?>">通知公告</a>
 					</li>
 
                     <li>
                         <img src="/Public//Home/images/hdzx.png"/>
-                        <a href="<?php echo U('Home/News/Newslist',array('id' => 121));?>">公寓文明</a>
+                        <a href="<?php echo U('Home/News/Newslist',array('id' => $nids['2']));?>">公寓文明</a>
                     </li>
 
 					<li>
 						<img src="/Public//Home/images/xgxw.png"/>
-						<a href="<?php echo U('Home/News/Newslist',array('id' => 169));?>">学子风采</a>
+						<a href="<?php echo U('Home/News/Newslist',array('id' => $nids['3']));?>">学子风采</a>
 					</li>
 
 				</ul>

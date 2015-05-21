@@ -623,7 +623,7 @@
 		imageHeight:                1280,
 		maxWidth:					'auto',
 		maxHeight:					'auto',
-		nextSlideDelay:             10000,
+		nextSlideDelay:             20000,
 		slideShowSpeed:             'normal',
 		slideShow:                  true,
 		// transitionEffect:			'fade', // none, fade, simpleSlide, superSlide

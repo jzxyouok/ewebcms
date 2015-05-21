@@ -70,6 +70,7 @@ class CommonController extends Controller
             foreach($cid as $val){
                 $cids[] = $val['id'];
             }
+            $cids[] = $ids;
             $ids = join(",", $cids);
         }
 
@@ -88,7 +89,7 @@ class CommonController extends Controller
             $id = $sidef['fid'];
             $sidef = $navleft -> where("id=$sidef[fid]")  -> find();
         }
-        $sidec = $navleft -> where("fid=$id and display=1")-> order("listorder asc") -> select();
+        $sidec = $navleft -> where("fid=$id")-> order("listorder asc") -> select();
 
         $this -> assign("sidef", $sidef);
         $this -> assign("current", $current);

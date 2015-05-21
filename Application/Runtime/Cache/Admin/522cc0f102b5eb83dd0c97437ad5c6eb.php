@@ -107,13 +107,6 @@
         <form id="form1" action="<?php echo U('Admin/NewsClass/update');?>?type=3" method="post">
             <input type="hidden" value="<?php echo ($navid); ?>" name="navid" id="navid1"/>
             <tr>
-                <td width="10%" class="tableleft">标题</td>
-                <input type="hidden" name="id" value="<?php echo ($listcon["id"]); ?>">
-                <td><input type="text" name="title" value="<?php echo ($listcon["title"]); ?>"/>&nbsp;&nbsp;<span
-                        class="label label-important">必填</span></td>
-            </tr>
-
-            <tr>
                 <td class="tableleft">所属分类：</td>
                 <td align="left"><select name="fid" style="width:200px">
                     <option value="0">顶级栏目</option>
@@ -123,6 +116,14 @@
                 </select>&nbsp;&nbsp;<span class="label label-important">必填</span>
                 </td>
             </tr>
+
+            <tr>
+                <td width="10%" class="tableleft">标题</td>
+                <input type="hidden" name="id" value="<?php echo ($listcon["id"]); ?>">
+                <td><input type="text" name="title" value="<?php echo ($listcon["title"]); ?>"/>&nbsp;&nbsp;<span
+                        class="label label-important">必填</span></td>
+            </tr>
+
             <tr>
                 <td width="10%" class="tableleft">发布时间</td>
                 <td><input type="text" name="updatetime" class="calendar span2"
