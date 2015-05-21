@@ -6,24 +6,30 @@
  * Time: 3:16 PM
  */
 namespace Home\Controller;
+
 use Think\Controller;
-class NewsController extends CommonController {
 
-    public function index(){
-        $this -> display();
+class NewsController extends CommonController
+{
+
+    public function index()
+    {
+        $this->display();
     }
 
-    public function newslist(){
+    public function newslist()
+    {
 
         $id = I("param.id");
-        $this -> selectnews($id);//根据提交id获取新闻
-        $this -> display();
+        $this->selectnews($id);//根据提交id获取新闻
+        $this->display();
     }
 
-    public function show(){
+    public function show()
+    {
         $id = I("param.id");
-        $this -> newsshow($id);
-        $this -> display();
+        $this->newsshow($id);
+        $this->display();
     }
 
 

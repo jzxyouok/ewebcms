@@ -7,7 +7,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $this -> assign("mainurl",U('Admin/Main/index'));
+        $this->assign("mainurl", U('Admin/Main/index'));
         $this->display();
     }
 
@@ -21,14 +21,14 @@ class IndexController extends Controller
                 // $this->error('验证码错误', U('Admin/Index/index'));
                 //  return json_encode(array('info' => '验证码错误'));
                 $data = array('info' => '验证码错误');
-                $this->ajaxReturn($data,'JSON');
-            }else{
+                $this->ajaxReturn($data, 'JSON');
+            } else {
                 $result = Get_user_login(I('param.username'), I('param.password'));
                 if ($result == "SUCC") {
                     $this->success('SUCC', U('Admin/Main/index'));
                 } else {
                     $data = array('info' => '用户名或密码错误');
-                    $this->ajaxReturn($data,'JSON');
+                    $this->ajaxReturn($data, 'JSON');
                 }
             }
         }
@@ -56,9 +56,9 @@ class IndexController extends Controller
 
         $code = I('param.verify');
         $verify = new \Think\Verify();
-        if ($verify->check($code)){
+        if ($verify->check($code)) {
             echo "true";
-        } else{
+        } else {
             echo "false";
         }
 

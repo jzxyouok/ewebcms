@@ -1,9 +1,10 @@
 <extend name="Public:listbase"/>
 <block name="content">
     <h3>|&nbsp;&nbsp;&nbsp;{$page.title}</h3>
+
     <div class="news">
         <!--<div class="title">-->
-            <!--{$page.title}-->
+        <!--{$page.title}-->
         <!--</div>-->
         <div class="content">
             {$page.content}
@@ -24,7 +25,7 @@
                 <li>
                     <if condition="$vo['typeid'] eq 2">
                         <a href="{$vo.href}" target="_blank">{$vo.name}</a>
-                        <else />
+                        <else/>
                         <a href="{:U($vo['href'])}">{$vo.name}</a>
                     </if>
                 </li>
@@ -34,5 +35,5 @@
 </block>
 
 <block name="footer">
-	<include file="Public:showfooter"/>
+    <include file="Public:showfooter"/>
 </block>

@@ -42,21 +42,26 @@
     </div>
 </div>
 <form action="{:U('Admin/Rbac/submitAccess')}" method="post" class="definewidth m20">
-    <input type="hidden" value="{$rid}"  name="rid"/>
+    <input type="hidden" value="{$rid}" name="rid"/>
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td>
                 <volist name="nodelist" id="vo">
-                    <p style="margin-left:{$vo['level']*20}px;<if condition="$vo.level eq 3">float:left<else/>clear:both;</if>">
-                        <label for="{$vo.id}" name="name" value="$vo.id">
-                            <php>$checked = $vo['access']==1 ? "checked":"";</php>
-                            <input type="checkbox" id="{$vo.id}" name="access[]" value="{$vo.id}_{$vo.level}" pid="{$vo.pid}" level="{$vo.level}" {$checked}/>
-                            <if condition="$vo.level eq 1"><b>[应用]</b>
-                                <elseif condition="$vo.level eq 2" /><b>[模块]</b>
-                                <else/><b>[操作]</b>
-                            </if>
-                            {$vo.title}
-                        </label>
+                    <p style="margin-left:{$vo['level']*20}px;<if condition=" $vo.level eq 3">float:left
+                    <else/>
+                    clear:both;</if>">
+                    <label for="{$vo.id}" name="name" value="$vo.id">
+                        <php>$checked = $vo['access']==1 ? "checked":"";</php>
+                        <input type="checkbox" id="{$vo.id}" name="access[]" value="{$vo.id}_{$vo.level}"
+                               pid="{$vo.pid}" level="{$vo.level}" {$checked}/>
+                        <if condition="$vo.level eq 1"><b>[应用]</b>
+                            <elseif condition="$vo.level eq 2"/>
+                            <b>[模块]</b>
+                            <else/>
+                            <b>[操作]</b>
+                        </if>
+                        {$vo.title}
+                    </label>
                     </p>
                 </volist>
             </td>
@@ -80,28 +85,28 @@
         });
 
         $("input").click(
-                function(){
-                   var level = $(this).attr('level');
-                    if(level == 1){
+                function () {
+                    var level = $(this).attr('level');
+                    if (level == 1) {
                         var str = "_";
-                        var inputs = $('input[value*='+str+']');
-                        $(this).attr('checked')?inputs.attr('checked',true):inputs.removeAttr('checked');
+                        var inputs = $('input[value*=' + str + ']');
+                        $(this).attr('checked') ? inputs.attr('checked', true) : inputs.removeAttr('checked');
                     }
-                    if(level == 2){
+                    if (level == 2) {
                         var id = $(this).attr('id');
-                        var inputs = $('input[pid='+id+']');
-                        $(this).attr('checked')?inputs.attr('checked',true):inputs.removeAttr('checked');
+                        var inputs = $('input[pid=' + id + ']');
+                        $(this).attr('checked') ? inputs.attr('checked', true) : inputs.removeAttr('checked');
 
                         var pid = $(this).attr('pid');
-                        $('input[id='+pid+']').attr('checked',true);
+                        $('input[id=' + pid + ']').attr('checked', true);
                     }
-                    if(level == 3){
-                        if($(this).attr('checked')){
+                    if (level == 3) {
+                        if ($(this).attr('checked')) {
                             var pid = $(this).attr('pid');
-                            $('input[id='+pid+']').attr('checked',true);
+                            $('input[id=' + pid + ']').attr('checked', true);
 
-                            var ppid = $('input[id='+pid+']').attr('pid');
-                            $('input[id='+ppid+']').attr('checked',true);
+                            var ppid = $('input[id=' + pid + ']').attr('pid');
+                            $('input[id=' + ppid + ']').attr('checked', true);
                         }
 
                     }

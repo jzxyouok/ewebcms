@@ -4,18 +4,18 @@
     <title>软件中心CMS内容管理系统</title>
 
     <meta charset="UTF-8">
-    <link href="/ewebcmsxgc/Public/assets/css/dpl-min.css" rel="stylesheet" type="text/css"/>
-    <link href="/ewebcmsxgc/Public/assets/css/bui-min.css" rel="stylesheet" type="text/css"/>
-    <link href="/ewebcmsxgc/Public/assets/css/page-min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/style.css"/>
+    <link href="/Public/assets/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/Public/assets/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/Public/assets/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
 
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/common.js"></script>
+    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/Public//Js/common.js"></script>
     <style>
         body {
             width: 95%;
@@ -61,7 +61,7 @@
             color: #3a6ea5;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
-            background: url(/ewebcmsxgc/Public/Images/x_bg.png) repeat-x;
+            background: url(/Public/Images/x_bg.png) repeat-x;
             height: 26px;
             line-height: 28px;
             padding: 0 10px;
@@ -228,9 +228,9 @@
 
 
 </html>
-<script type="text/javascript" src="/ewebcmsxgc/Public/assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/ewebcmsxgc/Public/assets/js/bui-min.js"></script>
-<script type="text/javascript" src="/ewebcmsxgc/Public/assets/js/config-min.js"></script>
+<script type="text/javascript" src="/Public/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/Public/assets/js/bui-min.js"></script>
+<script type="text/javascript" src="/Public/assets/js/config-min.js"></script>
 <script type="text/javascript">
     BUI.use('common/page');
 

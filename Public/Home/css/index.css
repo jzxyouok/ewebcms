@@ -1,170 +1,156 @@
-.center
-{	
+.center {
 
-	width:100%;
-	height: 413px;
-	margin:0 auto;
-	position: fixed;
-	bottom: 0px;
-	/*z-index:100;*/
+    width: 100%;
+    height: 413px;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0px;
+    /*z-index:100;*/
 
-}
-
-.center_container
-{
-	width: 1110px;
-	margin: 0 auto;
-	height: 330px;
 }
 
-#pic_desc
-{	
-	float: left;
-	margin-top: 250px;
-	width: 200px;
-	height: 40px;
-	background:url(../images/pic_desc.png) repeat; 
-}
-#pic_desc *
-{
-	padding: 10px;
+.center_container {
+    width: 1110px;
+    margin: 0 auto;
+    height: 330px;
 }
 
-.news_bg
-{	
-	width: 470px;
-	height: 250px;
-	float: right;
-	bottom: 150px;
-	border:5px solid #fff; 
-	border-bottom:12px solid #fff; 
-	background-color: #002352;
+#pic_desc {
+    float: left;
+    margin-top: 250px;
+    width: 200px;
+    height: 40px;
+    background: url(../images/pic_desc.png) repeat;
 }
 
-#tab-list
-{	
-	margin:0;
-	padding: 10px;
+#pic_desc * {
+    padding: 10px;
 }
 
-#ul1
-{
-	text-align: center;	
-	margin: 2px;
-	display: block;
-	height: 30px;
-	padding-bottom:15px; 
+.news_bg {
+    width: 470px;
+    height: 250px;
+    float: right;
+    bottom: 150px;
+    border: 5px solid #fff;
+    border-bottom: 12px solid #fff;
+    background-color: #002352;
 }
 
-#ul1 img
-{
-	width:30px;
-	height: 25px;
-	float: left;
-	overflow: hidden;
+#tab-list {
+    margin: 0;
+    padding: 10px;
 }
 
-#ul1 li
-{
-	float: left;
-	display:block;
-	width: 90px;
-	height: 30px;
-	padding-left: 5px;
-	padding-right: 5px;
-	line-height: 30px;
-	text-align: center;
-	border-bottom: none;
-	margin-left: 10px;
-	background-color: #0D3B89;
+#ul1 {
+    text-align: center;
+    margin: 2px;
+    display: block;
+    height: 30px;
+    padding-bottom: 15px;
 }
 
-#ul1 li:hover{
-	cursor: pointer;
-	background-color: #0064E0;
-	
-}
-#ul1 li.active{
-	border-bottom:2px solid #666;
+#ul1 img {
+    width: 30px;
+    height: 25px;
+    float: left;
+    overflow: hidden;
 }
 
-#tab-list div
-{
-	border-top: none;
-}
-#tab-list div li
-{
-	display:list-item;
-	text-indent: 8px;
-}
-
-#tab-list div li a
-{
-	display: block;
-	border-bottom: 1px solid #456C92;
-	padding: 4px;
+#ul1 li {
+    float: left;
+    display: block;
+    width: 90px;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 30px;
+    text-align: center;
+    border-bottom: none;
+    margin-left: 10px;
+    background-color: #0D3B89;
 }
 
-#tab-list div li a:hover
-{
-	/*background-color: #0575f4;*/
-	border-bottom: 1px white solid;
-}
-     
-.show{
-	display: block;
-	}
+#ul1 li:hover {
+    cursor: pointer;
+    background-color: #0064E0;
 
-.hide{
-	display: none;
 }
 
-.news_bottom
-{
-	float: right;
-	/*background:url(../images/news_bg.png) repeat;*/
-	background-color: #002352;
-	width: 835px;
-	height: 30px;
-	margin-top:25px;
-}
-.news_bottom img
-{
-	display: block;
-	float: left;
+#ul1 li.active {
+    border-bottom: 2px solid #666;
 }
 
-.news_bottom_title
-{
-	display: block;
-	margin-left:10px;
-	height: 30px;
-	line-height: 30px;
-	float: left;
-	color: #F2D577;
+#tab-list div {
+    border-top: none;
 }
 
-.news_bottom_title a:hover{
+#tab-list div li {
+    display: list-item;
+    text-indent: 8px;
+}
+
+#tab-list div li a {
+    display: block;
+    border-bottom: 1px solid #456C92;
+    padding: 4px;
+}
+
+#tab-list div li a:hover {
+    /*background-color: #0575f4;*/
+    border-bottom: 1px white solid;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.news_bottom {
+    float: right;
+    /*background:url(../images/news_bg.png) repeat;*/
+    background-color: #002352;
+    width: 835px;
+    height: 30px;
+    margin-top: 25px;
+}
+
+.news_bottom img {
+    display: block;
+    float: left;
+}
+
+.news_bottom_title {
+    display: block;
+    margin-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    color: #F2D577;
+}
+
+.news_bottom_title a:hover {
     border-bottom: 1px solid white;
 }
 
-.rq
-{
-float: right;
-margin-right: 30px;
-color: #DDD;
-font-size: 13px;
+.rq {
+    float: right;
+    margin-right: 30px;
+    color: #DDD;
+    font-size: 13px;
 }
 
-#gengduo
-{
-	background-color:#FF7000; 
-	display:block;
-	width: 60px;
-	height: 25px;
-	line-height: 25px;
-	margin-top: 5px;
-	float: right;
-	text-align: center;
+#gengduo {
+    background-color: #FF7000;
+    display: block;
+    width: 60px;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 5px;
+    float: right;
+    text-align: center;
 }
 

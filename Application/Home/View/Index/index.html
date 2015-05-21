@@ -1,74 +1,77 @@
-<include file="Public:header" />
+<include file="Public:header"/>
 <div class="center">
 
-	<a href="javascript:;" id="prev" style="cursor:pointer" class="bgStretcherNav bgStretcherNavPrev">
-		<div style="height:40px; width:20px;position:fixed;left:0;bottom:300px; background:url(__PUBLIC__//Home/images/prev1.png) no-repeat; line-height:40px; text-align:center;margin-top:1px;"></div>
-	</a>
-	<a href="javascript:;" id="next" style="cursor:pointer" class="bgStretcherNav bgStretcherNavNext">
-		<div style="height:40px; width:20px; position:fixed;right:0;bottom:300px; background:url(__PUBLIC__//Home/images/next1.png) no-repeat;line-height:40px;text-align:center;margin-top:1px;"></div>
-	</a>
+    <a href="javascript:;" id="prev" style="cursor:pointer" class="bgStretcherNav bgStretcherNavPrev">
+        <div style="height:40px; width:20px;position:fixed;left:0;bottom:300px; background:url(__PUBLIC__//Home/images/prev1.png) no-repeat; line-height:40px; text-align:center;margin-top:1px;"></div>
+    </a>
+    <a href="javascript:;" id="next" style="cursor:pointer" class="bgStretcherNav bgStretcherNavNext">
+        <div style="height:40px; width:20px; position:fixed;right:0;bottom:300px; background:url(__PUBLIC__//Home/images/next1.png) no-repeat;line-height:40px;text-align:center;margin-top:1px;"></div>
+    </a>
 
-	<div class="center_container">
-	<!-- 图片描述 -->
-	<div id="pic_desc">
-		<p>十佳歌手</p>
-	</div>
+    <div class="center_container">
+        <!-- 图片描述 -->
+        <div id="pic_desc">
+            <p>十佳歌手</p>
+        </div>
 
 
-	<!-- 新闻模块 -->
-		<div class="news_bg">
+        <!-- 新闻模块 -->
+        <div class="news_bg">
 
-			<div id="tab-list">
-				<ul id="ul1">
-					<li class="active">
-						<img src="__PUBLIC__//Home/images/xgxw.png"/>
-						<a href="{:U('Home/News/Newslist',array('id' => $nids['0']))}">学工新闻</a>
-					</li>
-					<li>
-						<img src="__PUBLIC__//Home/images/tzgg.png"/>
-						<a href="{:U('Home/News/Newslist',array('id' => $nids['1']))}">通知公告</a>
-					</li>
+            <div id="tab-list">
+                <ul id="ul1">
+                    <li class="active">
+                        <img src="__PUBLIC__//Home/images/xgxw.png"/>
+                        <a href="{:U('Home/News/Newslist',array('id' => $nids['0']))}">学工新闻</a>
+                    </li>
+                    <li>
+                        <img src="__PUBLIC__//Home/images/tzgg.png"/>
+                        <a href="{:U('Home/News/Newslist',array('id' => $nids['1']))}">通知公告</a>
+                    </li>
 
                     <li>
                         <img src="__PUBLIC__//Home/images/hdzx.png"/>
                         <a href="{:U('Home/News/Newslist',array('id' => $nids['2']))}">公寓文明</a>
                     </li>
 
-					<li>
-						<img src="__PUBLIC__//Home/images/xgxw.png"/>
-						<a href="{:U('Home/News/Newslist',array('id' => $nids['3']))}">学子风采</a>
-					</li>
+                    <li>
+                        <img src="__PUBLIC__//Home/images/xgxw.png"/>
+                        <a href="{:U('Home/News/Newslist',array('id' => $nids['3']))}">学子风采</a>
+                    </li>
 
-				</ul>
+                </ul>
 
-                    <div class="active">
-                        <ul>
-                            <if condition="$highlight[0]">
-                                <li>
-                                    <a href="{:U('Home/News/show',array('id' => $highlight[0]['id']))}" target="_blank" title="{$vo.title}" style="color:#feff9b;">
-                                        <span class="rq">{$highlight[0].updatetime|date="m-d",###}</span>
-                                        {$highlight[0].title|msubstr=0,24,'utf8',false}
-                                    </a>
-                                </li>
-                            </if>
+                <div class="active">
+                    <ul>
+                        <if condition="$highlight[0]">
+                            <li>
+                                <a href="{:U('Home/News/show',array('id' => $highlight[0]['id']))}" target="_blank"
+                                   title="{$vo.title}" style="color:#feff9b;">
+                                    <span class="rq">{$highlight[0].updatetime|date="m-d",###}</span>
+                                    {$highlight[0].title|msubstr=0,24,'utf8',false}
+                                </a>
+                            </li>
+                        </if>
 
-                            <volist name="newslist[0]" id="vo">
-                                <li>
-                                    <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank" title="{$vo.title}">
-                                        <span class="rq">{$vo.updatetime|date="m-d",###}</span>
-                                        {$vo.title|msubstr=0,24,'utf8',false}
-                                    </a>
-                                </li>
-                            </volist>
-                        </ul>
-                    </div>
+                        <volist name="newslist[0]" id="vo">
+                            <li>
+                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"
+                                   title="{$vo.title}">
+                                    <span class="rq">{$vo.updatetime|date="m-d",###}</span>
+                                    {$vo.title|msubstr=0,24,'utf8',false}
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
 
 
                 <div class="hide">
                     <ul>
                         <if condition="$highlight[1]">
                             <li>
-                                <a href="{:U('Home/News/show',array('id' => $highlight[1]['id']))}" target="_blank" title="{$vo.title}" style="color:#feff9b;">
+                                <a href="{:U('Home/News/show',array('id' => $highlight[1]['id']))}" target="_blank"
+                                   title="{$vo.title}" style="color:#feff9b;">
                                     <span class="rq">{$highlight[1].updatetime|date="m-d",###}</span>
                                     {$highlight[1].title|msubstr=0,24,'utf8',false}
                                 </a>
@@ -76,7 +79,8 @@
                         </if>
                         <volist name="newslist[1]" id="vo">
                             <li>
-                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank" title="{$vo.title}">
+                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"
+                                   title="{$vo.title}">
                                     <span class="rq">{$vo.updatetime|date="m-d",###}</span>
                                     {$vo.title|msubstr=0,24,'utf8',false}
                                 </a>
@@ -89,7 +93,8 @@
                     <ul>
                         <if condition="$highlight[2]">
                             <li>
-                                <a href="{:U('Home/News/show',array('id' => $highlight[2]['id']))}" target="_blank" title="{$vo.title}" style="color:#feff9b;">
+                                <a href="{:U('Home/News/show',array('id' => $highlight[2]['id']))}" target="_blank"
+                                   title="{$vo.title}" style="color:#feff9b;">
                                     <span class="rq">{$highlight[2].updatetime|date="m-d",###}</span>
                                     {$highlight[2].title|msubstr=0,24,'utf8',false}
                                 </a>
@@ -97,7 +102,8 @@
                         </if>
                         <volist name="newslist[2]" id="vo">
                             <li>
-                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank" title="{$vo.title}">
+                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"
+                                   title="{$vo.title}">
                                     <span class="rq">{$vo.updatetime|date="m-d",###}</span>
                                     {$vo.title|msubstr=0,24,'utf8',false}
                                 </a>
@@ -110,7 +116,8 @@
                     <ul>
                         <if condition="$highlight[3]">
                             <li>
-                                <a href="{:U('Home/News/show',array('id' => $highlight[3]['id']))}" target="_blank" title="{$vo.title}" style="color:#feff9b;">
+                                <a href="{:U('Home/News/show',array('id' => $highlight[3]['id']))}" target="_blank"
+                                   title="{$vo.title}" style="color:#feff9b;">
                                     <span class="rq">{$highlight[3].updatetime|date="m-d",###}</span>
                                     {$highlight[3].title|msubstr=0,24,'utf8',false}
                                 </a>
@@ -118,7 +125,8 @@
                         </if>
                         <volist name="newslist[3]" id="vo">
                             <li>
-                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank" title="{$vo.title}">
+                                <a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"
+                                   title="{$vo.title}">
                                     <span class="rq">{$vo.updatetime|date="m-d",###}</span>
                                     {$vo.title|msubstr=0,24,'utf8',false}
                                 </a>
@@ -127,31 +135,32 @@
                     </ul>
                 </div>
 
-			<!-- <div style=" clear:both;width:450px; height:13px; line-height:10px;text-align:right; margin-right:10px;">
-				<a id="gengduo" target="_blank" onclick="showmore();" href="http://news.hitwh.edu.cn" style="text-decoration:none;">+MORE</a>
-			</div> -->
-		</div>
-		<div style=" clear:both;width:450px; height:13px; line-height:10px;text-align:right; margin-right:10px;">
-				<a id="gengduo" target="_blank" onclick="showmore();" href="{:U('Home/News/Newslist',array('id' => 109))}" style="text-decoration:none;">+更多</a>
-			</div>
-	</div>
+                <!-- <div style=" clear:both;width:450px; height:13px; line-height:10px;text-align:right; margin-right:10px;">
+                    <a id="gengduo" target="_blank" onclick="showmore();" href="http://news.hitwh.edu.cn" style="text-decoration:none;">+MORE</a>
+                </div> -->
+            </div>
+            <div style=" clear:both;width:450px; height:13px; line-height:10px;text-align:right; margin-right:10px;">
+                <a id="gengduo" target="_blank" onclick="showmore();"
+                   href="{:U('Home/News/Newslist',array('id' => 109))}" style="text-decoration:none;">+更多</a>
+            </div>
+        </div>
 
-	<div class="news_bottom">
-		<img src="__PUBLIC__//Home/images/news_bottom_logo.png" />
+        <div class="news_bottom">
+            <img src="__PUBLIC__//Home/images/news_bottom_logo.png"/>
 
-		<span class="news_bottom_title">&nbsp;&nbsp;校园快讯&nbsp;:&nbsp;</span>
+            <span class="news_bottom_title">&nbsp;&nbsp;校园快讯&nbsp;:&nbsp;</span>
 
-		<div class="news_bottom_title">
-			<a href="{:U('Home/News/show',array('id' => $highlight[0]['id']))}">{$highlight[0].title}</a>
-		</div>
+            <div class="news_bottom_title">
+                <a href="{:U('Home/News/show',array('id' => $highlight[0]['id']))}">{$highlight[0].title}</a>
+            </div>
 
-	</div>
+        </div>
 
-	<div style="clear:both;width:100%;height:25px;"></div>
+        <div style="clear:both;width:100%;height:25px;"></div>
+
+    </div>
+
 
 </div>
 
-
-</div>
-
-<include file="Public:footer" />
+<include file="Public:footer"/>

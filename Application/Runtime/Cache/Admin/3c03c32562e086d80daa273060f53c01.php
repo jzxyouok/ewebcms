@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/style.css"/>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
+    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/Public//Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -59,19 +59,25 @@
                 <td><?php echo ($vo["id"]); ?></td>
                 <td><span style="margin-left: <?php echo ($vo['level']*20); ?>px">
                 <?php if($vo["level"] == 1): ?><font style="color:red"><?php echo ($vo["title"]); ?></font>
-                    <?php elseif($vo["level"] == 2): ?>●&nbsp;<?php echo ($vo["title"]); ?>
-                    <?php else: ?>┗ &nbsp;<?php echo ($vo["title"]); endif; ?>
+                    <?php elseif($vo["level"] == 2): ?>
+                    ●&nbsp;<?php echo ($vo["title"]); ?>
+                    <?php else: ?>
+                    ┗ &nbsp;<?php echo ($vo["title"]); endif; ?>
             </span></td>
                 <td><?php echo ($vo["name"]); ?></td>
                 <td>
                     <?php if($vo["level"] == 1): ?><font style="color:red">项目</font>
-                        <?php elseif($vo["level"] == 2): ?><font style="color:green;">模块</font>
-                        <?php else: ?><font style="color:blue;">操作</font><?php endif; ?>
+                        <?php elseif($vo["level"] == 2): ?>
+                        <font style="color:green;">模块</font>
+                        <?php else: ?>
+                        <font style="color:blue;">操作</font><?php endif; ?>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-mini btn-info" id="addnew" onclick="javasript:edit(<?php echo ($vo["id"]); ?>)">编辑
+                    <button type="button" class="btn btn-mini btn-info" id="addnew" onclick="javasript:edit(<?php echo ($vo["id"]); ?>)">
+                        编辑
                     </button>
-                    <button type="button" class="btn btn-mini btn-danger" id="addnew" onclick="javasript:del(<?php echo ($vo["id"]); ?>)">删除
+                    <button type="button" class="btn btn-mini btn-danger" id="addnew" onclick="javasript:del(<?php echo ($vo["id"]); ?>)">
+                        删除
                     </button>
                 </td>
             </tr><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -100,8 +106,6 @@
             window.location.href = "<?php echo ($delurl); ?>?id=" + id;
         }
     }
-
-
 
 
 </script>

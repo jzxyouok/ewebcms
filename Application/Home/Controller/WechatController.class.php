@@ -6,7 +6,9 @@
  * Time: 4:26 PM
  */
 namespace Home\Controller;
+
 use Think\Controller;
+
 class WechatController extends CommonController
 {
     public function index()
@@ -14,15 +16,17 @@ class WechatController extends CommonController
 
     }
 
-    public  function newslist(){
+    public function newslist()
+    {
         $id = I('param.id');
-        $this -> selectnews($id);
-        $this -> display();
+        $this->selectnews($id);
+        $this->display();
     }
 
-    public function show(){
+    public function show()
+    {
         $id = I("param.id");
-        $this -> newsshow($id);
-        $this -> display();
+        $this->newsshow($id);
+        $this->display();
     }
 }

@@ -59,7 +59,8 @@
         <tr>
             <td width="10%" class="tableleft">状态</td>
             <td><input type="radio" class="form-control" name="status" value="1" checked/>&nbsp;&nbsp;开启 &nbsp;&nbsp;
-                <input type="radio" class="form-control" name="status" value="0"/>&nbsp;&nbsp;关闭</td>
+                <input type="radio" class="form-control" name="status" value="0"/>&nbsp;&nbsp;关闭
+            </td>
         </tr>
         <tr>
             <td width="10%" class="tableleft">类型</td>
@@ -85,7 +86,8 @@
                         <php>$selected = $node['pid']==$vo['id']?"selected":"";</php>
                         <option value="{$vo.id}" {$selected}>
                             <if condition="$vo.level eq 1">{$vo.title}
-                            <else/> &nbsp; &nbsp;┗{$vo.title}
+                                <else/>
+                                &nbsp; &nbsp;┗{$vo.title}
                             </if>
                         </option>
                     </volist>

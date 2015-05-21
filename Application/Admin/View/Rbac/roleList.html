@@ -57,12 +57,19 @@
             <td>{$vo.id}</td>
             <td>{$vo.name}</td>
             <td>{$vo.remark}</td>
-           <td><if condition="$vo.status eq 1">开启<else/>关闭</if></td>
+            <td>
+                <if condition="$vo.status eq 1">开启
+                    <else/>
+                    关闭
+                </if>
+            </td>
             <td>
                 <button type="button" class="btn btn-mini btn-info" onclick="javasript:edit({$vo.id})">编辑</button>
                 <button type="button" class="btn btn-mini btn-danger" onclick="javasript:del({$vo.id})">删除</button>
-                <button type="button" class="btn btn-mini btn-success" onclick="javasript:access({$vo.id})">配置权限</button>
-                <button type="button" class="btn btn-mini btn-primary" onclick="javasript:rolemanage({$vo.id})">成员管理</button>
+                <button type="button" class="btn btn-mini btn-success" onclick="javasript:access({$vo.id})">配置权限
+                </button>
+                <button type="button" class="btn btn-mini btn-primary" onclick="javasript:rolemanage({$vo.id})">成员管理
+                </button>
             </td>
         </tr>
     </volist>

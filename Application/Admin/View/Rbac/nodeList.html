@@ -60,21 +60,27 @@
                 <td>{$vo.id}</td>
                 <td><span style="margin-left: {$vo['level']*20}px">
                 <if condition="$vo.level eq 1"><font style="color:red">{$vo.title}</font>
-                    <elseif condition="$vo.level eq 2"/>●&nbsp;{$vo.title}
-                    <else/>┗ &nbsp;{$vo.title}
+                    <elseif condition="$vo.level eq 2"/>
+                    ●&nbsp;{$vo.title}
+                    <else/>
+                    ┗ &nbsp;{$vo.title}
                 </if>
             </span></td>
                 <td>{$vo.name}</td>
                 <td>
                     <if condition="$vo.level eq 1"><font style="color:red">项目</font>
-                        <elseif condition="$vo.level eq 2"/><font style="color:green;">模块</font>
-                        <else/><font style="color:blue;">操作</font>
+                        <elseif condition="$vo.level eq 2"/>
+                        <font style="color:green;">模块</font>
+                        <else/>
+                        <font style="color:blue;">操作</font>
                     </if>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-mini btn-info" id="addnew" onclick="javasript:edit({$vo.id})">编辑
+                    <button type="button" class="btn btn-mini btn-info" id="addnew" onclick="javasript:edit({$vo.id})">
+                        编辑
                     </button>
-                    <button type="button" class="btn btn-mini btn-danger" id="addnew" onclick="javasript:del({$vo.id})">删除
+                    <button type="button" class="btn btn-mini btn-danger" id="addnew" onclick="javasript:del({$vo.id})">
+                        删除
                     </button>
                 </td>
             </tr>
@@ -104,8 +110,6 @@
             window.location.href = "{$delurl}?id=" + id;
         }
     }
-
-
 
 
 </script>

@@ -1,73 +1,75 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-	<title>哈尔滨工业大学（威海）学生工作处</title>
-	<link href="__PUBLIC__//Home/css/header.css" type=text/css rel=stylesheet>
-	<link href="__PUBLIC__//Home/css/footer.css" type=text/css rel=stylesheet>
-	<link href="__PUBLIC__//Home/css/list.css" type=text/css rel=stylesheet>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>哈尔滨工业大学（威海）学生工作处</title>
+    <link href="__PUBLIC__//Home/css/header.css" type=text/css rel=stylesheet>
+    <link href="__PUBLIC__//Home/css/footer.css" type=text/css rel=stylesheet>
+    <link href="__PUBLIC__//Home/css/list.css" type=text/css rel=stylesheet>
 
-	<script type="text/javascript" src="__PUBLIC__//Home/js/xgc.js"></script>
+    <script type="text/javascript" src="__PUBLIC__//Home/js/xgc.js"></script>
 
 
 </head>
 <body>
-		<div class="top">
-			<div class="top_center">
-				<div class="logo">
-					<img src="__PUBLIC__//Home/images/aa.png" />
-				</div>
+<div class="top">
+    <div class="top_center">
+        <div class="logo">
+            <img src="__PUBLIC__//Home/images/aa.png"/>
+        </div>
 
-				<div class="top_right">
-					<div id="top_time" onload="updateTime()">
-						<?php
+        <div class="top_right">
+            <div id="top_time" onload="updateTime()">
+                <?php
 //获取官网时间
 $text = file_get_contents('http://www.hitwh.edu.cn/');
 $regex4 = "/<div id=\"top_nav_left\".*?>.*?<\/div>/ism";
-preg_match($regex4, $text, $match);
-echo "$match[0]";
-?>
-					</div>
+                preg_match($regex4, $text, $match);
+                echo "$match[0]";
+                ?>
+            </div>
 
-					<div class="search_box">
-						<form id="search_from" target="blank" onsubmit="return go(this)">
-							<input type="image" src="__PUBLIC__//Home/images//btn_search_box.png" width="78px" height="31px" id="go" alt="search" onclick="document.search_from.submit()" >
-							<input type="text" id="word" value="请在此输入检索关键字" onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top_menu_bg_home">
-			<div id="top_menu">
-                <ul>
-                    <volist name="navlist[0]" id="vo">
-                        <li>
-                            <if condition="$vo.f.fid eq 0">
-                                <if condition="$vo['f']['typeid'] eq 2">
-                                    <a href="{$vo.f.href}">{$vo.f.name}</a>
-                                    <else />
-                                    <a href="{:U($vo['f']['href'])}">{$vo.f.name}</a>
+            <div class="search_box">
+                <form id="search_from" target="blank" onsubmit="return go(this)">
+                    <input type="image" src="__PUBLIC__//Home/images//btn_search_box.png" width="78px" height="31px"
+                           id="go" alt="search" onclick="document.search_from.submit()">
+                    <input type="text" id="word" value="请在此输入检索关键字"
+                           onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="top_menu_bg_home">
+    <div id="top_menu">
+        <ul>
+            <volist name="navlist[0]" id="vo">
+                <li>
+                    <if condition="$vo.f.fid eq 0">
+                        <if condition="$vo['f']['typeid'] eq 2">
+                            <a href="{$vo.f.href}">{$vo.f.name}</a>
+                            <else/>
+                            <a href="{:U($vo['f']['href'])}">{$vo.f.name}</a>
+                        </if>
+
+                    </if>
+                    <ul>
+                        <volist name="vo['c']" id="chd">
+                            <li>
+                                <if condition="$chd['typeid'] eq 2">
+                                    <a href="{$chd.href}" target="_blank">{$chd.name}</a>
+                                    <else/>
+                                    <a href="{:U($chd['href'])}">{$chd.name}</a>
                                 </if>
-
-                            </if>
-                            <ul>
-                                <volist name="vo['c']" id="chd">
-                                    <li>
-                                        <if condition="$chd['typeid'] eq 2">
-                                            <a href="{$chd.href}"  target="_blank">{$chd.name}</a>
-                                            <else />
-                                            <a href="{:U($chd['href'])}">{$chd.name}</a>
-                                        </if>
-                                    </li>
-                                </volist>
-                            </ul>
-                        </li>
-                    </volist>
-                </ul>
-			</div>
-		</div>
+                            </li>
+                        </volist>
+                    </ul>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</div>
 
 

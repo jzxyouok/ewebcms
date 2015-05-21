@@ -72,7 +72,8 @@
                 <td width="6%"><input type="text" name="listorder[{$vo.id}]" id="listorder" value="{$vo.listorder}"
                                       style="width: 30px;"/></td>
                 <td>{$vo.id}</td>
-                <td><a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"><u>{$vo.title}</u></a></td>
+                <td><a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"><u>{$vo.title}</u></a>
+                </td>
                 <td>{$vo.date|date="y-m-d H:i:s",###}</td>
                 <td>{$type.name}</td>
                 <td>

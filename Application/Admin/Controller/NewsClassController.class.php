@@ -69,12 +69,12 @@ class NewsClassController extends CommonController
 
         //把所有以及菜单选择出来
         $model = M("newsclass");
-        $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)-> order("listorder asc") ->select();
+        $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)->order("listorder asc")->select();
         //选择菜单结束
 
         //提交过来的菜单id
         $id = I('param.id');
-        $this -> assign("classid",$id);
+        $this->assign("classid", $id);
         //返回前台页面
 
         $this->assign("classlist", $classlist);
@@ -98,7 +98,7 @@ class NewsClassController extends CommonController
 
         $model = M("newsclass");
 
-        $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)-> order("listorder asc")->select();
+        $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)->order("listorder asc")->select();
 
         $this->assign("classlist", $classlist);
         $this->display();
@@ -121,7 +121,7 @@ class NewsClassController extends CommonController
 
         $model = M("newsclass");
 
-        $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)-> order("listorder asc")->select();
+        $classlist = $model->field('id,name')->where('fid=0 and navid=%d', $navid)->order("listorder asc")->select();
 
         $this->assign("classlist", $classlist);
         $this->display();
@@ -139,7 +139,7 @@ class NewsClassController extends CommonController
                 $data['navid'] = $navid;
                 $id = $model->add($data);
                 $data['href'] = "Home/News/newslist?id={$id}";
-                if(strstr($data['name'],"首页")){
+                if (strstr($data['name'], "首页")) {
                     $data['href'] = "Home";
                 }
                 $result = $model->where('id=%d', $id)->save($data);
@@ -204,7 +204,7 @@ class NewsClassController extends CommonController
         $model = M('newsclass');
         $list = $model->where('id=%d', $id)->select();
         $this->assign("newsclass", $list[0]);
-        $list = $model->where("fid=0 and id!=$id and navid=$navid")-> order("listorder asc") ->select();
+        $list = $model->where("fid=0 and id!=$id and navid=$navid")->order("listorder asc")->select();
         $this->assign('classlist', $list);
 
 
@@ -367,7 +367,7 @@ class NewsClassController extends CommonController
     //控制栏目是否可见
     function show()
     {
-    //    $this->shellcheck(1);
+        //    $this->shellcheck(1);
         $choose = I('param.choose');
         $id = I('param.id');
         if ($choose) {
@@ -459,14 +459,14 @@ class NewsClassController extends CommonController
         $model = M("Nav");
         $result = $model->where("id=$id")->delete();
 
-        $pages = M("Newsclass") -> field("page_id") -> where("navid=$id and typeid=3") -> select();
-        foreach($pages as $val){
+        $pages = M("Newsclass")->field("page_id")->where("navid=$id and typeid=3")->select();
+        foreach ($pages as $val) {
             $page[] = $val['page_id'];
         }
         $pagess = join(",", $page);
 
-        M("Page") -> where("id in ($pagess)") -> delete();//删除单页面
-        M("Newsclass") -> where("navid=$id") -> delete();//删除导航下的菜单
+        M("Page")->where("id in ($pagess)")->delete();//删除单页面
+        M("Newsclass")->where("navid=$id")->delete();//删除导航下的菜单
 
         if ($result) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
             $this->success('删除成功', U('Admin/NewsClass/navindex'));

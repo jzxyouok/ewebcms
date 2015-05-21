@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/style.css"/>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
+    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/Public//Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -56,12 +56,18 @@
             <td><?php echo ($vo["id"]); ?></td>
             <td><?php echo ($vo["name"]); ?></td>
             <td><?php echo ($vo["remark"]); ?></td>
-           <td><?php if($vo["status"] == 1): ?>开启<?php else: ?>关闭<?php endif; ?></td>
+            <td>
+                <?php if($vo["status"] == 1): ?>开启
+                    <?php else: ?>
+                    关闭<?php endif; ?>
+            </td>
             <td>
                 <button type="button" class="btn btn-mini btn-info" onclick="javasript:edit(<?php echo ($vo["id"]); ?>)">编辑</button>
                 <button type="button" class="btn btn-mini btn-danger" onclick="javasript:del(<?php echo ($vo["id"]); ?>)">删除</button>
-                <button type="button" class="btn btn-mini btn-success" onclick="javasript:access(<?php echo ($vo["id"]); ?>)">配置权限</button>
-                <button type="button" class="btn btn-mini btn-primary" onclick="javasript:rolemanage(<?php echo ($vo["id"]); ?>)">成员管理</button>
+                <button type="button" class="btn btn-mini btn-success" onclick="javasript:access(<?php echo ($vo["id"]); ?>)">配置权限
+                </button>
+                <button type="button" class="btn btn-mini btn-primary" onclick="javasript:rolemanage(<?php echo ($vo["id"]); ?>)">成员管理
+                </button>
             </td>
         </tr><?php endforeach; endif; else: echo "" ;endif; ?>
 </table>

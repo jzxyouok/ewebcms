@@ -1,8 +1,9 @@
 <extend name="Public:listbase"/>
 <block name="content">
     <h3>|&nbsp;&nbsp;&nbsp;{$sidef.name}</h3>
+
     <div class="news">
-        <form action="{:U('Home/Page/msgsubmit')}" method="post" name="myform" id="myform" class = "myform">
+        <form action="{:U('Home/Page/msgsubmit')}" method="post" name="myform" id="myform" class="myform">
             <table cellspacing="1" cellpadding="0" class="table_form">
                 <tbody>
 
@@ -14,7 +15,8 @@
                 <tr>
                     <th>手机</th>
                     <td>
-                        <input type="text" size="40" value="" name="phone" id="phone" class="input-text" placeholder="请输入您的联系手机">(选填)
+                        <input type="text" size="40" value="" name="phone" id="phone" class="input-text"
+                               placeholder="请输入您的联系手机">(选填)
                     </td>
                 </tr>
                 <tr>
@@ -23,14 +25,16 @@
                 </tr>
                 <tr>
                     <th>留言内容</th>
-                    <td><textarea name="content" cols="40" rows="5" class="input-text" id="content" placeholder="在此输入您的留言.."></textarea></td>
+                    <td><textarea name="content" cols="40" rows="5" class="input-text" id="content"
+                                  placeholder="在此输入您的留言.."></textarea></td>
                 </tr>
 
 
                 <tr>
                     <th>验证码：</th>
                     <td>
-                        <input name="verifycode" type="text" id="code" size="9"  class="input-text" placeholder="请输入验证码"/>
+                        <input name="verifycode" type="text" id="code" size="9" class="input-text"
+                               placeholder="请输入验证码"/>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +48,7 @@
                     <th></th>
                     <td>
                         <input type="submit" value=" 提 交 " class="button orange">
-                        <input type="reset" value=" 取 消 " class="button orange"> </td>
+                        <input type="reset" value=" 取 消 " class="button orange"></td>
                 </tr>
                 </tbody>
             </table>
@@ -115,7 +119,7 @@
                 <li>
                     <if condition="$vo['typeid'] eq 2">
                         <a href="{$vo.href}">{$vo.name}</a>
-                        <else />
+                        <else/>
                         <a href="{:U($vo['href'])}">{$vo.name}</a>
                     </if>
                 </li>

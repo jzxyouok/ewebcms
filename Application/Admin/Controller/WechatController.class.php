@@ -9,43 +9,49 @@ namespace Admin\Controller;
 
 use Think\Controller;
 
-define ('TOKEN','mywechat');//定义微信token
+define ('TOKEN', 'mywechat');//定义微信token
 
 
 class WechatController extends CommonController
 {
     var $wechat;
-    public function _initialize(){
+
+    public function _initialize()
+    {
         $model = M('Wx_appid');
-        $info = $model -> select();
+        $info = $model->select();
         $appid = $info[0]['appid'];
         $appsecret = $info[0]['appsecret'];
         $userdata['appid'] = $appid;
         $userdata['appsecret'] = $appsecret;
-        $this -> wechat = new \Org\Util\Wechat($userdata);
+        $this->wechat = new \Org\Util\Wechat($userdata);
     }
 
     //微信连接接口
-    public function wechat(){
+    public function wechat()
+    {
 
         //echo $wechatObj -> test();
-        if(isset($_GET['echostr'])){
-            $this -> valid();
-        }else{
-            $this -> responseMsg();
+        if (isset($_GET['echostr'])) {
+            $this->valid();
+        } else {
+            $this->responseMsg();
         }
     }
 
     //检验签名
-    public function valid(){
+    public function valid()
+    {
         $echostr = $_GET['echostr'];
-        if($this -> checkSignature()){
+        if ($this->checkSignature()) {
             echo $echostr;
             exit;
         }
     }
+
     //验证签名
-    private function checkSignature(){
+    private function checkSignature()
+    {
         $signature = $_GET['signature'];
         $timestamp = $_GET['timestamp'];
         $nonce = $_GET['nonce'];
@@ -56,9 +62,9 @@ class WechatController extends CommonController
         $tmpStr = implode($tmpArr);
         $tmpStr = sha1($tmpStr);
 
-        if($tmpStr == $signature){
+        if ($tmpStr == $signature) {
             return ture;
-        }else{
+        } else {
             return false;
         }
     }
@@ -70,39 +76,42 @@ class WechatController extends CommonController
     }
 
     //微信端留言板
-    public function liuyan(){
-        $this -> display();
+    public function liuyan()
+    {
+        $this->display();
     }
 
-    public function liuyansubmit(){
-        $data=I('param.');
-        $data['date']=time();
+    public function liuyansubmit()
+    {
+        $data = I('param.');
+        $data['date'] = time();
         $model = M('wx_msg');
-        $result = $model -> add($data);
-        if($result){
+        $result = $model->add($data);
+        if ($result) {
             //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
-            $this->success('留言成功',$_SERVER['HTTP_REFERER']);
-        }else{
+            $this->success('留言成功', $_SERVER['HTTP_REFERER']);
+        } else {
             //错误页面的默认跳转页面是返回前一页，通常不需要设置
-            $this->error('留言失败',$_SERVER['HTTP_REFERER']);
+            $this->error('留言失败', $_SERVER['HTTP_REFERER']);
         }
 
     }
+
     //微信端留言板展示
-    public function liuyanshow(){
+    public function liuyanshow()
+    {
         //选择留言
         $message = M("Message");
-        $count = $message -> where("display=1") -> count();
-        $Page = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $count = $message->where("display=1")->count();
+        $Page = new \Think\Page($count, 10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show = $Page->show();// 分页显示输出
         $msglist = $message->order('replydate desc')->where("display=1")->limit($Page->firstRow . ',' . $Page->listRows)->select();
 
-        $this -> assign("page",$show);
-        $this -> assign("msglist", $msglist);
+        $this->assign("page", $show);
+        $this->assign("msglist", $msglist);
         //选择留言完成
-        $this -> display();
+        $this->display();
     }
-
 
 
     public function guestbook()
@@ -197,26 +206,28 @@ class WechatController extends CommonController
      */
 
 
-    public function connect(){
-        $access_token = $this -> wechat -> get_access_token();//测试连接微信
+    public function connect()
+    {
+        $access_token = $this->wechat->get_access_token();//测试连接微信
         $model = M('Wx_appid');
-        $list = $model -> select();
-        $this -> assign("access_token",$access_token);
-        $this -> assign('list',$list[0]);
-        $this -> display();
+        $list = $model->select();
+        $this->assign("access_token", $access_token);
+        $this->assign('list', $list[0]);
+        $this->display();
     }
 
-    public function connectsubmit(){
+    public function connectsubmit()
+    {
         $model = M("Wx_appid");
         $data = I('param.');
         $data['date'] = time();
-        $count = $model -> count();
-        if(!$count){//如果表中没有数据,则添加新数据
-            $result = $model -> add($data);
-        }else{//如果表中有数据,则改变选择出的第一条数据
-            $list = $model -> select();
+        $count = $model->count();
+        if (!$count) {//如果表中没有数据,则添加新数据
+            $result = $model->add($data);
+        } else {//如果表中有数据,则改变选择出的第一条数据
+            $list = $model->select();
             $id = $list[0]["id"];
-            $result = $model -> where("id=$id") -> save($data);
+            $result = $model->where("id=$id")->save($data);
         }
 
         if ($result) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
@@ -228,63 +239,70 @@ class WechatController extends CommonController
     }
 
     //获取用户列表
-    public function userlist(){
+    public function userlist()
+    {
 
         $model = M('wx_user');
         //把数据进行分页
-        $count = $model -> where('status=1') -> count();
-        $ucount = $model -> where('status=0') -> count();
+        $count = $model->where('status=1')->count();
+        $ucount = $model->where('status=0')->count();
         $Page = new \Think\Page($count, 15);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show = $Page->show();// 分页显示输出
 
         $userlist = $model->where('status=1')->order('subscribe_time desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign("page", $show);
         $this->assign("userlist", $userlist);
-        $this -> assign("count",$count);
-        $this -> assign("ucount",$ucount);
-       // dump($result['data']);
+        $this->assign("count", $count);
+        $this->assign("ucount", $ucount);
+        // dump($result['data']);
         //dump($res);
-        $this -> display();
+        $this->display();
 
     }
+
     //获取用户信息
-    public function userinfo(){
-        dump($this -> wechat -> get_user_info(o4J0Et_OlZ5N1F1XgUr2PuBQoJ3g));
-    }
-    //创建菜单
-    public function createmenu(){
-        $this -> display();
+    public function userinfo()
+    {
+        dump($this->wechat->get_user_info(o4J0Et_OlZ5N1F1XgUr2PuBQoJ3g));
     }
 
-    public function menusubmit(){
+    //创建菜单
+    public function createmenu()
+    {
+        $this->display();
+    }
+
+    public function menusubmit()
+    {
         $menudata = $_POST['menudata'];
 //        echo $menudata;return;
 
-        $result = $this -> wechat -> create_menu($menudata);
+        $result = $this->wechat->create_menu($menudata);
 
         if ($result['errcode'] == 0) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
-            $this->success('设置成功,重新关注公众号或24小时后生效',U("Admin/Wechat/createmenu"),3);
+            $this->success('设置成功,重新关注公众号或24小时后生效', U("Admin/Wechat/createmenu"), 3);
         } else {  //错误页面的默认跳转页面是返回前一页，通常不需要设置
-            $this->error($result['errmsg']."<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...",U("Admin/Index/index"));
+            $this->error($result['errmsg'] . "<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...", U("Admin/Index/index"));
         }
 
     }
 
     //获取菜单
-    public function getmenu(){
-        $result = $this -> wechat -> get_menu();
-        if($result['errcode']){
-           $this -> error($result['errmsg']."<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...",U("Admin/Index/index"));
+    public function getmenu()
+    {
+        $result = $this->wechat->get_menu();
+        if ($result['errcode']) {
+            $this->error($result['errmsg'] . "<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...", U("Admin/Index/index"));
         }
 
         $json_res = json_encode($result, JSON_UNESCAPED_UNICODE);
         $result = $result['menu']['button'];
         $count = count($result);
 
-        for($i = 0; $i < $count; $i++){
+        for ($i = 0; $i < $count; $i++) {
             $nav = $result[$i];
             $button[$i]['f']['name'] = $nav['name'];
-            foreach($nav['sub_button'] as $value){
+            foreach ($nav['sub_button'] as $value) {
                 $button[$i]['c'][] = array(
                     'type' => $value['type'],
                     'name' => $value['name'],
@@ -294,14 +312,15 @@ class WechatController extends CommonController
             }
         }
         //dump($button);
-        $this -> assign("list",$button);
-        $this -> assign("json",$json_res);
-        $this -> display();
+        $this->assign("list", $button);
+        $this->assign("json", $json_res);
+        $this->display();
 
     }
 
     //显示收到的消息,(客服接口)
-    public function msgreply(){
+    public function msgreply()
+    {
         $model = M("Wx_custom");
         $type = I('param.type');
         if ($type == 0) {
@@ -320,31 +339,32 @@ class WechatController extends CommonController
         }
 
         $c = count($list);
-        for($i=0;$i<$c;$i++){
+        for ($i = 0; $i < $c; $i++) {
             $openid = $list[$i]['openid'];
-            $info =  $this -> wechat -> get_user_info($openid);//获取用户信息
+            $info = $this->wechat->get_user_info($openid);//获取用户信息
             $list[$i]['nickname'] = $info['nickname'];
             $list[$i]['headimgurl'] = $info['headimgurl'];
         }
 
-        $this -> assign("page",$show);
-        $this -> assign("list",$list);
-        $this -> assign("count",$count);
+        $this->assign("page", $show);
+        $this->assign("list", $list);
+        $this->assign("count", $count);
 
-        $this -> assign("replyurl",U('Admin/wechat/replycustom'));
-        $this -> assign("delurl",U('Admin/wechat/delcustom'));
-        $this -> display();
+        $this->assign("replyurl", U('Admin/wechat/replycustom'));
+        $this->assign("delurl", U('Admin/wechat/delcustom'));
+        $this->display();
     }
 
     //回复客服消息
-    public function replycustom(){
+    public function replycustom()
+    {
         $id = I('param.id');
         //获取留言信息
         $model = M('Wx_custom');
-        $list = $model -> where("id=$id") -> find();
+        $list = $model->where("id=$id")->find();
 
         //获取昵称信息
-        $info =  $this -> wechat -> get_user_info($list['openid']);//获取用户信息
+        $info = $this->wechat->get_user_info($list['openid']);//获取用户信息
         $list['nickname'] = $info['nickname'];
         $list['headimgurl'] = $info['headimgurl'];
 
@@ -353,39 +373,40 @@ class WechatController extends CommonController
     }
 
     //回复消息提交
-    public function replycustomsubmit(){
+    public function replycustomsubmit()
+    {
         $id = I('param.id');
         $openid = I('param.openid');
         //保存到本地数据库
         $data['reply'] = I('param.reply');
         $data['status'] = 1;
-        $result  = M('wx_custom') -> where("id=$id") -> save($data);
+        $result = M('wx_custom')->where("id=$id")->save($data);
 
         //给用户发送消息
-        $res = $this -> wechat -> send_custom_message($openid, 'text',$data['reply']);
-        if($res['errcode']!=0){
-            $this -> error($result['errmsg']."<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...",U("Admin/Index/index"));
+        $res = $this->wechat->send_custom_message($openid, 'text', $data['reply']);
+        if ($res['errcode'] != 0) {
+            $this->error($result['errmsg'] . "<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...", U("Admin/Index/index"));
         }
-        if($result){
-            $this -> success('回复成功',U('Admin/Wechat/msgreply',array('type' => 1)));
-        }else{
-            $this -> error('回复失败',U('Admin/Wechat/msgreply',array('type' => 1)));
+        if ($result) {
+            $this->success('回复成功', U('Admin/Wechat/msgreply', array('type' => 1)));
+        } else {
+            $this->error('回复失败', U('Admin/Wechat/msgreply', array('type' => 1)));
         }
 
     }
 
     //删除客服消息
-    public function delcustom(){
+    public function delcustom()
+    {
         $id = I("param.id");
-        $result = M('Wx_custom') -> where("id=$id") -> delete();
-        if($result){
-            $this -> success('删除成功',U('Admin/Wechat/msgreply',array('type' => 1)));
-        }else{
-            $this -> error('删除失败',U('Admin/Wechat/msgreply',array('type' => 1)));
+        $result = M('Wx_custom')->where("id=$id")->delete();
+        if ($result) {
+            $this->success('删除成功', U('Admin/Wechat/msgreply', array('type' => 1)));
+        } else {
+            $this->error('删除失败', U('Admin/Wechat/msgreply', array('type' => 1)));
         }
 
     }
-
 
 
     //回复消息
@@ -395,23 +416,23 @@ class WechatController extends CommonController
         if (!empty($postStr)) {
 
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $RX_TYPE = trim($postObj -> MsgType);
+            $RX_TYPE = trim($postObj->MsgType);
 
             switch ($RX_TYPE) {
                 case "text":
                     //简单回复文本消息
-                   // $resultStr = $this -> receiveText($postObj);
+                    // $resultStr = $this -> receiveText($postObj);
                     //客服接口回复消息
-                    $resultStr = $this -> userCustom($postObj);
+                    $resultStr = $this->userCustom($postObj);
                     break;
                 case "voice":
-                    $resultStr = $this -> receiveVoice($postObj);
+                    $resultStr = $this->receiveVoice($postObj);
                     break;
                 case "image":
-                    $resultStr = $this -> receiveImage($postObj);
+                    $resultStr = $this->receiveImage($postObj);
                     break;
                 case "event":
-                    $resultStr = $this -> receiveEvent($postObj);
+                    $resultStr = $this->receiveEvent($postObj);
                     break;
                 default:
                     $resultStr = "";
@@ -424,24 +445,25 @@ class WechatController extends CommonController
     /***
      *  客服接口开发
      */
-    private function userCustom($postObj, $funcFlag = 0){
-        $fromUserName = $postObj -> FromUserName;
-        $toUserName   = $postObj -> toUserName;
-        $keyword      = $postObj -> Content;
-        $time         = time();
-        $MsgType      = "text";
+    private function userCustom($postObj, $funcFlag = 0)
+    {
+        $fromUserName = $postObj->FromUserName;
+        $toUserName = $postObj->toUserName;
+        $keyword = $postObj->Content;
+        $time = time();
+        $MsgType = "text";
 
         $model = M('Wx_custom');
-        $data['openid']  = "$fromUserName";
-        $data['date']    = time();
+        $data['openid'] = "$fromUserName";
+        $data['date'] = time();
         $data['content'] = "$keyword";
-        $data['status']  = 0;
+        $data['status'] = 0;
 
 
-        $result =  $model -> add($data);
-        if(!$result){
-            $resultStr = $this -> transmitText($postObj,"cuowu");
-               return $resultStr;
+        $result = $model->add($data);
+        if (!$result) {
+            $resultStr = $this->transmitText($postObj, "cuowu");
+            return $resultStr;
         }
 
         $content = "谢谢你的留言,我们会尽快回复...";
@@ -461,8 +483,8 @@ class WechatController extends CommonController
     }
 
 
-
-    private function transmitText($postObj, $contentStr, $funcFlag = 0){
+    private function transmitText($postObj, $contentStr, $funcFlag = 0)
+    {
         //把5叫过来的字符串转化为微信服务器可以识别的模板
         $textTpl = "<xml>
 							<ToUserName><![CDATA[%s]]></ToUserName>
@@ -481,8 +503,8 @@ class WechatController extends CommonController
     private function transmitNews($postObj, $arr_item, $funcFlag = 0)
     {
         //首条标题28字，其他标题39字
-        if(!is_array($arr_item))
-            return $this -> transmitText($postObj, $arr_item);
+        if (!is_array($arr_item))
+            return $this->transmitText($postObj, $arr_item);
 
         $itemTpl = "    <item>
 								        <Title><![CDATA[%s]]></Title>
@@ -510,102 +532,100 @@ class WechatController extends CommonController
         return $resultStr;
     }
 
-    private function receiveEvent($postObj){
+    private function receiveEvent($postObj)
+    {
         $contentStr = "";
-        switch ($postObj -> Event)
-        {
+        switch ($postObj->Event) {
             case "subscribe":
 
                 //用户信息写入数据库
                 $model = M('Wx_user');
-                $openid = $postObj -> FromUserName;
-                $info = $this -> wechat -> get_user_info($openid);
+                $openid = $postObj->FromUserName;
+                $info = $this->wechat->get_user_info($openid);
                 $data['openid'] = "$openid";
                 $data['nickname'] = $info['nickname'];
-                $data['city'] = $info['country']." ".$info['province']." ".$info['city'];
+                $data['city'] = $info['country'] . " " . $info['province'] . " " . $info['city'];
                 $data['headimgurl'] = $info['headimgurl'];
                 $data['subscribe_time'] = time();
                 $data['status'] = 1;
-                $result = $model -> add($data);
+                $result = $model->add($data);
 
-                if(!$result){
-                    $model -> save($data);
+                if (!$result) {
+                    $model->save($data);
                 }
                 $contentStr = '欢迎关注学院公众号';
                 break;
             case "unsubscribe":
                 //从微信用户表中删除该用户信息
-                $openid = $postObj -> FromUserName;
+                $openid = $postObj->FromUserName;
                 $model = M('Wx_user');
                 $openid = "$openid";
                 $data['openid'] = $openid;
                 $data['nickname'] = $openid;
                 $data['status'] = 0;
-                $model -> save($data);
+                $model->save($data);
                 break;
             case "CLICK":
                 //$mysql = new SaeMysql();
                 $newslisturl = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Wechat/newslist/id/";
                 $newsshowurl = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Wechat/show/id/";
-                $pageurl     = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Page/index/id/";
-                switch ($postObj->EventKey)
-                {
+                $pageurl = "http://1.hitwhxgc.sinaapp.com/index.php/Home/Page/index/id/";
+                switch ($postObj->EventKey) {
                     //第一个底部菜单筛选院系信息
 
                     case "JGSZ"://机构设置
                         $model = M('Info');
-                        $list = $model -> where("name='JGSZ'") -> find();
+                        $list = $model->where("name='JGSZ'")->find();
                         $contentStr[] = array(
                             "Title" => $list['title'],
                             "Description" => $list['excerpt'],
-                            "PicUrl"      => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
-                            "Url"         => "{$pageurl}"."47.html",
+                            "PicUrl" => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
+                            "Url" => "{$pageurl}" . "47.html",
                         );
                         break;
 
                     case "RYJS"://人员介绍
                         $model = M('Info');
-                        $list = $model -> where("name='RYJS'") -> find();
+                        $list = $model->where("name='RYJS'")->find();
                         $contentStr[] = array(
                             "Title" => $list['title'],
                             "Description" => $list['excerpt'],
-                            "PicUrl"      => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
-                            "Url"         => "{$pageurl}"."46.html",
+                            "PicUrl" => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
+                            "Url" => "{$pageurl}" . "46.html",
                         );
                         break;
 
                     case "LXFS"://联系方式
                         $model = M('Info');
-                        $list = $model -> where("name='LXFS'") -> find();
+                        $list = $model->where("name='LXFS'")->find();
                         $contentStr[] = array(
                             "Title" => $list['title'],
                             "Description" => $list['excerpt'],
-                            "PicUrl"      => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
-                            "Url"         => "{$pageurl}"."50.html",
+                            "PicUrl" => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
+                            "Url" => "{$pageurl}" . "50.html",
                         );
                         break;
-
 
 
                     //第二个底部菜单筛选新闻
                     case "XGXW":
                         $id = 121;
                         $model = M('News');
-                        $list = $model -> where("iswechat=1 and nid=$id") -> order('date desc') -> limit(5) -> select();
+                        $list = $model->where("iswechat=1 and nid=$id")->order('date desc')->limit(5)->select();
                         $count = count($list);
-                        for($i = 0; $i < $count; $i++){
+                        for ($i = 0; $i < $count; $i++) {
                             $contentStr[$i] = array(
                                 "Title" => $list[$i]['title'],
                                 "Description" => $list[$i]['excerpt'],
-                                "PicUrl"      => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
-                                "Url"         => "{$newsshowurl}{$list[$i]['id']}",
+                                "PicUrl" => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
+                                "Url" => "{$newsshowurl}{$list[$i]['id']}",
                             );
                         }
                         $contentStr[$i] = array(
                             "Title" => "查看更多",
                             "Description" => "",
-                            "PicUrl"      => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
-                            "Url"         => "{$newslisturl}{$id}",
+                            "PicUrl" => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
+                            "Url" => "{$newslisturl}{$id}",
                         );
                         break;
 
@@ -613,14 +633,14 @@ class WechatController extends CommonController
                     case "TZGG":
                         $id = 122;
                         $model = M('News');
-                        $list = $model -> where("iswechat=1 and nid=$id") -> order('date desc') -> limit(5) -> select();
+                        $list = $model->where("iswechat=1 and nid=$id")->order('date desc')->limit(5)->select();
                         $count = count($list);
-                        for($i = 0; $i < $count; $i++){
+                        for ($i = 0; $i < $count; $i++) {
                             $contentStr[$i] = array(
                                 "Title" => $list[$i]['title'],
                                 "Description" => $list[$i]['excerpt'],
-                                "PicUrl"      => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
-                                "Url"         => "{$newsshowurl}{$list[$i]['id']}",
+                                "PicUrl" => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
+                                "Url" => "{$newsshowurl}{$list[$i]['id']}",
                             );
 
 
@@ -628,38 +648,38 @@ class WechatController extends CommonController
                         $contentStr[$i] = array(
                             "Title" => "查看更多",
                             "Description" => "",
-                            "PicUrl"      => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
-                            "Url"         => "{$newslisturl}{$id}",
+                            "PicUrl" => "http://img9.3lian.com/c1/vec2013/7/48.jpg",
+                            "Url" => "{$newslisturl}{$id}",
                         );
                         break;
 
                     case "WSJC":
                         $id = 123;
                         $model = M('News');
-                        $list = $model -> where("iswechat=1 and nid=$id") -> order('date desc') -> limit(5) -> select();
+                        $list = $model->where("iswechat=1 and nid=$id")->order('date desc')->limit(5)->select();
                         $count = count($list);
-                        for($i = 0; $i < $count; $i++){
+                        for ($i = 0; $i < $count; $i++) {
                             $contentStr[$i] = array(
                                 "Title" => $list[$i]['title'],
                                 "Description" => $list[$i]['excerpt'],
-                                "PicUrl"      => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
-                                "Url"         => "{$newsshowurl}{$list[$i]['id']}",
+                                "PicUrl" => "http://pic.58pic.com/58pic/16/81/72/74h58PICVir_1024.jpg",
+                                "Url" => "{$newsshowurl}{$list[$i]['id']}",
                             );
                         }
                         $contentStr[$i] = array(
                             "Title" => "查看更多",
                             "Description" => "",
-                            "PicUrl"      => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
-                            "Url"         => "{$newslisturl}{$id}",
+                            "PicUrl" => "http://img9.3lian.com/c1/vector3/02/76/d/23.jpg",
+                            "Url" => "{$newslisturl}{$id}",
                         );
                         break;
 
 
                     default:
-                        $contentStr[] = array("Title" =>"默认菜单回复",
-                            "Description" =>"您正在使用测试接口",
-                            "PicUrl" =>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg",
-                            "Url" =>"");
+                        $contentStr[] = array("Title" => "默认菜单回复",
+                            "Description" => "您正在使用测试接口",
+                            "PicUrl" => "http://discuz.comli.com/weixin/weather/icon/cartoon.jpg",
+                            "Url" => "");
                         break;
                 }
                 break;
@@ -667,9 +687,9 @@ class WechatController extends CommonController
                 break;
 
         }
-        if (is_array($contentStr)){
+        if (is_array($contentStr)) {
             $resultStr = $this->transmitNews($postObj, $contentStr);
-        }else{
+        } else {
             $resultStr = $this->transmitText($postObj, $contentStr);
         }
         return $resultStr;
@@ -684,7 +704,7 @@ class WechatController extends CommonController
         $tranurl = "http://openapi.baidu.com/public/2.0/bmt/translate?client_id=04ryebAMfvVpw33lVNFpsWYB&q={$recognition}&from=auto&to=auto";
         $transtr = file_get_contents($tranurl);
         $transon = json_decode($transtr);
-        $content = $transon -> trans_result[0] -> dst;
+        $content = $transon->trans_result[0]->dst;
         $contentStr = urlencode($content);
         //获取语音文件
         $ch = curl_init();
@@ -693,8 +713,8 @@ class WechatController extends CommonController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $mp3url = curl_exec($ch);
 
-        $fromUserName  = $postObj -> FromUserName;
-        $toUserName = $postObj -> ToUserName;
+        $fromUserName = $postObj->FromUserName;
+        $toUserName = $postObj->ToUserName;
         $time = time();
 
         $musictpl = "<xml>
@@ -718,32 +738,33 @@ class WechatController extends CommonController
     }
 
 
-    private function receiveImage($postObj){
+    private function receiveImage($postObj)
+    {
         //当收到图片时,存入sae的storage库,并提醒保存成功
         $token = Get_token();
 
-        $MediaId = $postObj -> MediaId;
+        $MediaId = $postObj->MediaId;
         $image = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token={$token}&media_id={$MediaId}";
 
         $file = file_get_contents($image);
-        $name = time(). ".jpg";
+        $name = time() . ".jpg";
         $s = new SaeStorage();
-        $s -> write('upload', $name, $file);
+        $s->write('upload', $name, $file);
 
-        $resultStr = $this -> transmitText($postObj, "the picture have been saved....");//提示保存成功
+        $resultStr = $this->transmitText($postObj, "the picture have been saved....");//提示保存成功
         return $resultStr;
 
     }
 
 
-
-    private function receiveText($postObj){
+    private function receiveText($postObj)
+    {
         //当收到文本消息时的处理
-        $content = $postObj -> Content;
+        $content = $postObj->Content;
 
-          $contentStr = "the text is : " . $content;
-          $resultStr = $this -> transmitText($postObj, $contentStr);
-          return $resultStr;
+        $contentStr = "the text is : " . $content;
+        $resultStr = $this->transmitText($postObj, $contentStr);
+        return $resultStr;
     }
 
 

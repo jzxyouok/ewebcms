@@ -1,10 +1,9 @@
 
-
-.myform textarea{
-    width:400px;
+.myform textarea {
+    width: 400px;
 }
 
-input.input-text, input.input-file, input.code, textarea,select {
+input.input-text, input.input-file, input.code, textarea, select {
     background: url("../images/dt-10.gif") repeat-x scroll left top #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -13,73 +12,79 @@ input.input-text, input.input-file, input.code, textarea,select {
     padding: 4px;
     text-shadow: 0 1px 0 #fff;
     transition: all 0.3s ease-in-out 0s;
-    margin:5px;
-    width:200px;
+    margin: 5px;
+    width: 200px;
 }
+
 input.input-text:focus, input.input-file:focus, input.code:focus, textarea:focus {
     border: 1px solid #fafafa;
     box-shadow: 0 0 5px #007eff;
 }
 
-
 .button {
-    height:30px;
+    height: 30px;
     border-radius: 0.5em;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     display: inline-block;
-    font: 14px/100% Arial,Helvetica,sans-serif;
+    font: 14px/100% Arial, Helvetica, sans-serif;
     margin: 0 2px;
     outline: medium none;
-    padding:0 30px;
+    padding: 0 30px;
     text-align: center;
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-    vertical-align:middle;
+    vertical-align: middle;
 }
+
 .button:hover {
     color: #fff;
     text-decoration: none;
 }
+
 .button:active {
     position: relative;
     top: 1px;
 }
+
 .orange {
-    margin-top:20px;
+    margin-top: 20px;
     background-color: #f68c1d;
-    background: -moz-linear-gradient(center top , #faa51a, #f47a20) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -moz-linear-gradient(center top, #faa51a, #f47a20) repeat scroll 0 0 rgba(0, 0, 0, 0);
     border: 1px solid #da7c0c;
     color: #fef4e9;
 }
+
 .orange:hover {
-    background: -moz-linear-gradient(center top , #f88e11, #f06015) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -moz-linear-gradient(center top, #f88e11, #f06015) repeat scroll 0 0 rgba(0, 0, 0, 0);
     background-color: #f47a12;
 }
+
 .orange:active {
     background-color: #f68c1d;
-    background: -moz-linear-gradient(center top , #f47a20, #faa51a) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: -moz-linear-gradient(center top, #f47a20, #faa51a) repeat scroll 0 0 rgba(0, 0, 0, 0);
     color: #fcd3a5;
 }
 
-
 /*留言展示页面*/
-.messagebox{
-    color:black;;
-    border:2px solid #ddd;
+.messagebox {
+    color: black;;
+    border: 2px solid #ddd;
     margin-bottom: 20px;
 
 }
-.question{
+
+.question {
     background: #eee;
-    padding:10px;
-}
-.reply{
-    background: white;
-    padding:10px;
+    padding: 10px;
 }
 
-.from{
+.reply {
+    background: white;
+    padding: 10px;
+}
+
+.from {
     border-bottom: 1px #d3d3d3 dashed;
     margin-bottom: 10px;
 }

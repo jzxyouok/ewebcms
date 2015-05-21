@@ -8,27 +8,27 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4>{$news.title}</h4></div>
-        <div class="panel-body">
-            <p>
-                {$news.excerpt}
-            </p>
-        </div>
-        <div class="panel-footer">
-            <if condition="!empty($front)">
-                <div>上一条:<a href="{:U('Home/Wechat/show',array('id' => $front['id']))}">{$front.title}</a></div>
-                <else/>
-                <div>上一条:<a href="#">没有了</a></div>
-            </if>
-
-            <if condition="!empty($after)">
-                <div>下一条:<a href="{:U('Home/Wechat/show',array('id' => $after['id']))}">{$after.title}</a></div>
-                <else/>
-                <div>下一条:<a href="#">没有了</a></div>
-            </if>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>{$news.title}</h4></div>
+    <div class="panel-body">
+        <p>
+            {$news.excerpt}
+        </p>
     </div>
+    <div class="panel-footer">
+        <if condition="!empty($front)">
+            <div>上一条:<a href="{:U('Home/Wechat/show',array('id' => $front['id']))}">{$front.title}</a></div>
+            <else/>
+            <div>上一条:<a href="#">没有了</a></div>
+        </if>
+
+        <if condition="!empty($after)">
+            <div>下一条:<a href="{:U('Home/Wechat/show',array('id' => $after['id']))}">{$after.title}</a></div>
+            <else/>
+            <div>下一条:<a href="#">没有了</a></div>
+        </if>
+    </div>
+</div>
 
 </body>
 </html>

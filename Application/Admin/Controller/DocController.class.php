@@ -19,8 +19,8 @@ class DocController extends CommonController
         $show = $Page->show();// 分页显示输出
         $newslist = $model->order('listorder asc,id desc')->field('id,author,title,date,clickrate,listorder')->where('nid=%d', $nid)->limit($Page->firstRow . ',' . $Page->listRows)->select();
         //var_dump($newslist);
-        $this -> assign("nname",$list[0]['name']);
-        $this -> assign("nid",$nid);
+        $this->assign("nname", $list[0]['name']);
+        $this->assign("nid", $nid);
         $this->assign("page", $show);
         $this->assign("newslist", $newslist);
         $this->assign("editurl", U('Admin/Doc/edit'));
@@ -34,7 +34,7 @@ class DocController extends CommonController
     public function add()
     {
         $nid = I('param.nid');
-        $this -> assign("nid",$nid);
+        $this->assign("nid", $nid);
 //        echo $nid;return;
         //对栏目进行选择
         $model = M("Nav");
@@ -79,7 +79,7 @@ class DocController extends CommonController
     //新闻提交
     public function addsubmit()
     {
-       // $this->shellcheck(3);
+        // $this->shellcheck(3);
         if (IS_POST) {
             $news = M("news");
             $data['content'] = I('post.myconten');
@@ -280,9 +280,9 @@ class DocController extends CommonController
 
         $code = I('param.verify');
         $verify = new \Think\Verify();
-        if ($verify->check($code)){
+        if ($verify->check($code)) {
             echo "true";
-        } else{
+        } else {
             echo "false";
         }
 

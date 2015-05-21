@@ -50,11 +50,11 @@ class MainController extends CommonController
 
 
         //RBAC控制对菜单进行显示/隐藏
-        if($_SESSION['superadmin']){
-            $doc = $newsclass = $message = $depart  = $wechat = $rbac = $setting = true;
-        }else{
+        if ($_SESSION['superadmin']) {
+            $doc = $newsclass = $message = $depart = $wechat = $rbac = $setting = true;
+        } else {
             $accesslist = $_SESSION['_ACCESS_LIST'];
-            foreach($accesslist['ADMIN'] as $key => $value){
+            foreach ($accesslist['ADMIN'] as $key => $value) {
                 $navclass[] = $key;
 //                foreach($value as $key1 => $value1){
 //                    $actions[$key][] = $key1;
@@ -63,26 +63,26 @@ class MainController extends CommonController
             //dump($accesslist);
             //dump($navclass);
             // dump($actions);
-            $navs = join(',',$navclass);//筛选出的信息加入字符串
-            $navs = "EWEBCMS". $navs;//前面补上一个字符串.为了防止下面找到的字符串位置是0,也是false
+            $navs = join(',', $navclass);//筛选出的信息加入字符串
+            $navs = "EWEBCMS" . $navs;//前面补上一个字符串.为了防止下面找到的字符串位置是0,也是false
 
-            $doc = strpos($navs,'DOC') ;
-            $newsclass = strpos($navs,'NEWSCLASS');
-            $message = strpos($navs,'MESSAGE');
-            $depart = strpos($navs,'DEPART');
-            $setting = strpos($navs,'SETTING');
-            $wechat = strpos($navs,'WECHAT');
-            $rbac = strpos($navs,'RBAC');
+            $doc = strpos($navs, 'DOC');
+            $newsclass = strpos($navs, 'NEWSCLASS');
+            $message = strpos($navs, 'MESSAGE');
+            $depart = strpos($navs, 'DEPART');
+            $setting = strpos($navs, 'SETTING');
+            $wechat = strpos($navs, 'WECHAT');
+            $rbac = strpos($navs, 'RBAC');
         }
 
         //将rbac筛选出的信息返回前台
-        $this -> assign("doc",$doc);
-        $this -> assign("newsclass",$newsclass);
-        $this -> assign("message",$message);
-        $this -> assign("depart",$depart);
-        $this -> assign("setting",$setting);
-        $this -> assign("wechat",$wechat);
-        $this -> assign("rbac",$rbac);
+        $this->assign("doc", $doc);
+        $this->assign("newsclass", $newsclass);
+        $this->assign("message", $message);
+        $this->assign("depart", $depart);
+        $this->assign("setting", $setting);
+        $this->assign("wechat", $wechat);
+        $this->assign("rbac", $rbac);
 
         $this->display();
     }
@@ -94,22 +94,22 @@ class MainController extends CommonController
 
         $tt = time();
         $time = array(
-            'week' => $tt-604800,//一周之前
-            'month' => $tt-2678400,//一月之前
-            'year' => $tt-31536000,//一年之前的时间戳
+            'week' => $tt - 604800,//一周之前
+            'month' => $tt - 2678400,//一月之前
+            'year' => $tt - 31536000,//一年之前的时间戳
         );
 
         $model = D('User');
         $list = $model->where('admins.id=%d', I('session.uid'))->select();
 
-        foreach($time as $key => $val){//对年.月.周分别统计  放入$result[][]
+        foreach ($time as $key => $val) {//对年.月.周分别统计  放入$result[][]
 
             //统计文档信息
             $this->assign('user', $list[0]);
             $news = M('news');
-            $newsnum[$key] = $news-> where("date>$val")->count();
+            $newsnum[$key] = $news->where("date>$val")->count();
 
-    //        echo $tt;
+            //        echo $tt;
             //部门统计信息
             $model = M("Depart");
             $classlist = $model->where('fid=0')->select();
@@ -141,21 +141,21 @@ class MainController extends CommonController
 
             //统计人员发布信息
             $user = M("Admins");
-            $userlist = $user -> select();
-           // dump($userlist);return;
-            foreach($userlist as $val1){
+            $userlist = $user->select();
+            // dump($userlist);return;
+            foreach ($userlist as $val1) {
                 $id = $val1['id'];
                 $name = $val1['name'];
-                $unumber[$key][$name] = $newsModel -> where("uid=$id and date>$val") -> count();
+                $unumber[$key][$name] = $newsModel->where("uid=$id and date>$val")->count();
             }
 
         }
-       // dump($newsnum);
-       // dump($result);
+        // dump($newsnum);
+        // dump($result);
 //        dump($result);return;
-       //dump($unumber);return;
-        $allnum = M('News') -> count();
-        $this->assign("allnum",$allnum);
+        //dump($unumber);return;
+        $allnum = M('News')->count();
+        $this->assign("allnum", $allnum);
         $this->assign("newsnum", $newsnum);
         $this->assign("dptlist", $result);
         $this->assign("usernum", $unumber);
@@ -183,7 +183,8 @@ class MainController extends CommonController
         $this->display();
     }
 
-    public function infoshow2(){
+    public function infoshow2()
+    {
         $model = D('User');
         $list = $model->where('admins.id=%d', I('session.uid'))->select();
 
@@ -204,7 +205,7 @@ class MainController extends CommonController
         $this->assign("msgnum", $msgnum);
         $this->assign("msgadd", $msgadd);
 
-        $this -> display();
+        $this->display();
     }
 
     public function copyright()

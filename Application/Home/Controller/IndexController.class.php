@@ -1,22 +1,26 @@
 <?php
 namespace Home\Controller;
+
 use Think\Controller;
-class IndexController extends CommonController {
-    public function index(){
+
+class IndexController extends CommonController
+{
+    public function index()
+    {
 
         //新闻部分
-        $nids = array(121, 122, 123,163);
-       // dump($nids);return;
+        $nids = array(121, 122, 123, 163);
+        // dump($nids);return;
         $model = M("News");
-        foreach($nids as $nid){
+        foreach ($nids as $nid) {
             $highlight[] = $model->field("id,title,updatetime")->where("nid=$nid and highlight=1")->find();
             $newslist[] = $model->field("id,title,updatetime")->where("nid=$nid and highlight=0")->order("updatetime desc")->limit(4)->select();
         }
-       // dump($newslist);return;
-        $this -> assign("highlight",$highlight);
-        $this -> assign("newslist",$newslist);//新闻返回页面
+        // dump($newslist);return;
+        $this->assign("highlight", $highlight);
+        $this->assign("newslist", $newslist);//新闻返回页面
 
-        $this -> assign("nids",$nids);
+        $this->assign("nids", $nids);
         $this->display();
     }
 
@@ -42,9 +46,9 @@ class IndexController extends CommonController {
 
         $code = I('param.verify');
         $verify = new \Think\Verify();
-        if ($verify->check($code)){
+        if ($verify->check($code)) {
             echo "true";
-        } else{
+        } else {
             echo "false";
         }
 

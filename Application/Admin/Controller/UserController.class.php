@@ -30,7 +30,6 @@ class UserController extends Controller
     }
 
 
-
     public function updateinfo()
     {
         if (IS_POST) {

@@ -90,109 +90,112 @@
     </div>
 </div>
 <form action="{:U('Admin/Doc/update')}" method="post" class="definewidth m20">
-<table class="table table-bordered table-hover definewidth m10">
-    <tr>
-        <td width="10%" class="tableleft">新闻标题</td>
-        <td><input type="hidden" value="{$news.id}" name="id"/>
-            <input value="{$news.title}" type="text" name="title"/>&nbsp;&nbsp;<span
-                    class="label label-important">必填</span></td>
-    </tr>
-    <tr>
-        <td class="tableleft">选项</td>
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">新闻标题</td>
+            <td><input type="hidden" value="{$news.id}" name="id"/>
+                <input value="{$news.title}" type="text" name="title"/>&nbsp;&nbsp;<span
+                        class="label label-important">必填</span></td>
+        </tr>
+        <tr>
+            <td class="tableleft">选项</td>
+            <td>
+                <input type="checkbox" name="listtop" {$listtop}/> 首页置顶 &nbsp;&nbsp;
+                <input type="checkbox" name="highlight" {$highlight}/> 高亮 &nbsp;&nbsp;
+                <input type="checkbox" name="ispic" id="pic_c" {$photo}/> 首页图片&nbsp;&nbsp;
+                <input type="checkbox" name="iswechat" {$iswechat}/> 微信推送
+            </td>
+        </tr>
+
+        <if condition="$photo eq 'checked' ">
+            <tr class="pic_input">
+                <else/>
+            <tr class="pic_input" style="display:none;">
+        </if>
+        <td width="10%" class="tableleft">首页图片</td>
         <td>
-            <input type="checkbox" name="listtop" {$listtop}/> 首页置顶 &nbsp;&nbsp;
-            <input type="checkbox" name="highlight" {$highlight}/> 高亮 &nbsp;&nbsp;
-            <input type="checkbox" name="ispic" id="pic_c" {$photo}/> 首页图片&nbsp;&nbsp;
-            <input type="checkbox" name="iswechat" {$iswechat}/> 微信推送
+            <input name="photo" type="text" id="url3" value="{$news.photo}"/>
+            <input style="margin-top:-10px;" type="button" id="image3" value="选择图片" class="btn btn-mini"/>
         </td>
-    </tr>
+        </tr>
 
-    <if condition="$photo eq 'checked' ">
-        <tr class="pic_input">
-            <else/>
-        <tr class="pic_input" style="display:none;">
-    </if>
-    <td width="10%" class="tableleft">首页图片</td>
-    <td>
-        <input name="photo" type="text" id="url3" value="{$news.photo}"/>
-        <input style="margin-top:-10px;" type="button" id="image3" value="选择图片" class="btn btn-mini"/>
-    </td>
-    </tr>
+        <tr>
+            <td width="10%" class="tableleft">作者</td>
+            <td><input value="{$news.author}" type="text" name="author"/>&nbsp;&nbsp;<span
+                    class="label label-important">必填</span></td>
+        </tr>
 
-    <tr>
-        <td width="10%" class="tableleft">作者</td>
-        <td><input value="{$news.author}" type="text" name="author"/>&nbsp;&nbsp;<span
-                class="label label-important">必填</span></td>
-    </tr>
+        <tr>
+            <td width="10%" class="tableleft">来源</td>
+            <td><input value="{$news.copyfrom}" type="text" name="copyfrom"/>&nbsp;&nbsp;<span
+                    class="label label-success">选填</span>
+            </td>
+        </tr>
 
-    <tr>
-        <td width="10%" class="tableleft">来源</td>
-        <td><input value="{$news.copyfrom}" type="text" name="copyfrom"/>&nbsp;&nbsp;<span class="label label-success">选填</span>
-        </td>
-    </tr>
+        <tr>
+            <td class="tableleft">所属分类：</td>
+            <td align="left">
+                <select name="nid" style="width:200px">
 
-    <tr>
-        <td class="tableleft">所属分类：</td>
-        <td align="left">
-            <select name="nid" style="width:200px">
+                    <volist name="classlist" id="vo1">
+                        <option value="" disabled>
+                            -------------{$vo1.nav.name}-------------
+                        </option>
+                        <volist name="vo1.navlist" id="vo">
+                            <php>$selected=$vo['f']['id']==$news['nid']?"selected":"";</php>
+                            <option value="{$vo.f.id}" {$selected}>{$vo.f.name}</option>
 
-                <volist name="classlist" id="vo1">
-                    <option value="" disabled>
-                        -------------{$vo1.nav.name}-------------
-                    </option>
-                    <volist name="vo1.navlist" id="vo">
-                        <php>$selected=$vo['f']['id']==$news['nid']?"selected":"";</php>
-                        <option value="{$vo.f.id}" {$selected}>{$vo.f.name}</option>
-
-                        <volist name="vo.c" id="chd">
-                            <php>$selected1=$chd['id']==$news['nid']?"selected":"";</php>
-                            <option value="{$chd.id}" {$selected1}>&nbsp;&nbsp;┊--{$chd.name}</option>
+                            <volist name="vo.c" id="chd">
+                                <php>$selected1=$chd['id']==$news['nid']?"selected":"";</php>
+                                <option value="{$chd.id}" {$selected1}>&nbsp;&nbsp;┊--{$chd.name}</option>
+                            </volist>
                         </volist>
                     </volist>
-                </volist>
-            </select>
-            &nbsp;&nbsp;<span class="label label-important">必填</span>
-        </td>
-    </tr>
+                </select>
+                &nbsp;&nbsp;<span class="label label-important">必填</span>
+            </td>
+        </tr>
 
-    <tr>
-        <td width="10%" class="tableleft">发布时间</td>
-        <td><input type="text" name="updatetime" class="calendar span2" value="{$news.updatetime|date='Y-m-d', ###}"/>&nbsp;&nbsp;<span
-                class="label label-success">选填</span></td>
-    </tr>
+        <tr>
+            <td width="10%" class="tableleft">发布时间</td>
+            <td><input type="text" name="updatetime" class="calendar span2"
+                       value="{$news.updatetime|date='Y-m-d', ###}"/>&nbsp;&nbsp;<span
+                    class="label label-success">选填</span></td>
+        </tr>
 
-    <tr>
-        <td width="10%" class="tableleft">关键字</td>
-        <td><input type="text" value="{$news.keyword}" name="keyword"/>&nbsp;&nbsp;<span
-                class="label label-success">选填</span></td>
-    </tr>
-    <tr>
-        <td width="10%" class="tableleft">摘要</td>
-        <td><textarea name="excerpt" id="excerpt" width="300px" rows="3">{$news['excerpt']}</textarea>&nbsp;&nbsp;<span
-                class="label label-success">选填</span></td>
-    </tr>
-    <tr>
-        <td width="10%" class="tableleft">新闻内容：</td>
-        <td align="left">
+        <tr>
+            <td width="10%" class="tableleft">关键字</td>
+            <td><input type="text" value="{$news.keyword}" name="keyword"/>&nbsp;&nbsp;<span
+                    class="label label-success">选填</span></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">摘要</td>
+            <td><textarea name="excerpt" id="excerpt" width="300px"
+                          rows="3">{$news['excerpt']}</textarea>&nbsp;&nbsp;<span
+                    class="label label-success">选填</span></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">新闻内容：</td>
+            <td align="left">
             <textarea name="myconten" style="width:100%;height:500px;visibility:hidden;">
                     {$news['content']}
             </textarea>
-        </td>
-    </tr>
-    <tr>
-        <td width="10%" class="tableleft">验证码</td>
-        <td><input type="text" name="verifycode"/>&nbsp;&nbsp;<span class="label label-important">必填</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <img id="verifycode" alt="点击换一张" src="{:U('Admin/Index/verify_c')}"></td>
-    </tr>
-    <tr>
-        <td class="tableleft"></td>
-        <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button>
-            &nbsp;&nbsp;
-            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">验证码</td>
+            <td><input type="text" name="verifycode"/>&nbsp;&nbsp;<span class="label label-important">必填</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <img id="verifycode" alt="点击换一张" src="{:U('Admin/Index/verify_c')}"></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

@@ -76,12 +76,14 @@
 
             <div class="input-prepend" title="Username" data-rel="tooltip">
                 <span class="add-on"><i class="icon-user"></i></span>
-                <input autofocus class="input-block-level  input_h" name="username" id="username" type="text" placeholder="Username"/>
+                <input autofocus class="input-block-level  input_h" name="username" id="username" type="text"
+                       placeholder="Username"/>
             </div>
             <div class="clearfix"></div>
             <div class="input-prepend" title="Password" data-rel="tooltip">
                 <span class="add-on"><i class="icon-lock"></i></span>
-                <input class="input-block-level  input_h" name="password" id="password" type="password" placeholder="Password"/>
+                <input class="input-block-level  input_h" name="password" id="password" type="password"
+                       placeholder="Password"/>
             </div>
             <div class="clearfix"></div>
 
@@ -93,7 +95,7 @@
 
             <img id="verifycode" alt="点击换一张" src="<?php echo U('Admin/Index/verify_c');?>">
             </br>
-            <input type="button" class="btn span6" style="margin-top:10px;" id="tologin" value="登    录" >
+            <input type="button" class="btn span6" style="margin-top:10px;" id="tologin" value="登    录">
 
         </form>
     </div>
@@ -104,13 +106,13 @@
 
 
 <script language='javascript'>
-    $('#tologin').click(function(){
+    $('#tologin').click(function () {
         var $action = $('form').attr('action');//获取form表单的action属性
         var $form_data = $('form').serialize(); //关键函数
-        $.post($action , $form_data , function(data){
-            if(data.info == 'SUCC'){
+        $.post($action, $form_data, function (data) {
+            if (data.info == 'SUCC') {
                 window.location.href = "<?php echo ($mainurl); ?>";
-            }else{
+            } else {
                 $('#notice').html(data.info);//返回数组的info
             }
         });

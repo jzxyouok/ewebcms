@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/style.css"/>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
+    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/Public//Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -59,7 +59,8 @@
         <tr>
             <td width="10%" class="tableleft">状态</td>
             <td><input type="radio" class="form-control" name="status" value="1" checked/>&nbsp;&nbsp;开启 &nbsp;&nbsp;
-                <input type="radio" class="form-control" name="status" value="0"/>&nbsp;&nbsp;关闭</td>
+                <input type="radio" class="form-control" name="status" value="0"/>&nbsp;&nbsp;关闭
+            </td>
         </tr>
         <tr>
             <td width="10%" class="tableleft">类型</td>
@@ -78,7 +79,8 @@
                     <option value="0">根节点</option>
                     <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>">
                             <?php if($vo["level"] == 1): echo ($vo["title"]); ?>
-                            <?php else: ?> &nbsp; &nbsp;┗<?php echo ($vo["title"]); endif; ?>
+                                <?php else: ?>
+                                &nbsp; &nbsp;┗<?php echo ($vo["title"]); endif; ?>
                         </option><?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>
             </td>

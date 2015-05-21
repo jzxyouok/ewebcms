@@ -5,7 +5,8 @@
         <div class="messagebox">
             <div class="question">
                 <div class="from">
-                    <b>"{$vo.name}"</b> &nbsp;于&nbsp;{$vo.date|date="Y-m-d",###}&nbsp;留言:&nbsp;&nbsp;&nbsp;&nbsp; <b>标题:</b>&nbsp;{$vo.title}
+                    <b>"{$vo.name}"</b> &nbsp;于&nbsp;{$vo.date|date="Y-m-d",###}&nbsp;留言:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>标题:</b>&nbsp;{$vo.title}
                 </div>
                 {$vo.content}
             </div>
@@ -38,7 +39,7 @@
                 <li>
                     <if condition="$vo['typeid'] eq 2">
                         <a href="{$vo.href}">{$vo.name}</a>
-                        <else />
+                        <else/>
                         <a href="{:U($vo['href'])}">{$vo.name}</a>
                     </if>
                 </li>
@@ -48,5 +49,5 @@
 </block>
 
 <block name="footer">
-    <include file="Public:showfooter" />
+    <include file="Public:showfooter"/>
 </block>

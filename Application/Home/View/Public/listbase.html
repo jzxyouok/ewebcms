@@ -14,8 +14,8 @@
                     <volist name="sidec" id="vo">
                         <li>
                             <if condition="$vo['typeid'] eq 2">
-                                <a href="{$vo.href}"  target="_blank">{$vo.name}</a>
-                                <else />
+                                <a href="{$vo.href}" target="_blank">{$vo.name}</a>
+                                <else/>
                                 <a href="{:U($vo['href'])}">{$vo.name}</a>
                             </if>
                         </li>
@@ -27,12 +27,14 @@
     <div class="con_right">
         <block name="content">
             <h3>|&nbsp;&nbsp;&nbsp;{$current.name}</h3>
+
             <div class="news_list">
 
                 <ul>
                     <volist name="newslist" id="vo">
                         <li>
-                            <a href="{:U('Home/News/show',array('id' => $vo['id']))}" style="color:black;">{$vo.title}</a>
+                            <a href="{:U('Home/News/show',array('id' => $vo['id']))}"
+                               style="color:black;">{$vo.title}</a>
                             <span class="rq">[{$vo.updatetime|date="m-d",###}]</span>
                         </li>
                     </volist>
@@ -51,5 +53,5 @@
 
 </div>
 <block name="footer">
-<include file="Public:listfooter"/>
+    <include file="Public:listfooter"/>
 </block>
