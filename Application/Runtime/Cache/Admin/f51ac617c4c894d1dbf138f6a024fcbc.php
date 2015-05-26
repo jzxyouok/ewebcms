@@ -16,7 +16,7 @@
             line-height: 2.5;
         }
     </style>
-    <title>留言页面</title>
+    <title>哈工大威海学生工作处-我要留言</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -43,13 +43,13 @@
             <div class="form-group">
                 <label for="content" class="col-xs-3 control-label">留言:</label>
                 <div class="col-xs-9">
-                    <textarea class="form-control  block " rows="4" id="content" name="content" placeholder="请输入留言内容..."></textarea>
+                    <textarea class="form-control  block " rows="8" id="content" name="content" placeholder="请输入留言内容..."></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="content" class="col-xs-3 control-label">验证码:</label>
                 <div class="col-xs-9">
-                    <input type="text" class="form-control  block input-lg" id="code" name="phone" placeholder="请输入您的号码...">
+                    <input type="text" class="form-control  block input-lg" name="verifycode" placeholder="请输入您的验证码...">
                 </div>
             </div>
             <div class="form-group">

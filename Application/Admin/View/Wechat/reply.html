@@ -55,12 +55,12 @@
 </div>
 <body>
 <form action="{:U('Admin/Wechat/replysubmit')}" method="post" class="definewidth m20">
-    <input type="hidden" name="id" value="{$role.id}"/>
+    <input type="hidden" name="id" value="{$list.id}"/>
+    <input type="hidden" name="openid" value="{$list.openid}"/>
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width="10%" class="tableleft">留言标题</td>
             <td><span class="input-xlarge uneditable-input">{$list.title}</span>
-                <input type="hidden" name="id" value="{$list.id}"/>
             </td>
         </tr>
         <tr>
@@ -74,7 +74,7 @@
         <tr>
             <td width="10%" class="tableleft">内容</td>
             <td>
-                <div class="cont">{$list.content}</div>
+                <input type="text" name="content" value="{$list.content}"/>
             </td>
         </tr>
         <tr>

@@ -45,11 +45,12 @@ $regex4 = "/<div id=\"top_nav_left\".*?>.*?<\/div>/ism";
 <div class="top_menu_bg_home">
     <div id="top_menu">
         <ul>
-            <volist name="navlist[0]" id="vo">
+            <li><a href="{$navlist[0][0]['f']['href']}">{$navlist[0][0]['f']['name']}</a></li>
+            <volist name="navlist[0]" id="vo" offset="1">
                 <li>
                     <if condition="$vo.f.fid eq 0">
                         <if condition="$vo['f']['typeid'] eq 2">
-                            <a href="{$vo.f.href}">{$vo.f.name}</a>
+                            <a href="{$vo.f.href}"  target="_blank">{$vo.f.name}</a>
                             <else/>
                             <a href="{:U($vo['f']['href'])}">{$vo.f.name}</a>
                         </if>

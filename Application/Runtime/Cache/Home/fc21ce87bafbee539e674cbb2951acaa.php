@@ -1,58 +1,60 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-	<title>哈尔滨工业大学（威海）学生工作处</title>
-	<link href="/ewebcmsxgc/Public//Home/css/header.css" type=text/css rel=stylesheet>
-	<link href="/ewebcmsxgc/Public//Home/css/footer.css" type=text/css rel=stylesheet>
-	<link href="/ewebcmsxgc/Public//Home/css/list.css" type=text/css rel=stylesheet>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>哈尔滨工业大学（威海）学生工作处</title>
+    <link href="/Public//Home/css/header.css" type=text/css rel=stylesheet>
+    <link href="/Public//Home/css/footer.css" type=text/css rel=stylesheet>
+    <link href="/Public//Home/css/list.css" type=text/css rel=stylesheet>
 
-	<script type="text/javascript" src="/ewebcmsxgc/Public//Home/js/xgc.js"></script>
+    <script type="text/javascript" src="/Public//Home/js/xgc.js"></script>
 
 
 </head>
 <body>
-		<div class="top">
-			<div class="top_center">
-				<div class="logo">
-					<img src="/ewebcmsxgc/Public//Home/images/aa.png" />
-				</div>
+<div class="top">
+    <div class="top_center">
+        <div class="logo">
+            <img src="/Public//Home/images/aa.png"/>
+        </div>
 
-				<div class="top_right">
-					<div id="top_time" onload="updateTime()">
-						<?php
+        <div class="top_right">
+            <div id="top_time" onload="updateTime()">
+                <?php
 $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top_nav_left\".*?>.*?<\/div>/ism"; preg_match($regex4, $text, $match); echo "$match[0]"; ?>
-					</div>
+            </div>
 
-					<div class="search_box">
-						<form id="search_from" target="blank" onsubmit="return go(this)">
-							<input type="image" src="/ewebcmsxgc/Public//Home/images//btn_search_box.png" width="78px" height="31px" id="go" alt="search" onclick="document.search_from.submit()" >
-							<input type="text" id="word" value="请在此输入检索关键字" onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top_menu_bg_home">
-			<div id="top_menu">
-                <ul>
-                    <?php if(is_array($navlist[0])): $i = 0; $__LIST__ = $navlist[0];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                            <?php if($vo.f.fid == 0): if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"><?php echo ($vo["f"]["name"]); ?></a>
+            <div class="search_box">
+                <form id="search_from" target="blank" onsubmit="return go(this)">
+                    <input type="image" src="/Public//Home/images//btn_search_box.png" width="78px" height="31px"
+                           id="go" alt="search" onclick="document.search_from.submit()">
+                    <input type="text" id="word" value="请在此输入检索关键字"
+                           onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="top_menu_bg_home">
+    <div id="top_menu">
+        <ul>
+            <?php if(is_array($navlist[0])): $i = 0; $__LIST__ = $navlist[0];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                    <?php if($vo.f.fid == 0): if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"><?php echo ($vo["f"]["name"]); ?></a>
+                            <?php else: ?>
+                            <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
+                    <ul>
+                        <?php if(is_array($vo['c'])): $i = 0; $__LIST__ = $vo['c'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i;?><li>
+                                <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>" target="_blank"><?php echo ($chd["name"]); ?></a>
                                     <?php else: ?>
-                                    <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
-                            <ul>
-                                <?php if(is_array($vo['c'])): $i = 0; $__LIST__ = $vo['c'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i;?><li>
-                                        <?php if($chd['typeid'] == 2): ?><a href="<?php echo ($chd["href"]); ?>"><?php echo ($chd["name"]); ?></a>
-                                            <?php else: ?>
-                                            <a href="<?php echo U($chd['href']);?>"><?php echo ($chd["name"]); ?></a><?php endif; ?>
-                                    </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </ul>
-                        </li><?php endforeach; endif; else: echo "" ;endif; ?>
-                </ul>
-			</div>
-		</div>
+                                    <a href="<?php echo U($chd['href']);?>"><?php echo ($chd["name"]); ?></a><?php endif; ?>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                    </ul>
+                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+        </ul>
+    </div>
+</div>
 
 
 
@@ -78,8 +80,9 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
     <div class="con_right">
         
     <h3>|&nbsp;&nbsp;&nbsp;<?php echo ($sidef["name"]); ?></h3>
+
     <div class="news">
-        <form action="<?php echo U('Home/Page/msgsubmit');?>" method="post" name="myform" id="myform" class = "myform">
+        <form action="<?php echo U('Home/Page/msgsubmit');?>" method="post" name="myform" id="myform" class="myform">
             <table cellspacing="1" cellpadding="0" class="table_form">
                 <tbody>
 
@@ -91,7 +94,8 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
                 <tr>
                     <th>手机</th>
                     <td>
-                        <input type="text" size="40" value="" name="phone" id="phone" class="input-text" placeholder="请输入您的联系手机">(选填)
+                        <input type="text" size="40" value="" name="phone" id="phone" class="input-text"
+                               placeholder="请输入您的联系手机">(选填)
                     </td>
                 </tr>
                 <tr>
@@ -100,14 +104,16 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
                 </tr>
                 <tr>
                     <th>留言内容</th>
-                    <td><textarea name="content" cols="40" rows="5" class="input-text" id="content" placeholder="在此输入您的留言.."></textarea></td>
+                    <td><textarea name="content" cols="40" rows="5" class="input-text" id="content"
+                                  placeholder="在此输入您的留言.."></textarea></td>
                 </tr>
 
 
                 <tr>
                     <th>验证码：</th>
                     <td>
-                        <input name="verifycode" type="text" id="code" size="9"  class="input-text" placeholder="请输入验证码"/>
+                        <input name="verifycode" type="text" id="code" size="9" class="input-text"
+                               placeholder="请输入验证码"/>
                     </td>
                 </tr>
                 <tr>
@@ -121,11 +127,11 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
                     <th></th>
                     <td>
                         <input type="submit" value=" 提 交 " class="button orange">
-                        <input type="reset" value=" 取 消 " class="button orange"> </td>
+                        <input type="reset" value=" 取 消 " class="button orange"></td>
                 </tr>
                 </tbody>
             </table>
-            <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
+            <script type="text/javascript" src="/Public//Js/jquery.js"></script>
 
             <script>
                 $(document).ready(function () {
@@ -184,24 +190,24 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
 
 </div>
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-    <div class="listfooter">
-        <div class="footer_container">
-            <div class="footer_link">
+<div class="listfooter">
+    <div class="footer_container">
+        <div class="footer_link">
 
-                <?php if(is_array($navlist[1])): $i = 0; $__LIST__ = $navlist[1];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"><?php echo ($vo["f"]["name"]); ?></a>
-                        <?php else: ?>
-                        <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; ?>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;<?php endforeach; endif; else: echo "" ;endif; ?>
-            </div>
-            <div class="footer_address">
+            <?php if(is_array($navlist[1])): $i = 0; $__LIST__ = $navlist[1];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"><?php echo ($vo["f"]["name"]); ?></a>
+                    <?php else: ?>
+                    <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; ?>
+                &nbsp;&nbsp;|&nbsp;&nbsp;<?php endforeach; endif; else: echo "" ;endif; ?>
+        </div>
+        <div class="footer_address">
 			<span>
 				版权所有&nbsp;&nbsp;&nbsp;&nbsp;&copy;2015-2018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;哈尔滨工业大学（威海）学生工作处
 				<br>通讯地址：山东省威海市文化西路2号H楼221室 &nbsp;&nbsp;电话：86-0631-5687637</span>
-            </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>

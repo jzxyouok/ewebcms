@@ -15,15 +15,17 @@ define ('TOKEN', 'mywechat');//定义微信token
 class WechatController extends CommonController
 {
     var $wechat;
+    var $appid = "";
+    var $appsecret = "";
 
     public function _initialize()
     {
         $model = M('Wx_appid');
         $info = $model->select();
-        $appid = $info[0]['appid'];
-        $appsecret = $info[0]['appsecret'];
-        $userdata['appid'] = $appid;
-        $userdata['appsecret'] = $appsecret;
+        $getappid = $info[0]['appid'];
+        $getappsecret = $info[0]['appsecret'];
+        $userdata['appid'] = $this -> appid = $getappid;
+        $userdata['appsecret'] = $this -> appsecret = $getappsecret;
         $this->wechat = new \Org\Util\Wechat($userdata);
     }
 
@@ -78,18 +80,34 @@ class WechatController extends CommonController
     //微信端留言板
     public function liuyan()
     {
-        $this->display();
+        $code = $_GET['code'];
+        $result = $this -> wechat -> code_for_accesstoken($code);
+        //$userinfo = $this -> get_user_info($result['openid'], $result['access_token']);//通过openid和accesstoken获得用户信息
+        $this -> assign("openid", $result['openid']);
+        $this -> display();
     }
+
+    //获取当前url
+    public function get_url() {
+        $sys_protocal = isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://';
+        $php_self = $_SERVER['PHP_SELF'] ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
+        $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
+        //$relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self.(isset($_SERVER['QUERY_STRING']) ? '?'.$_SERVER['QUERY_STRING'] : $path_info);
+        return $sys_protocal.(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+    }
+
+
 
     public function liuyansubmit()
     {
         $data = I('param.');
         $data['date'] = time();
-        $model = M('wx_msg');
+        $model = M('Wx_msg');
+        unset($data['verifycode']);
         $result = $model->add($data);
         if ($result) {
             //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
-            $this->success('留言成功', $_SERVER['HTTP_REFERER']);
+            $this->success('留言成功,尽快给你回复...', $_SERVER['HTTP_REFERER']);
         } else {
             //错误页面的默认跳转页面是返回前一页，通常不需要设置
             $this->error('留言失败', $_SERVER['HTTP_REFERER']);
@@ -161,13 +179,23 @@ class WechatController extends CommonController
                 $data['status'] = 0;
             }
             $data['reply'] = I('post.reply');
+
+            //给微信用户回复
+            $openid = I('post.openid');
+            $content = I('post.content');
+            $reply = "您的留言:\n\t\t{$content}\n回复:\n\t\t{$data['reply']}";
+            $res = $this->wechat->send_custom_message($openid, 'text', $reply);
+
+            if ($res['errcode'] != 0) {
+                $this->error($res['errmsg'] . "<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...", U("Admin/Index/index"));
+            }
         }
         $model = M('wx_msg');
         $result = $model->save($data);
         if ($result) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
             $this->success('回复成功', U('Admin/Wechat/guestbook', array('type' => 1)));
         } else {  //错误页面的默认跳转页面是返回前一页，通常不需要设置
-            $this->error('回复失败', $_SERVER['HTTP_REFERER']);
+            $this->error('回复失败或者回复消息没有做任何改变', $_SERVER['HTTP_REFERER']);
         }
 
     }
@@ -205,7 +233,50 @@ class WechatController extends CommonController
      * *微信开发
      */
 
+    //Oauth 2.0 验证 获得用户openid
+    public function oauth2($url, $type){
+        if($type == 1){
+            //Base型授权   获取用户openid 实现最基本的  如投票  只能获得openid
+            $baseurl = $url;
+            $baseurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$this -> appid}&redirect_uri={$baseurl}&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+            return $baseurl;
+        }else{
+            //Userinfo授权  可以获取用户昵称 头像等基本信息
+            /*
+             * 可以获取到的信息:
+             * openid:用户的唯一标示
+             * nickname:用户昵称
+             * sex:用户性别
+             * province:用户的个人资料填写的城市
+             * city:用户填写的城市
+             * country:用户填写的国家
+             * headimgurl:用户头像,最后一个数值代表正方形头像的大小,(0,46,64,96,132数值可选,0代表640px*640px的正方形头像),用户没有头像时,该项为空
+             * privilege:用户的特权信息,json数组,如微信沃卡用户为:chinaunicom
+             */
+            $userinfourl = $url;
+            $userinfourl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$this -> appid}&redirect_uri={$userinfourl}&response_type=code&scope=snsapi_userinfo&state=2#wechat_redirect";
+            return $userinfourl;
+        }
 
+    }
+
+    //oauth code for userinfo获取用户基本信息
+    public function get_user_info($openid, $accesstoken){
+        $url = "https://api.weixin.qq.com/sns/userinfo?access_token={$accesstoken}&openid={$openid}";
+        $res = $this -> wechat -> https_request($url);
+        return json_decode($res,true);
+    }
+
+    //留言页面通过oauth2.0 验证
+    public function wx2liuyan(){
+        $strurl = $this -> get_url();//获得如此url:  "http://www.xgc.com"
+        $strurl = $strurl. "/Admin/Wechat/liuyan.html";
+        $resulturl = $this -> oauth2($strurl, 2);
+        header("Location: $resulturl");
+    }
+
+
+    //连接微信
     public function connect()
     {
         $access_token = $this->wechat->get_access_token();//测试连接微信
@@ -385,7 +456,7 @@ class WechatController extends CommonController
         //给用户发送消息
         $res = $this->wechat->send_custom_message($openid, 'text', $data['reply']);
         if ($res['errcode'] != 0) {
-            $this->error($result['errmsg'] . "<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...", U("Admin/Index/index"));
+            $this->error($res['errmsg'] . "<br/>无效的证书,access_token无效或不是最新<br/>请尝试重新登录系统后台...", U("Admin/Index/index"));
         }
         if ($result) {
             $this->success('回复成功', U('Admin/Wechat/msgreply', array('type' => 1)));
@@ -466,18 +537,10 @@ class WechatController extends CommonController
             return $resultStr;
         }
 
-        $content = "谢谢你的留言,我们会尽快回复...";
-        $textTpl = "<xml>
-							<ToUserName><![CDATA[%s]]></ToUserName>
-							<FromUserName><![CDATA[%s]]></FromUserName>
-							<CreateTime>%s</CreateTime>
-							<MsgType><![CDATA[%s]]></MsgType>
-							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
-                        </xml>";
+        //$content = "已经收到留言,管理员会尽快回复,请耐心等待...";
+        $content = "<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid={$this -> appid}&redirect_uri=http://1.hitwhxgc.sinaapp.com/Admin/Wechat/wx2liuyan&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'>ceshi</a>";
 
-        $resultStr = sprintf($textTpl, $fromUserName, $toUserName, $time, $MsgType, $content, $funcFlag);
-
+        $resultStr = $this -> transmitText($postObj, $content);
         return $resultStr;
 
     }

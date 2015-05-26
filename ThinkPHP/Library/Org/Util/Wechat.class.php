@@ -80,6 +80,13 @@ class Wechat{
         return $this -> https_request($url, urldecode(json_encode($msg)));
     }
 
+    //用oauth2.0 CODE 换取accesstoken
+    public function code_for_accesstoken($code){
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$this -> appid}&secret={$this -> appsecret}&code={$code}&grant_type=authorization_code";
+        $res = $this -> https_request($url);
+        return json_decode($res, true);
+    }
+
     public function https_request($url, $data=NULL){
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);

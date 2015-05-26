@@ -35,8 +35,11 @@ return array(
     'RBAC_ACCESS_TABLE' => 'access',//权限表名称
     'RBAC_NODE_TABLE' => 'node',//节点表名称
 
+        //Rewrite模式
+    'URL_MODEL'=>2,
 
     'TMPL_PARSE_STRING' => array(
-        '__HOME__' => __ROOT__ . '/Public/Home//',
+        '__HOME__' => __ROOT__ . '/Public/Home/',
     ),
+    
 );

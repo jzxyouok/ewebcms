@@ -22,21 +22,21 @@
                 <ul id="ul1">
                     <li class="active">
                         <img src="__PUBLIC__//Home/images/xgxw.png"/>
-                        <a href="{:U('Home/News/Newslist',array('id' => $nids['0']))}">学工新闻</a>
+                        <a href="{:U('Home/News/newslist',array('id' => $nids['0']))}">{$classname[0]['name']}</a>
                     </li>
                     <li>
                         <img src="__PUBLIC__//Home/images/tzgg.png"/>
-                        <a href="{:U('Home/News/Newslist',array('id' => $nids['1']))}">通知公告</a>
+                        <a href="{:U('Home/News/newslist',array('id' => $nids['1']))}">{$classname[1]['name']}</a>
                     </li>
 
                     <li>
                         <img src="__PUBLIC__//Home/images/hdzx.png"/>
-                        <a href="{:U('Home/News/Newslist',array('id' => $nids['2']))}">公寓文明</a>
+                        <a href="{:U('Home/News/newslist',array('id' => $nids['2']))}">{$classname[2]['name']}</a>
                     </li>
 
                     <li>
                         <img src="__PUBLIC__//Home/images/xgxw.png"/>
-                        <a href="{:U('Home/News/Newslist',array('id' => $nids['3']))}">学子风采</a>
+                        <a href="{:U('Home/News/newslist',array('id' => $nids['3']))}">{$classname[3]['name']}</a>
                     </li>
 
                 </ul>
@@ -141,7 +141,8 @@
             </div>
             <div style=" clear:both;width:450px; height:13px; line-height:10px;text-align:right; margin-right:10px;">
                 <a id="gengduo" target="_blank" onclick="showmore();"
-                   href="{:U('Home/News/Newslist',array('id' => 109))}" style="text-decoration:none;">+更多</a>
+                   href="{:U('Home/News/Newslist',array('id' => $classname[0][fid]))}" style="text-decoration:none;">+更多
+                </a>
             </div>
         </div>
 

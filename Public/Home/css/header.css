@@ -169,9 +169,16 @@ form {
     float: none;
     width: 150px;
     /*background: url(../images/top_nav_bg.png) repeat-x;*/
+    height:35px;
+    line-height:35px;
     background-color: #002352;
     margin: 0;
     z-index: 200;
+}
+
+#top_menu ul li ul li a {
+    height:35px;
+    line-height:35px;
 }
 
 #top_menu ul li ul li a {

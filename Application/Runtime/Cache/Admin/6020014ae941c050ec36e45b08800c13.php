@@ -3,9 +3,9 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
     <script type="text/javascript" src="/Public//Js/jquery.js"></script>
     <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
@@ -16,6 +16,7 @@
         body {
             padding-bottom: 40px;
         }
+
         .sidebar-nav {
             padding: 9px 0;
         }
@@ -28,9 +29,11 @@
                 padding-right: 5px;
             }
         }
-        .cont{
+
+        .cont {
             padding: 4px;
-            width:840px;border: 1px solid #d1dee2;
+            width: 840px;
+            border: 1px solid #d1dee2;
             border: 1px solid #d1dee2;
             background: #fff;
             -moz-border-radius: 3px;
@@ -48,10 +51,12 @@
             <a class="brand">留言回复</a>
 
         </div>
-    </div></div>
+    </div>
+</div>
 <body>
-<form action="<?php echo U('Admin/Wechat/replysubmit');?>" method="post" class="definewidth m20" >
-    <input type="hidden" name="id" value="<?php echo ($role["id"]); ?>" />
+<form action="<?php echo U('Admin/Wechat/replysubmit');?>" method="post" class="definewidth m20">
+    <input type="text" name="id" value="<?php echo ($role["id"]); ?>"/>
+    <input type="text" name="openid" value="<?php echo ($list["openid"]); ?>"/>
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
             <td width="10%" class="tableleft">留言标题</td>
@@ -69,16 +74,20 @@
         </tr>
         <tr>
             <td width="10%" class="tableleft">内容</td>
-            <td><div class="cont"><?php echo ($list["content"]); ?></div></td>
+            <td>
+                <div class="cont"><?php echo ($list["content"]); ?></div>
+            </td>
         </tr>
         <tr>
             <td width="10%" class="tableleft">回复</td>
-            <td><textarea name="reply" style="width:850px;height:150px;" ><?php echo ($list["reply"]); ?></textarea>
+            <td><textarea name="reply" style="width:850px;height:150px;"><?php echo ($list["reply"]); ?></textarea>
         </tr>
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">回复</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+                <button type="submit" class="btn btn-primary" type="button">回复</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>
     </table>
@@ -91,8 +100,8 @@
             $(':checkbox', $(this).closest('li')).prop('checked', this.checked);
         });
 
-        $('#backid').click(function(){
-            window.location.href="index.html";
+        $('#backid').click(function () {
+            window.location.href = "index.html";
         });
 
     });

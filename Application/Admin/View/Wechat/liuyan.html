@@ -21,7 +21,8 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <form class="form-horizontal" method="post" action="{:U('Home/Page/msgsubmit')}">
+        <form class="form-horizontal" method="post" action="{:U('Admin/Wechat/liuyansubmit')}">
+            <input type="hidden" name="openid" value="{$openid}"/>
             <div class="form-group">
                 <label for="name" class="col-xs-3 control-label">姓名:</label>
                 <div class="col-xs-9">
