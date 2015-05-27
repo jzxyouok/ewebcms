@@ -193,7 +193,7 @@ class WechatController extends CommonController
         $model = M('wx_msg');
         $result = $model->save($data);
         if ($result) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
-            $this->success('回复成功', U('Admin/Wechat/guestbook', array('type' => 1)));
+            $this->success('回复成功', U('Admin/Wechat/guestbook', array('type' => 0)));
         } else {  //错误页面的默认跳转页面是返回前一页，通常不需要设置
             $this->error('回复失败或者回复消息没有做任何改变', $_SERVER['HTTP_REFERER']);
         }
@@ -302,6 +302,7 @@ class WechatController extends CommonController
         }
 
         if ($result) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
+            $_SESSION['gettoken'] = 1;//重新连接需要重新获取accesstoken.
             $this->success('设置成功');
         } else {  //错误页面的默认跳转页面是返回前一页，通常不需要设置
             $this->error('设置失败或者没有做任何改变');
