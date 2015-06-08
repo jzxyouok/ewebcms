@@ -17,7 +17,7 @@ class DocController extends CommonController
         $count = $model->where('nid=%d', $nid)->count();// 查询满足要求的总记录数
         $Page = new \Think\Page($count, 10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show = $Page->show();// 分页显示输出
-        $newslist = $model->order('listorder asc,id desc')->field('id,author,title,date,clickrate,listorder')->where('nid=%d', $nid)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $newslist = $model->order('listorder asc,id desc')->field('id,author,title,updatetime,clickrate,listorder')->where('nid=%d', $nid)->limit($Page->firstRow . ',' . $Page->listRows)->select();
         //var_dump($newslist);
         $this->assign("nname", $list[0]['name']);
         $this->assign("nid", $nid);
@@ -88,7 +88,8 @@ class DocController extends CommonController
             $data['keyword'] = I('post.keyword');
             $data['excerpt'] = I('post.excerpt');
             $data['copyfrom'] = I('post.copyfrom');
-            $data['updatetime'] = time(I('post.updatetime'));
+            $time = I('post.updatetime'). " ". date('H:i:s',time());
+            $data['updatetime'] = strtotime($time);
             $data['photo'] = I('post.photo');
             $data['nid'] = I('post.nid');
 
@@ -180,7 +181,8 @@ class DocController extends CommonController
             $data['author'] = I('post.author');
             $data['keyword'] = I('post.keyword');
             $data['excerpt'] = I('post.excerpt');
-            $data['updatetime'] = time(I('post.updatetime'));
+            $time = I('post.updatetime'). " ". date('H:i:s',time());
+            $data['updatetime'] = strtotime($time);
             $data['copyfrom'] = I('post.copyfrom');
             $data['photo'] = I('post.photo');
             $data['nid'] = I('post.nid');

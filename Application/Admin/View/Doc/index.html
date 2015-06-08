@@ -74,7 +74,7 @@
                 <td>{$vo.id}</td>
                 <td><a href="{:U('Home/News/show',array('id' => $vo['id']))}" target="_blank"><u>{$vo.title}</u></a>
                 </td>
-                <td>{$vo.date|date="y-m-d H:i:s",###}</td>
+                <td>{$vo.updatetime|date="y-m-d H:i:s",###}</td>
                 <td>{$type.name}</td>
                 <td>
                     <a href="#">{$vo.clickrate}</a>
