@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>哈尔滨工业大学（威海）学生工作处</title>
-    <link href="/Public//Home/css/header.css" type=text/css rel=stylesheet>
-    <link href="/Public//Home/css/footer.css" type=text/css rel=stylesheet>
-    <link href="/Public//Home/css/list.css" type=text/css rel=stylesheet>
+    <link href="/ewebcmsxgc/Public//Home/css/header.css" type=text/css rel=stylesheet>
+    <link href="/ewebcmsxgc/Public//Home/css/footer.css" type=text/css rel=stylesheet>
+    <link href="/ewebcmsxgc/Public//Home/css/list.css" type=text/css rel=stylesheet>
+	 <link href="/ewebcmsxgc/Public//Home/css/jj.css" type=text/css rel=stylesheet>
 
-    <script type="text/javascript" src="/Public//Home/js/xgc.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public//Home/js/xgc.js"></script>
 
 
 </head>
@@ -18,7 +19,7 @@
 <div class="top">
     <div class="top_center">
         <div class="logo">
-            <img src="/Public//Home/images/aa.png"/>
+            <img src="/ewebcmsxgc/Public//Home/images/aa.png"/>
         </div>
 
         <div class="top_right">
@@ -29,7 +30,7 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
 
             <div class="search_box">
                 <form id="search_from" target="blank" onsubmit="return go(this)">
-                    <input type="image" src="/Public//Home/images//btn_search_box.png" width="78px" height="31px"
+                    <input type="image" src="/ewebcmsxgc/Public//Home/images//btn_search_box.png" width="78px" height="31px"
                            id="go" alt="search" onclick="document.search_from.submit()">
                     <input type="text" id="word" value="请在此输入检索关键字"
                            onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
@@ -40,8 +41,9 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
 <div class="top_menu_bg_home">
     <div id="top_menu">
         <ul>
-            <?php if(is_array($navlist[0])): $i = 0; $__LIST__ = $navlist[0];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-                    <?php if($vo.f.fid == 0): if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"><?php echo ($vo["f"]["name"]); ?></a>
+            <li><a href="<?php echo ($navlist[0][0]['f']['href']); ?>"><?php echo ($navlist[0][0]['f']['name']); ?></a></li>
+            <?php if(is_array($navlist[0])): $i = 0; $__LIST__ = array_slice($navlist[0],1,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                    <?php if($vo.f.fid == 0): if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"  target="_blank"><?php echo ($vo["f"]["name"]); ?></a>
                             <?php else: ?>
                             <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
                     <ul>
@@ -105,11 +107,10 @@ $text = file_get_contents('http://www.hitwh.edu.cn/'); $regex4 = "/<div id=\"top
 
     </div>
 
-
+<div class="clearfloat"></div>
 </div>
 
-    <div class="clearfix"></div>
-
+    
 <div class="showfooter">
     <div class="footer_container">
         <div class="footer_link">

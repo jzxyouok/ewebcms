@@ -1,6 +1,6 @@
 .list_center {
     width: 1000px;
-    height: 400px;
+   /* min-height: 400px;*/
     margin: 0 auto;
 }
 
@@ -39,7 +39,7 @@
 
 .con_right {
     float: right;
-    width: 760px;
+    width: 800px;
     overflow-y: hidden;
     overflow-x: hidden;
 

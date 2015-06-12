@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>哈尔滨工业大学（威海）学生工作处</title>
-    <link href="/Public//Home/css/header.css" type=text/css rel=stylesheet>
-    <link href="/Public//Home/css/footer.css" type=text/css rel=stylesheet>
-    <link href="/Public//Home/css/index.css" type=text/css rel=stylesheet>
-    <link href="/Public//Home/css/list.css" type=text/css rel=stylesheet>
-
-    <script type="text/javascript" src="/Public//Home/js/xgc.js"></script>
-    <script type="text/javascript" src="/Public//Home/js/jquery-1.5.2.min.js"></script>
-    <script type="text/javascript" src="/Public//Home/js/bgstretcher.js"></script>
-    <link rel="stylesheet" href="/Public//Home/css/bgstretcher.css">
+    <link href="/ewebcmsxgcbackup/Public//Home/css/header.css" type=text/css rel=stylesheet>
+    <link href="/ewebcmsxgcbackup/Public//Home/css/footer.css" type=text/css rel=stylesheet>
+    <link href="/ewebcmsxgcbackup/Public//Home/css/index.css" type=text/css rel=stylesheet>
+    <link href="/ewebcmsxgcbackup/Public//Home/css/list.css" type=text/css rel=stylesheet>
+<link href="/ewebcmsxgcbackup/Public//Home/css/jj.css" type=text/css rel=stylesheet>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Home/js/xgc.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Home/js/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Home/js/bgstretcher.js"></script>
+    <link rel="stylesheet" href="/ewebcmsxgcbackup/Public//Home/css/bgstretcher.css">
 
     <!--[if IE 6]>
     <style type="text/css">
         body {
-            background: url(/Public//Home/images/bg2.jpg)
+            background: url(/ewebcmsxgcbackup/Public//Home/images/bg2.jpg)
         }
     </style>
     <script type="text/javascript" src="DD_belatedPNG.js"></script>
@@ -28,9 +28,9 @@
     </script>
     <![endif]-->
 
-    <script type="text/javascript" src="/Public//Home/js/jquery-1.5.2.min.js"></script>
-    <script type="text/javascript" src="/Public//Home/js/xgc.js"></script>
-    <script type="text/javascript" src="/Public//Home/js/bgstretcher.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Home/js/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Home/js/xgc.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Home/js/bgstretcher.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -47,11 +47,11 @@
             else {
 
                 $('BODY').bgStretcher({
-                    images: ['/Public//Home/images/bg1.jpg', '/Public//Home/images/bg2.jpg', '/Public//Home/images/bg3.jpg', '/Public//Home/images/bg4.jpg'],
+                    images: ['/ewebcmsxgcbackup/Public//Home/images/bg1.JPG', '/ewebcmsxgcbackup/Public//Home/images/bg2.JPG', '/ewebcmsxgcbackup/Public//Home/images/bg3.JPG', '/ewebcmsxgcbackup/Public//Home/images/bg4.JPG'],
                     imageWidth: 1920,
                     imageHeight: 1280,
                     slideDirection: 'NE',
-                    slideShowSpeed: 1000,
+                    slideShowSpeed: 9000000000,
                     transitionEffect: 'superSlide',
                     sequenceMode: 'normal',
                     buttonPrev: '#prev',
@@ -69,10 +69,9 @@
 <body>
 <!-- <div class="wrapper"> -->
 <div class="top">
+ <div class="top_center_container">
     <div class="top_center">
-        <div class="logo">
-            <img src="/Public//Home/images/aa.png"/>
-        </div>
+        
 
         <div class="top_right">
             <div id="top_time" onload="updateTime()">
@@ -82,7 +81,7 @@
 
             <div class="search_box">
                 <form id="search_from" target="blank" onsubmit="return go(this)">
-                    <input type="image" src="/Public//Home/images/btn_search_box.png" width="78px" height="31px"
+                    <input type="image" src="/ewebcmsxgcbackup/Public//Home/images/btn_search_box.png" width="78px" height="31px"
                            id="go" alt="search" onclick="document.search_from.submit()">
                     <input type="text" id="word" value="请在此输入检索关键字"
                            onclick="if(this.value=='请在此输入检索关键字') this.value=''"></form>
@@ -92,13 +91,15 @@
     </div>
 
 </div>
+</div>
 
 <div class="top_menu_bg_home">
     <div id="top_menu">
         <ul>
-            <?php if(is_array($navlist[0])): $i = 0; $__LIST__ = $navlist[0];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+            <li><a href="<?php echo ($navlist[0][0]['f']['href']); ?>"><?php echo ($navlist[0][0]['f']['name']); ?></a></li>
+            <?php if(is_array($navlist[0])): $i = 0; $__LIST__ = array_slice($navlist[0],1,null,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 
-                    <?php if($vo.f.fid == 0): if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>"><?php echo ($vo["f"]["name"]); ?></a>
+                    <?php if($vo.f.fid == 0): if($vo['f']['typeid'] == 2): ?><a href="<?php echo ($vo["f"]["href"]); ?>" target="_blank"><?php echo ($vo["f"]["name"]); ?></a>
                             <?php else: ?>
                             <a href="<?php echo U($vo['f']['href']);?>"><?php echo ($vo["f"]["name"]); ?></a><?php endif; endif; ?>
                     <ul>
@@ -117,16 +118,16 @@
 <div class="center">
 
     <a href="javascript:;" id="prev" style="cursor:pointer" class="bgStretcherNav bgStretcherNavPrev">
-        <div style="height:40px; width:20px;position:fixed;left:0;bottom:300px; background:url(/Public//Home/images/prev1.png) no-repeat; line-height:40px; text-align:center;margin-top:1px;"></div>
+        <div style="height:40px; width:20px;position:fixed;left:0;bottom:300px; background:url(/ewebcmsxgcbackup/Public//Home/images/prev1.png) no-repeat; line-height:40px; text-align:center;margin-top:1px;"></div>
     </a>
     <a href="javascript:;" id="next" style="cursor:pointer" class="bgStretcherNav bgStretcherNavNext">
-        <div style="height:40px; width:20px; position:fixed;right:0;bottom:300px; background:url(/Public//Home/images/next1.png) no-repeat;line-height:40px;text-align:center;margin-top:1px;"></div>
+        <div style="height:40px; width:20px; position:fixed;right:0;bottom:300px; background:url(/ewebcmsxgcbackup/Public//Home/images/next1.png) no-repeat;line-height:40px;text-align:center;margin-top:1px;"></div>
     </a>
 
     <div class="center_container">
         <!-- 图片描述 -->
         <div id="pic_desc">
-            <p>十佳歌手</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青春之歌</p>
         </div>
 
 
@@ -136,22 +137,22 @@
             <div id="tab-list">
                 <ul id="ul1">
                     <li class="active">
-                        <img src="/Public//Home/images/xgxw.png"/>
-                        <a href="<?php echo U('Home/News/Newslist',array('id' => $nids['0']));?>">学工新闻</a>
+                        <img src="/ewebcmsxgcbackup/Public//Home/images/xgxw.png"/>
+                        <a href="<?php echo U('Home/News/newslist',array('id' => $nids['0']));?>"><?php echo ($classname[0]['name']); ?></a>
                     </li>
                     <li>
-                        <img src="/Public//Home/images/tzgg.png"/>
-                        <a href="<?php echo U('Home/News/Newslist',array('id' => $nids['1']));?>">通知公告</a>
-                    </li>
-
-                    <li>
-                        <img src="/Public//Home/images/hdzx.png"/>
-                        <a href="<?php echo U('Home/News/Newslist',array('id' => $nids['2']));?>">公寓文明</a>
+                        <img src="/ewebcmsxgcbackup/Public//Home/images/tzgg.png"/>
+                        <a href="<?php echo U('Home/News/newslist',array('id' => $nids['1']));?>"><?php echo ($classname[1]['name']); ?></a>
                     </li>
 
                     <li>
-                        <img src="/Public//Home/images/xgxw.png"/>
-                        <a href="<?php echo U('Home/News/Newslist',array('id' => $nids['3']));?>">学子风采</a>
+                        <img src="/ewebcmsxgcbackup/Public//Home/images/hdzx.png"/>
+                        <a href="<?php echo U('Home/News/newslist',array('id' => $nids['2']));?>"><?php echo ($classname[2]['name']); ?></a>
+                    </li>
+
+                    <li>
+                        <img src="/ewebcmsxgcbackup/Public//Home/images/xgxw.png"/>
+                        <a href="<?php echo U('Home/News/newslist',array('id' => $nids['3']));?>"><?php echo ($classname[3]['name']); ?></a>
                     </li>
 
                 </ul>
@@ -240,12 +241,13 @@
             </div>
             <div style=" clear:both;width:450px; height:13px; line-height:10px;text-align:right; margin-right:10px;">
                 <a id="gengduo" target="_blank" onclick="showmore();"
-                   href="<?php echo U('Home/News/Newslist',array('id' => 109));?>" style="text-decoration:none;">+更多</a>
+                   href="<?php echo U('Home/News/Newslist',array('id' => $classname[0][fid]));?>" style="text-decoration:none;">+更多
+                </a>
             </div>
         </div>
 
         <div class="news_bottom">
-            <img src="/Public//Home/images/news_bottom_logo.png"/>
+            <img src="/ewebcmsxgcbackup/Public//Home/images/news_bottom_logo.png"/>
 
             <span class="news_bottom_title">&nbsp;&nbsp;校园快讯&nbsp;:&nbsp;</span>
 

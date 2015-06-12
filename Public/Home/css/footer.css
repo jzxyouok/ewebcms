@@ -72,7 +72,7 @@
     margin-top: 30px;
 }
 
-.clearfix:after {
+/*.clearfix:after {
     content: " ";
     display: block;
     clear: both;
@@ -83,4 +83,34 @@
     zoom: 1;
     display: table;
     width: 100%;
+}*/
+
+.clearfix:after
+{
+content:".";
+display:block;
+height:0;
+clear:both;
+visibility:hidden;
 }
+.clearfix
+{
+display:inline-block;
+}
+/* Hide from IE Mac */
+.clearfix {display:block;}
+/* End hide from IE Mac */
+/* end of clearfix */
+
+.clearfix:after {content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;}
+
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clearfloat{ clear:both;}

@@ -12,14 +12,16 @@ class MainController extends CommonController
         $model = M("Nav");
         $navlist = $model->select();
 //        print_r ($navlist);return;
+		$navnum = count($navlist);
         foreach ($navlist as $nvalue) {
             $model = M("newsclass");
             $navid = $nvalue['id'];
             $classlist = $model->where('fid=0 and navid=%d', $navid)->order("listorder asc")->select();
-
+			$classnum = count($classlist);
             foreach ($classlist as $value) {
                 $cid = $value['id'];
                 $list = $model->where('fid=%d and navid=%d', $cid, $navid)->order("listorder asc")->select();
+				$listnum = count($list);
                 //如果有子类的话，将子类新闻的数量添加进行，重新组合数组。
                 if ($list) {
                     foreach ($list as $value2) {
@@ -28,20 +30,23 @@ class MainController extends CommonController
                         array_push($value2, $number);
                         $resultlist[] = $value2;
                     }
-                    $cl = array('f' => $value, 'c' => $resultlist);
+                    $cl = array('cnum' => $listnum, 'f' => $value, 'c' => $resultlist,);
                     $result[] = $cl;
                 } else {
-                    $cl = array('f' => $value, 'c' => $list);
+                    $cl = array('cnum' => $listnum, 'f' => $value, 'c' => $list);
                     $result[] = $cl;
                 }
                 unset($resultlist);
             }
 
-            $c2 = array('nav' => $nvalue, 'navlist' => $result);
+            $c2 = array('fnum' => $classnum,'nav' => $nvalue, 'navlist' => $result , );
             $result1[] = $c2;
             unset($result);
         }
         $this->assign("list", $result1);
+		
+		//dump($result1);
+
 
 
         $admin = M('admins');
@@ -84,6 +89,7 @@ class MainController extends CommonController
         $this->assign("wechat", $wechat);
         $this->assign("rbac", $rbac);
 
+		$this -> assign("adminnavnum",$navnum);
         $this->display();
     }
 

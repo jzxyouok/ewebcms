@@ -1,0 +1,37 @@
+table.intro {
+	border:  #000033 4px double;
+}
+
+table.intro td {
+	border-right: #999999 1px dotted;
+	border-bottom: #999999 1px dotted;
+	border-top: none;
+	border-left: none;
+}
+
+table#tasktable td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+table#tasktable th {
+	background-color: #4F8DC6;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+table#tasktable tr.odd {
+	background-color: #E6EFF7;
+}
+
+table#tasktable tr.even {
+	background-color: #C8DCEE;
+}
+
+table#tasktable th.item {	
+	width: 100px; 
+}
+
+table#tasktable {
+	margin: 10px;
+}

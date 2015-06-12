@@ -27,7 +27,7 @@ return array(
     'USER_AUTH_KEY' => 'authId', //认证识别号
     //'REQUIRE_AUTH_MODULE' =>  '',//需要认证模块
     'NOT_AUTH_MODULE' => 'Index,Main', //无需认证模块//上面和这个一样,注释上面
-    //'NOT_AUTH_ACTION' => //无需认证操作
+    'NOT_AUTH_ACTION' => 'add,edit',//无需认证操作
     //'USER_AUTH_GATEWAY' => //认证网关,  //此处不需要
     //'RBAC_DB_DSN' => 'mysql://root:123456@localhost:3306/ewebcms2', // 数据库连接DSN // 公用的连接,此处不用
     'RBAC_ROLE_TABLE' => 'role',//角色表名称

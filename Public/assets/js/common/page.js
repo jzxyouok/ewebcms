@@ -39,11 +39,5 @@ $(function () {
       }
     });
   }
-  //释放所有的控件
-  $(window).on('unload',function(){
-    BUI.Component.Manager.eachComponent(function(component){
-      component.destroy();
-    });
-  });
   
 });

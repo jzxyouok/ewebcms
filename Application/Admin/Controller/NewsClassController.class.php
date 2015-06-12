@@ -227,68 +227,7 @@ class NewsClassController extends CommonController
 
     }
 
-    public function update()
-    {
-        $id = I('param.id');
-        $type = $_REQUEST['type'];
-        if ($type == 1) {
-            $data['name'] = I('name');
-            $data['fid'] = I('fid');
-            $data['remark'] = I('remark');
-            $data['navid'] = I('navid');
-            $model = M('newsclass');
-            $result = $model->where('id=%d', $id)->save($data);
-
-            //父栏目的子类也应该加入该栏目下 因为现在只支持两级菜单
-            if (I('fid') != 0) {
-                $data1['fid'] = I('fid');
-                $model->where("fid=$id")->save($data1);
-            }
-
-        } elseif ($type == 2) {
-            $data['name'] = I('name');
-            $data['fid'] = I('fid');
-            $data['remark'] = I('remark');
-            $data['href'] = I('href');
-            $data['navid'] = I('navid');
-            $model = M('newsclass');
-            $result = $model->where('id=%d', $id)->save($data);
-
-            //父栏目的子类也应该加入该栏目下 因为现在只支持两级菜单
-            if (I('fid') != 0) {
-                $data1['fid'] = I('fid');
-                $model->where("fid=$id")->save($data1);
-            }
-        } elseif ($type == 3) {
-            $model = M('Newsclass');
-            $data1['name'] = I('post.title');
-            $data1['fid'] = I('post.fid');
-            $data1['navid'] = I('post.navid');
-            $model->where('page_id=%d', $id)->save($data1);
-
-            //父栏目的子类也应该加入该栏目下 因为现在只支持两级菜单
-            if (I('post.fid') != 0) {
-                $data1['fid'] = I('fid');
-                $model->where("fid=$id")->save($data1);
-            }
-
-            $model = M('page');
-            $data['content'] = I('post.myconten');
-            $data['title'] = I('post.title');
-            $data['keyword'] = I('post.keyword');
-            $data['excerpt'] = I('post.excerpt');
-            $data['updatetime'] = time(I('post.updatetime'));
-            $result = $model->where('id=%d', $id)->save($data);
-        }
-
-        if ($result) {   //设置成功后跳转页面的地址，默认的返回页面是$_SERVER['HTTP_REFERER']
-            $this->success('修改成功', U('admin/NewsClass/index'));
-        } else {  //错误页面的默认跳转页面是返回前一页，通常不需要设置
-            $this->error('修改失败后者没有做任何改变', U('admin/NewsClass/index'));
-        }
-
-    }
-
+   
     public function del()
     {
         $id = I('param.id');

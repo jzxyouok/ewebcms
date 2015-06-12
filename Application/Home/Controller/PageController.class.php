@@ -19,8 +19,10 @@ class PageController extends CommonController
         $this->assign("page", $page);
 
         $this->pagesideleft($id);
-
-        $this->display();
+		if ($id != 55) {
+        $this->display();}
+		else
+		{$this->display(jigousz);}
     }
 
     public function message()

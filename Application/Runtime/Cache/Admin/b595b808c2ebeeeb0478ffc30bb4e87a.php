@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
-    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/Public//Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgcbackup/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgcbackup/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgcbackup/Public//Css/style.css"/>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgcbackup/Public//Js/common.js"></script>
     <style type="text/css">
         body {
             height: 500px;

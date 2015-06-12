@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/Public/Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public/Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public/Css/style.css"/>
-    <script type="text/javascript" src="/Public/Js/jquery.js"></script>
-    <script type="text/javascript" src="/Public/Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/Public/Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/Public/Js/ckform.js"></script>
-    <script type="text/javascript" src="/Public/Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public/Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public/Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public/Css/style.css"/>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/jquery.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/ckform.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -56,7 +56,7 @@
                 </td>
             </tr>
         </form>
-        <form action="<?php echo U('Admin/NewsClass/update');?>?type=2" method="post">
+        <form action="<?php echo U('Admin/Doc/classupdate');?>?type=2" method="post">
             <input type="hidden" value="<?php echo ($navid); ?>" name="navid" id="navid1"/>
             <tr>
                 <td width="10%" class="tableleft">分类名称</td>

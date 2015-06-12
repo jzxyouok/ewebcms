@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/Public/Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public/Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public/Css/style.css"/>
-    <script type="text/javascript" src="/Public/Js/jquery.js"></script>
-    <script type="text/javascript" src="/Public/Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/Public/Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/Public/Js/ckform.js"></script>
-    <script type="text/javascript" src="/Public/Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public/Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public/Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public/Css/style.css"/>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/jquery.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/ckform.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public/Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -94,7 +94,9 @@
 
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-mini btn-primary" onclick="javasript:add(<?php echo ($vo["f"]["id"]); ?>)">新增</button>
+                            <button type="button" class="btn btn-mini btn-primary" onclick="javasript:add(<?php echo ($vo["f"]["id"]); ?>)">
+                                新增
+                            </button>
                             <button type="button" class="btn btn-mini btn-info" id="addnew"
                                     onclick="javasript:edit(<?php echo ($vo["f"]["id"]); ?>,<?php echo ($vo["f"]["typeid"]); ?>)">编辑
                             </button>

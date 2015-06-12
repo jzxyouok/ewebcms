@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package xmlns="http://www.zend.com/server/deployment-descriptor/1.0" version="1.0">
+    <name>ewebcms</name>
+    <summary>ewebcms</summary>
+    <description>this is a private cms</description>
+    <version>
+        <release>4.1</release>
+    </version>
+    <icon>data/wp-admin/images/w-logo-blue.png</icon>
+    <eula>LICENSE.txt</eula>
+    <appdir>data</appdir>
+    <scriptsdir>hook_scripts</scriptsdir>
+    <dependencies>
+        <required>
+            <php>
+                <min>5.2.4</min>
+            </php>
+			<extension>
+                <name>mbstring</name>
+            </extension>			
+        </required>
+    </dependencies>
+    <parameters>	
+		<parameter display="Site URL" id="site_url" readonly="false" required="true" type="string">
+            <defaultvalue>http://localhost/ewebcms</defaultvalue>
+        </parameter>
+		<parameter display="Blog name" id="blog_name" readonly="false" required="true" type="string">
+            <defaultvalue>ewebcms Demo</defaultvalue>
+        </parameter>
+        <parameter display="Database host" id="db_host" readonly="false" required="true" type="string">
+            <defaultvalue>localhost</defaultvalue>
+        </parameter>
+        <parameter display="Database username" id="db_username" readonly="false" required="true" type="string">
+            <defaultvalue>root</defaultvalue>
+        </parameter>
+        <parameter display="Database password" id="db_password" readonly="false" required="true" type="password" />
+        <parameter display="Database name" id="db_name" readonly="false" required="true" type="string">
+			<defaultvalue>ewebcms</defaultvalue>
+		</parameter>
+        <parameter display="ewebcms admin username" id="admin_username" readonly="false" required="true" type="string">
+            <defaultvalue>admin</defaultvalue>
+        </parameter>
+		<parameter display="ewebcms admin password" id="admin_password" readonly="false" required="true" type="password">
+            <defaultvalue></defaultvalue>
+        </parameter>
+		<parameter display="ewebcms admin email" id="admin_email" readonly="false" required="true" type="email">
+            <defaultvalue>admin@localhost.com</defaultvalue>
+        </parameter>
+		<parameter display="Table prefix" id="table_prefix" readonly="false" required="true" type="string">
+            <defaultvalue>wp_</defaultvalue>
+        </parameter>
+    </parameters>
+</package>

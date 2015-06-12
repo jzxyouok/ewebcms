@@ -3,14 +3,14 @@
 <head>
     <title>文档查看</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public//Css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" type="text/css" href="/Public//Css/style.css"/>
-    <script type="text/javascript" src="/Public//Js/jquery.js"></script>
-    <script type="text/javascript" src="/Public//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="/Public//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="/Public//Js/ckform.js"></script>
-    <script type="text/javascript" src="/Public//Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/ewebcmsxgc/Public//Css/style.css"/>
+    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/bootstrap.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/ckform.js"></script>
+    <script type="text/javascript" src="/ewebcmsxgc/Public//Js/common.js"></script>
 
     <style type="text/css">
         body {
@@ -71,8 +71,9 @@
                 <td width="6%"><input type="text" name="listorder[<?php echo ($vo["id"]); ?>]" id="listorder" value="<?php echo ($vo["listorder"]); ?>"
                                       style="width: 30px;"/></td>
                 <td><?php echo ($vo["id"]); ?></td>
-                <td><a href="<?php echo U('Home/News/show',array('id' => $vo['id']));?>" target="_blank"><u><?php echo ($vo["title"]); ?></u></a></td>
-                <td><?php echo (date("y-m-d H:i:s",$vo["date"])); ?></td>
+                <td><a href="<?php echo U('Home/News/show',array('id' => $vo['id']));?>" target="_blank"><u><?php echo ($vo["title"]); ?></u></a>
+                </td>
+                <td><?php echo (date("y-m-d H:i:s",$vo["updatetime"])); ?></td>
                 <td><?php echo ($type["name"]); ?></td>
                 <td>
                     <a href="#"><?php echo ($vo["clickrate"]); ?></a>

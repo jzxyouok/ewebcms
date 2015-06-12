@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2015-05-25 14:46:03
+Date: 2015-06-01 14:50:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -100,7 +100,7 @@ CREATE TABLE `admins` (
 -- Records of admins
 -- ----------------------------
 INSERT INTO `admins` VALUES ('19', null, '202.102.144.12', '222.175.198.8', '1430983403', '1430981670', 'editor', 'df96e383e519549ed186e1d51b75e2c5', '7', '何兆', '123', '1212', '1', '1');
-INSERT INTO `admins` VALUES ('18', null, '127.0.0.1', '127.0.0.1', '1432464697', '1432436296', 'admin', 'df96e383e519549ed186e1d51b75e2c5', '1', '何兆阳', '1234456', '1255685485@qq.com', '1', '1');
+INSERT INTO `admins` VALUES ('18', null, '127.0.0.1', '127.0.0.1', '1432637723', '1432539347', 'admin', 'df96e383e519549ed186e1d51b75e2c5', '1', '何兆阳', '1234456', '1255685485@qq.com', '1', '1');
 
 -- ----------------------------
 -- Table structure for depart
@@ -273,7 +273,7 @@ INSERT INTO `newsclass` VALUES ('121', '109', null, '学工新闻', '', '0', '1'
 INSERT INTO `newsclass` VALUES ('122', '109', null, '通知公告', '', '0', '1', '内部栏目', 'Home/News/newslist?id=122', '1', '10');
 INSERT INTO `newsclass` VALUES ('123', '109', null, '文明公寓', '', '0', '1', '内部栏目', 'Home/News/newslist?id=123', '1', '10');
 INSERT INTO `newsclass` VALUES ('164', '160', '51', '教育管理', null, '4', '3', '单网页', 'Home/Page/index?id=51', '1', '10');
-INSERT INTO `newsclass` VALUES ('162', '0', null, '首页', '', '0', '2', '外部链接', 'http://www.xgc.com', '1', '10');
+INSERT INTO `newsclass` VALUES ('162', '0', null, '首页', '', '0', '2', '外部链接', 'http://www.xgc.com/index.php', '1', '10');
 INSERT INTO `newsclass` VALUES ('146', '0', null, '学工问答', '', '8', '2', '外部链接', 'http://www.xgc.com/Home/Page/messageshow?id=148', '1', '10');
 INSERT INTO `newsclass` VALUES ('145', '0', null, '站长信箱', '', '0', '1', '内部栏目', 'Home/News/newslist?id=145', '1', '16');
 INSERT INTO `newsclass` VALUES ('138', '0', null, '学工导航', '', '1', '1', '内部栏目', 'Home/News/newslist?id=138', '1', '16');
@@ -460,7 +460,7 @@ CREATE TABLE `wx_msg` (
   `name` varchar(50) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `date` varchar(20) NOT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
   `content` text,
   `openid` varchar(50) DEFAULT NULL,
   `reply` text,

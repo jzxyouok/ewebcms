@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>软件中心CMS内容管理系统</title>
+    <title>5667软件中心CMS内容管理系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="__PUBLIC__/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
     <link href="__PUBLIC__/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
@@ -81,16 +81,27 @@
 <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
 <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
 <script src="http://g.alicdn.com/bui/bui/1.1.16/config.js"></script>
+<php>
+	$homenavnum = 1;
+</php>
 <script>
-    var docM =
-            {
-                    id:'2',
-                    menu: [
-                                <volist name="list" id="vo1">
+	
+    var docM=
+	{
+                id:'2',
+                menu:
+                        [
+								
+                                <volist name="list" id="vo1" offset="">
+								<php>
+									$navdouhao = $homenavnum == $adminnavnum?"":",";
+									$homenavnum ++;
+								</php>
+
                                 {
                                     text:'{$vo1.nav.name}',
                                     items:[
-                                            <volist name="vo1.navlist" id="vo">
+											 <volist name="vo1.navlist" id="vo">
                                                 <php>$display=$vo['f']['display']==1?"":"(不可见)";</php>
                                                 <if condition="$vo['f']['typeid'] eq 3">
                                                 {
@@ -100,35 +111,39 @@
                                                 {
                                                     id:'{$vo.f.id}',text:'{$vo.f.name}(外){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$vo.f.id}&typeid=2"
                                                 },
-                                                        <else/>
+                                                <else/>
                                                 {
                                                     id:'{$vo.f.id}',text:'{$vo.f.name}{$display}',href:"{:U('Admin/Doc/index')}?id={$vo.f.id}"
                                                 },
                                                 </if>
-
-                                                //
-                                                <volist name="vo.c" id="chd">
-                                                <php>$display=$chd['display']==1?"":"(不可见)";</php>
-                                                <if condition="$chd['typeid'] eq 3">
-                                                {
-                                                    id:'{$chd.id}',text:'┗{$chd.name}(单){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=3"
-                                                },
-												<elseif condition="$chd['typeid'] eq 2" />
-                                                {
-                                                    id:'{$chd.id}',text:'┗{$chd.name}(外){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=2"
-                                                },
-											
-                                                        <else/>
-                                                {
-                                                    id:'{$chd.id}',text:'┗{$chd.name}{$display}',href:"{:U('Admin/Doc/index')}?id={$chd.id}"
-                                                },
-                                                </if>
+												
+												 <volist name="vo.c" id="chd">
+													<php>$display=$chd['display']==1?"":"(不可见)";</php>
+													<if condition="$chd['typeid'] eq 3">
+													{
+														id:'{$chd.id}',text:'┗{$chd.name}(单){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=3"
+													},
+													<elseif condition="$chd['typeid'] eq 2" />
+													{
+														id:'{$chd.id}',text:'┗{$chd.name}(外){$display}',href:"{:U('Admin/NewsClass/edit')}?id={$chd.id}&typeid=2"
+													},
+												
+															<else/>
+													{
+														id:'{$chd.id}',text:'┗{$chd.name}{$display}',href:"{:U('Admin/Doc/index')}?id={$chd.id}"
+													},
+													</if>
                                                 </volist>
-                                            </volist>
+												
+											</volist>
                                         ]
-                                },
+                                }
+								<php>
+									echo $navdouhao;
+								</php>
                                 </volist>
-                    ]
+
+                        ]
             };
 
     BUI.use('common/main',function(){
@@ -152,10 +167,10 @@
                                             },
                                             {
                                                 id:'4',text:'版权所有',href:"{:U('Admin/Main/copyright')}"
-                                            },
+                                            }
 
                                         ]
-                            },
+                            }
 
                         ]
             },
@@ -187,7 +202,7 @@
                                                         id:'5',text:'新增单网页',href:'{:U("Admin/NewsClass/addpage")}'
                                                     }
                                                 ]
-                                    },
+                                    }
                                 ]
                     },
                 </if>
@@ -206,9 +221,9 @@
                                                     },
                                                     {
                                                         id:'2',text:'所有留言',href:"{:U('Admin/Message/index')}?type=1"
-                                                    },
+                                                    }
                                                 ]
-                                    },
+                                    }
 
                                 ]
                     },
@@ -229,7 +244,7 @@
                                                         id:'2',text:'部门添加',href:'{:U("Admin/Depart/add")}'
                                                     }
                                                 ]
-                                    },
+                                    }
                                 ]
                     },
                 </if>
@@ -279,7 +294,7 @@
                                                     }
 
                                                 ]
-                                    },
+                                    }
                                 ]
                     },
                 </if>
@@ -297,7 +312,7 @@
                                                     },
                                                     {
                                                         id:'2',text:'微信留言',href:"{:U('Admin/Wechat/guestbook')}?type=1"
-                                                    },
+                                                    }
                                                 ]
                                     },
                                     {
@@ -315,7 +330,7 @@
                                                     },
                                                     {
                                                         id:'6',text:'获取菜单',href:"{:U('Admin/Wechat/getmenu')}"
-                                                    },
+                                                    }
                                                 ]
                                     },
                                     {
@@ -327,9 +342,9 @@
                                                     },
                                                     {
                                                         id:'2',text:'微信消息',href:"{:U('Admin/Wechat/msgreply')}?type=1"
-                                                    },
+                                                    }
                                                 ]
-                                    },
+                                    }
                                 ]
                     },
                 </if>
@@ -344,10 +359,10 @@
                                                 [
                                                     {
                                                         id:'1',text:'网站信息',href:"{:U('Admin/Setting/infoset')}"
-                                                    },
+                                                    }
 
                                                 ]
-                                    },
+                                    }
 
                                 ]
                     },
@@ -366,10 +381,10 @@
                                                         id:'2',text:'修改密码',href:"{:U('Admin/User/editpwd',array('id'=>$user['id']))}"}
 
                                                 ]
-                                    },
+                                    }
 
                                 ]
-                    },
+                    }
         ];
         new PageUtil.MainPage({
             modulesConfig : config

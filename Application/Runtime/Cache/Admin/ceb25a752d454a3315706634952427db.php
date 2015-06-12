@@ -1,12 +1,12 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
 <html>
 <head>
-    <title>软件中心CMS内容管理系统</title>
+    <title>5667软件中心CMS内容管理系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="/Public/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="/Public/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="/Public/assets/css/main-min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/Public/assets/css/layout.css">
+    <link href="/ewebcmsxgcbackup/Public/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/ewebcmsxgcbackup/Public/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/ewebcmsxgcbackup/Public/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/ewebcmsxgcbackup/Public/assets/css/layout.css">
 
     <style>
         .home{
@@ -59,23 +59,29 @@
     </ul>
 
 </div>
-<script type="text/javascript" src="/Public/assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/Public/assets/js/bui-min.js"></script>
-<script type="text/javascript" src="/Public/assets/js/common/main-min.js"></script>
-<script type="text/javascript" src="/Public/assets/js/config-min.js"></script>
+<script type="text/javascript" src="/ewebcmsxgcbackup/Public/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/ewebcmsxgcbackup/Public/assets/js/bui-min.js"></script>
+<script type="text/javascript" src="/ewebcmsxgcbackup/Public/assets/js/common/main-min.js"></script>
+<script type="text/javascript" src="/ewebcmsxgcbackup/Public/assets/js/config-min.js"></script>
 
 <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
 <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
 <script src="http://g.alicdn.com/bui/bui/1.1.16/config.js"></script>
+<?php $homenavnum = 1; ?>
 <script>
-    var docM =
-            {
-                    id:'2',
-                    menu: [
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?>{
+	
+    var docM=
+	{
+                id:'2',
+                menu:
+                        [
+								
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i; $navdouhao = $homenavnum == $adminnavnum?"":","; $homenavnum ++; ?>
+
+                                {
                                     text:'<?php echo ($vo1["nav"]["name"]); ?>',
                                     items:[
-                                            <?php if(is_array($vo1["navlist"])): $i = 0; $__LIST__ = $vo1["navlist"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $display=$vo['f']['display']==1?"":"(不可见)"; ?>
+											 <?php if(is_array($vo1["navlist"])): $i = 0; $__LIST__ = $vo1["navlist"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $display=$vo['f']['display']==1?"":"(不可见)"; ?>
                                                 <?php if($vo['f']['typeid'] == 3): ?>{
                                                     id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>(单)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($vo["f"]["id"]); ?>&typeid=3"
                                                 },
@@ -83,28 +89,29 @@
                                                 {
                                                     id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); ?>(外)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($vo["f"]["id"]); ?>&typeid=2"
                                                 },
-                                                        <?php else: ?>
+                                                <?php else: ?>
                                                 {
                                                     id:'<?php echo ($vo["f"]["id"]); ?>',text:'<?php echo ($vo["f"]["name"]); echo ($display); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($vo["f"]["id"]); ?>"
                                                 },<?php endif; ?>
-
-                                                //
-                                                <?php if(is_array($vo["c"])): $i = 0; $__LIST__ = $vo["c"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i; $display=$chd['display']==1?"":"(不可见)"; ?>
-                                                <?php if($chd['typeid'] == 3): ?>{
-                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(单)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=3"
-                                                },
-												<?php elseif($chd['typeid'] == 2): ?>
-                                                {
-                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(外)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=2"
-                                                },
-											
-                                                        <?php else: ?>
-                                                {
-                                                    id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); echo ($display); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($chd["id"]); ?>"
-                                                },<?php endif; endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
+												
+												 <?php if(is_array($vo["c"])): $i = 0; $__LIST__ = $vo["c"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$chd): $mod = ($i % 2 );++$i; $display=$chd['display']==1?"":"(不可见)"; ?>
+													<?php if($chd['typeid'] == 3): ?>{
+														id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(单)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=3"
+													},
+													<?php elseif($chd['typeid'] == 2): ?>
+													{
+														id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); ?>(外)<?php echo ($display); ?>',href:"<?php echo U('Admin/NewsClass/edit');?>?id=<?php echo ($chd["id"]); ?>&typeid=2"
+													},
+												
+															<?php else: ?>
+													{
+														id:'<?php echo ($chd["id"]); ?>',text:'┗<?php echo ($chd["name"]); echo ($display); ?>',href:"<?php echo U('Admin/Doc/index');?>?id=<?php echo ($chd["id"]); ?>"
+													},<?php endif; endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
                                         ]
-                                },<?php endforeach; endif; else: echo "" ;endif; ?>
-                    ]
+                                }
+								<?php echo $navdouhao; endforeach; endif; else: echo "" ;endif; ?>
+
+                        ]
             };
 
     BUI.use('common/main',function(){
@@ -128,10 +135,10 @@
                                             },
                                             {
                                                 id:'4',text:'版权所有',href:"<?php echo U('Admin/Main/copyright');?>"
-                                            },
+                                            }
 
                                         ]
-                            },
+                            }
 
                         ]
             },
@@ -160,7 +167,7 @@
                                                         id:'5',text:'新增单网页',href:'<?php echo U("Admin/NewsClass/addpage");?>'
                                                     }
                                                 ]
-                                    },
+                                    }
                                 ]
                     },<?php endif; ?>
 
@@ -177,9 +184,9 @@
                                                     },
                                                     {
                                                         id:'2',text:'所有留言',href:"<?php echo U('Admin/Message/index');?>?type=1"
-                                                    },
+                                                    }
                                                 ]
-                                    },
+                                    }
 
                                 ]
                     },<?php endif; ?>
@@ -198,7 +205,7 @@
                                                         id:'2',text:'部门添加',href:'<?php echo U("Admin/Depart/add");?>'
                                                     }
                                                 ]
-                                    },
+                                    }
                                 ]
                     },<?php endif; ?>
                 <?php if($rbac): ?>{
@@ -246,7 +253,7 @@
                                                     }
 
                                                 ]
-                                    },
+                                    }
                                 ]
                     },<?php endif; ?>
                  <?php if($wechat): ?>{
@@ -262,7 +269,7 @@
                                                     },
                                                     {
                                                         id:'2',text:'微信留言',href:"<?php echo U('Admin/Wechat/guestbook');?>?type=1"
-                                                    },
+                                                    }
                                                 ]
                                     },
                                     {
@@ -280,7 +287,7 @@
                                                     },
                                                     {
                                                         id:'6',text:'获取菜单',href:"<?php echo U('Admin/Wechat/getmenu');?>"
-                                                    },
+                                                    }
                                                 ]
                                     },
                                     {
@@ -292,9 +299,9 @@
                                                     },
                                                     {
                                                         id:'2',text:'微信消息',href:"<?php echo U('Admin/Wechat/msgreply');?>?type=1"
-                                                    },
+                                                    }
                                                 ]
-                                    },
+                                    }
                                 ]
                     },<?php endif; ?>
                 <?php if($setting): ?>{
@@ -307,10 +314,10 @@
                                                 [
                                                     {
                                                         id:'1',text:'网站信息',href:"<?php echo U('Admin/Setting/infoset');?>"
-                                                    },
+                                                    }
 
                                                 ]
-                                    },
+                                    }
 
                                 ]
                     },<?php endif; ?>
@@ -328,10 +335,10 @@
                                                         id:'2',text:'修改密码',href:"<?php echo U('Admin/User/editpwd',array('id'=>$user['id']));?>"}
 
                                                 ]
-                                    },
+                                    }
 
                                 ]
-                    },
+                    }
         ];
         new PageUtil.MainPage({
             modulesConfig : config
